@@ -2,7 +2,7 @@ name := "COMP3350-Group-Project"
 
 version := "INDEV"
 
-scalaVersion := "2.11.0"
+scalaVersion := "2.10.4"
 
 resolvers += "swt-repo" at "https://swt-repo.googlecode.com/svn/repo/"
 
@@ -19,8 +19,8 @@ lazy val swt_artifact = "org.eclipse.swt." + os
 libraryDependencies ++= Seq(
   "org.eclipse.swt" % swt_artifact % "3.8" withSources(),
   "junit" % "junit" % "4.10" withSources(),
-  "org.projectlombok" %% "lombok-maven" % "1.12.6.0" withSources(),
   "com.typesafe" % "config" % "1.2.1" withSources(),
   "com.typesafe.slick" %% "slick" % "2.0.2" withSources(),
-  "org.slf4j" % "slf4j-nop" % "1.6.4" withSources()
+  "org.slf4j" % "slf4j-nop" % "1.6.4" withSources(),
+  "org.projectlombok" % "lombok" % "1.12.6" withSources()
 )
