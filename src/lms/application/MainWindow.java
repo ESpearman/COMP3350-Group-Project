@@ -37,6 +37,8 @@ public class MainWindow {
 		buttonTest.setBounds(244, 88, 208, 42);
 		buttonTest.setText("button test");
 		
+		
+		
 		buttonTestTextBox = new Text(shlSwtTesting, SWT.BORDER);
 		buttonTestTextBox.setBounds(244, 136, 208, 38);
 		
@@ -47,6 +49,8 @@ public class MainWindow {
 				shlSwtTesting.close();
 			}
 		});
+		
+		
 		buttonTerminate.setBounds(497, 357, 139, 42);
 		buttonTerminate.setText("Terminate");
 
