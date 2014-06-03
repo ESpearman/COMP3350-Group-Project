@@ -3,6 +3,7 @@ package lms.business;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import lms.stubdb.StubDB;
 import lombok.Getter;
 
 public class Term implements BusinessObject
@@ -25,9 +26,21 @@ public class Term implements BusinessObject
 		this.name = name;
 	}
 	
-	static public Term getById(UUID id)
+	@Override
+	public UUID getId()
 	{
-		return null;
+		return id;
+	}
+	
+	@Override
+	public void save()
+	{
+		StubDB.saveTerm(this);
+	}
+	
+	public static Term getById(UUID id)
+	{
+		return StubDB.getTermById(id);
 	}
 	
 	public static ArrayList<Term> getAll()
@@ -35,11 +48,5 @@ public class Term implements BusinessObject
 		return null;
 	}
 	
-	@Override
-	public void save()
-	{
-		
-	}
-
 	
 }

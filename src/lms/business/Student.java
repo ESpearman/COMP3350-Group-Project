@@ -3,12 +3,12 @@ package lms.business;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import lms.stubdb.StubDB;
 import lombok.Getter;
 import lombok.Setter;
 
 public class Student implements BusinessObject
 {
-	@Getter
 	private UUID id;
 	
 	@Getter
@@ -56,16 +56,22 @@ public class Student implements BusinessObject
 		this.scienceStudent = scienceStudent;
 		this.term = term;
 	}
+	
+	@Override
+	public UUID getId()
+	{
+		return id;
+	}
 
 	@Override
 	public void save()
 	{
-		
+		StubDB.saveStudent(this);
 	}
 	
 	public static Student getById(UUID id)
 	{
-		return null;
+		return StubDB.getStudentById(id);
 	}
 	
 	public static Student getByStudentNumber(int number)
