@@ -10,14 +10,16 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Text;
 
 
-public class MainWindow {
+public class MainWindow
+{
 	private static Text buttonTestTextBox;
 
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		Display display = Display.getDefault();
 		final Shell shlSwtTesting = new Shell();
 		
@@ -30,9 +32,11 @@ public class MainWindow {
 		comboTest.setText("select one");
 		
 		Button buttonTest = new Button(shlSwtTesting, SWT.NONE);
-		buttonTest.addSelectionListener(new SelectionAdapter() {
+		buttonTest.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				buttonTestTextBox.setText("button test works");
 			}
 		});
@@ -45,9 +49,11 @@ public class MainWindow {
 		buttonTestTextBox.setBounds(244, 136, 208, 38);
 		
 		Button buttonTerminate = new Button(shlSwtTesting, SWT.NONE);
-		buttonTerminate.addSelectionListener(new SelectionAdapter() {
+		buttonTerminate.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				shlSwtTesting.close();
 			}
 		});
@@ -58,8 +64,10 @@ public class MainWindow {
 
 		shlSwtTesting.open();
 		shlSwtTesting.layout();
-		while (!shlSwtTesting.isDisposed()) {
-			if (!display.readAndDispatch()) {
+		while (!shlSwtTesting.isDisposed())
+		{
+			if (!display.readAndDispatch())
+			{
 				display.sleep();
 			}
 		}
