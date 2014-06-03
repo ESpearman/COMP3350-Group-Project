@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import lombok.Getter;
 
-public class Term implements BusinessObject<Term>
+public class Term implements BusinessObject
 {
 	@Getter
 	private UUID id;
@@ -13,20 +13,24 @@ public class Term implements BusinessObject<Term>
 	@Getter
 	private String name;
 	
+	public Term(String name)
+	{
+		this.id = UUID.randomUUID();
+		this.name = name;
+	}
+	
 	public Term(UUID id, String name)
 	{
 		this.id = id;
 		this.name = name;
 	}
 	
-	@Override
-	public Term getById(UUID id)
+	static public Term getById(UUID id)
 	{
 		return null;
 	}
 	
-	@Override
-	public ArrayList<Term> getListByTerm(UUID id)
+	public static ArrayList<Term> getAll()
 	{
 		return null;
 	}
