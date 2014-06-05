@@ -6,4 +6,5 @@ public interface BusinessObject
 {
 	UUID getId();
 	void save();
+	BusinessObject clone();
 }

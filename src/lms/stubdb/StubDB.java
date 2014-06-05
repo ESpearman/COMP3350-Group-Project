@@ -20,22 +20,83 @@ public class StubDB
 	
 	public static Term getTermById(UUID id)
 	{
-		return (Term)getById(terms, id);
+		BusinessObject obj = getById(terms, id);
+		if(obj != null && obj instanceof Term)
+		{
+			return (Term)obj.clone();
+		}
+		
+		return null;
 	}
 	
 	public static Student getStudentById(UUID id)
 	{
-		return (Student)getById(students, id);
+		BusinessObject obj = getById(students, id);
+		if(obj != null && obj instanceof Student)
+		{
+			return (Student)obj.clone();
+		}
+		
+		return null;
 	}
 	
-	public static Term saveTerm(Term term)
+	public static void saveTerm(Term term)
 	{
-		return (Term)save(terms, term);
+		save(terms, term);
 	}
 	
-	public static Student saveStudent(Student student)
+	public static void saveStudent(Student student)
 	{
-		return (Student)save(students, student);
+		save(students, student);
+	}
+	
+	public static Student getStudentByNumber(int number)
+	{
+		for(BusinessObject obj: students)
+		{
+			if(obj instanceof Student)
+			{
+				Student student = (Student)obj;
+				if(student.getStudentNumber() == number)
+				{
+					return (Student)student.clone();
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	public static ArrayList<Term> getAllTerms()
+	{
+		ArrayList<Term> to = new ArrayList<Term>();
+		
+		for(BusinessObject obj: terms)
+		{
+			BusinessObject theClone = obj.clone();
+			if(theClone instanceof Term)
+			{
+				to.add((Term)theClone);
+			}
+		}
+		
+		return to;
+	}
+	
+	public static ArrayList<Student> getAllStudents()
+	{
+		ArrayList<Student> to = new ArrayList<Student>();
+		
+		for(BusinessObject obj: students)
+		{
+			BusinessObject theClone = obj.clone();
+			if(theClone instanceof Student)
+			{
+				to.add((Student)theClone);
+			}
+		}
+		
+		return to;
 	}
 	
 	private static BusinessObject getById(ArrayList<BusinessObject> from, UUID id)
@@ -44,25 +105,23 @@ public class StubDB
 		{
 			if(obj.getId().equals(id))
 			{
-				return obj;
+				return obj.clone();
 			}
 		}
 		
 		return null;
 	}
 	
-	private static BusinessObject save(ArrayList<BusinessObject> to, BusinessObject unsaved)
+	private static void save(ArrayList<BusinessObject> to, BusinessObject unsaved)
 	{
 		for(int i = 0; i < to.size(); i++)
 		{
 			if(to.get(i).getId().equals(unsaved.getId()))
 			{
-				to.set(i, unsaved);
+				to.set(i, unsaved.clone());
 			}
 		}
 		
-		to.add(unsaved);
-		
-		return unsaved;
+		to.add(unsaved.clone());
 	}
 }

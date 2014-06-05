@@ -3,12 +3,13 @@ package lms.business;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.stubdb.StubDB;
+import lms.db.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
 
 public class Student implements BusinessObject
 {
+	@Getter
 	private UUID id;
 	
 	@Getter
@@ -58,20 +59,20 @@ public class Student implements BusinessObject
 	}
 	
 	@Override
-	public UUID getId()
+	public BusinessObject clone()
 	{
-		return id;
+		return (BusinessObject)(new Student(id, firstName, lastName, email, studentNumber, scienceStudent, term));
 	}
 
 	@Override
 	public void save()
 	{
-		StubDB.saveStudent(this);
+		DBProxy.saveStudent(this);
 	}
 	
 	public static Student getById(UUID id)
 	{
-		return StubDB.getStudentById(id);
+		return DBProxy.getStudentById(id);
 	}
 	
 	public static Student getByStudentNumber(int number)

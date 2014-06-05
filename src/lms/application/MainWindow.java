@@ -23,7 +23,7 @@ public class MainWindow
 		Display display = Display.getDefault();
 		final Shell shlSwtTesting = new Shell();
 		
-		shlSwtTesting.setText("SWT testing !");
+		shlSwtTesting.setText("SWT testing");
 		shlSwtTesting.setSize(720, 514);
 		
 		Combo comboTest = new Combo(shlSwtTesting, SWT.NONE);
