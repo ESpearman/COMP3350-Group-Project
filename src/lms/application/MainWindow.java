@@ -23,7 +23,7 @@ public class MainWindow
 	 * @param args
 	 */
 	
-	public void RunWindow()
+	public void runWindow()
 	{
 		
 		// ============ create new window ( centre on monitor ) =====
@@ -55,7 +55,6 @@ public class MainWindow
 		exitButton.setText("Quit");
 		
 		
-		
 		// ==============register button ===========
 		registerButton = new Button(shell, SWT.NONE);
 		registerButton.addSelectionListener(new SelectionAdapter() {
@@ -64,6 +63,7 @@ public class MainWindow
 				// when register button is clicked
 				
 				new RegisterWindow();
+				display.sleep();
 			}
 		});
 		registerButton.setBounds(114, 40, 139, 42);
@@ -76,6 +76,7 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				// import button is selected
+				
 			}
 		});
 		importButton.setBounds(114, 101, 139, 42);
@@ -96,7 +97,7 @@ public class MainWindow
 	public MainWindow()
 	{
 		display = Display.getDefault();
-		RunWindow();
+		runWindow();
 	}
 	
 	

@@ -28,7 +28,7 @@ public class RegisterWindow
 	private Label searchSeparate;
 	private Label scienceLable;
 	
-	public void RunWindow()
+	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
@@ -101,7 +101,7 @@ public class RegisterWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				// when register button is selected
-				
+				new LockerWindow();
 			}
 		});
 		registerButton.setBounds(225, 228, 139, 42);
@@ -140,6 +140,6 @@ public class RegisterWindow
 	public RegisterWindow()
 	{
 		display = Display.getDefault();
-		RunWindow();
+		runWindow();
 	}
 }
