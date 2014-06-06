@@ -2,74 +2,98 @@ package lms.application;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Text;
 
 
 public class MainWindow
 {
-	private static Text buttonTestTextBox;
-
+	private Display display;
+	private Shell shell;
+	private Button registerButton;
+	private Button importButton;
+	private Button exitButton;
+	
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args)
+	
+	public void CreateWindow()
 	{
-		Display display = Display.getDefault();
-		final Shell shlSwtTesting = new Shell();
+		shell = new Shell();
+		shell.setSize(800, 600);
+		shell.setLocation(100, 100);
+		shell.setText("Locker Management System");
 		
-		shlSwtTesting.setText("SWT testing");
-		shlSwtTesting.setSize(720, 514);
-		
-		Combo comboTest = new Combo(shlSwtTesting, SWT.NONE);
-		comboTest.setItems(new String[] {"test1", "test2", "test3"});
-		comboTest.setBounds(50, 90, 159, 40);
-		comboTest.setText("select one");
-		
-		Button buttonTest = new Button(shlSwtTesting, SWT.NONE);
-		buttonTest.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				buttonTestTextBox.setText("button test works");
-			}
-		});
-		buttonTest.setBounds(244, 88, 208, 42);
-		buttonTest.setText("button test");
-		
-		
-		
-		buttonTestTextBox = new Text(shlSwtTesting, SWT.BORDER);
-		buttonTestTextBox.setBounds(244, 136, 208, 38);
-		
-		Button buttonTerminate = new Button(shlSwtTesting, SWT.NONE);
-		buttonTerminate.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				shlSwtTesting.close();
-			}
-		});
-		
-		
-		buttonTerminate.setBounds(497, 357, 139, 42);
-		buttonTerminate.setText("Terminate");
 
-		shlSwtTesting.open();
-		shlSwtTesting.layout();
-		while (!shlSwtTesting.isDisposed())
+		// ============== exit button ================
+		exitButton = new Button(shell, SWT.NONE);
+		exitButton.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				// exit button = terminate
+				shell.dispose();
+			}
+		});
+		exitButton.setBounds(276, 414, 222, 76);
+		exitButton.setText("Quit");
+		
+		
+		
+		// ==============register button ===========
+		registerButton = new Button(shell, SWT.NONE);
+		registerButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// when register button is clicked
+				
+			}
+		});
+		registerButton.setBounds(276, 95, 222, 76);
+		registerButton.setText("Register");
+		
+		
+		// =============== import button ============
+		importButton = new Button(shell, SWT.NONE);
+		importButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// import button is selected
+			}
+		});
+		importButton.setBounds(276, 183, 222, 76);
+		importButton.setText("Import");
+		
+		
+		
+		shell.layout();
+		shell.open();
+		
+		while (!shell.isDisposed())
 		{
 			if (!display.readAndDispatch())
 			{
 				display.sleep();
 			}
 		}
+	}
+	
+	public MainWindow()
+	{
+		display = Display.getDefault();
+		CreateWindow();
+	}
+	
+	
+	public static void main(String[] args)
+	{
+
+		new MainWindow();
+
 	}
 }
