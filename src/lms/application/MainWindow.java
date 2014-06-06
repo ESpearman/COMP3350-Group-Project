@@ -1,11 +1,13 @@
 package lms.application;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 
 
 public class MainWindow
@@ -21,12 +23,21 @@ public class MainWindow
 	 * @param args
 	 */
 	
-	public void CreateWindow()
+	public void RunWindow()
 	{
+		
+		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(800, 600);
-		shell.setLocation(100, 100);
-		shell.setText("Locker Management System");
+		shell.setSize(400, 400);
+		
+		Monitor primary = display.getPrimaryMonitor();
+		Rectangle bounds = primary.getBounds();
+		Rectangle rect = shell.getBounds();
+		int x = bounds.x + (bounds.width - rect.width) / 2;
+		int y = bounds.y + (bounds.height - rect.height) / 2;
+		
+		shell.setLocation (x, y);
+		shell.setText("LMS");
 		
 
 		// ============== exit button ================
@@ -40,7 +51,7 @@ public class MainWindow
 				shell.dispose();
 			}
 		});
-		exitButton.setBounds(276, 414, 222, 76);
+		exitButton.setBounds(114, 261, 139, 42);
 		exitButton.setText("Quit");
 		
 		
@@ -52,9 +63,10 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0) {
 				// when register button is clicked
 				
+				new RegisterWindow();
 			}
 		});
-		registerButton.setBounds(276, 95, 222, 76);
+		registerButton.setBounds(114, 40, 139, 42);
 		registerButton.setText("Register");
 		
 		
@@ -66,12 +78,10 @@ public class MainWindow
 				// import button is selected
 			}
 		});
-		importButton.setBounds(276, 183, 222, 76);
+		importButton.setBounds(114, 101, 139, 42);
 		importButton.setText("Import");
 		
-		
-		
-		shell.layout();
+
 		shell.open();
 		
 		while (!shell.isDisposed())
@@ -86,7 +96,7 @@ public class MainWindow
 	public MainWindow()
 	{
 		display = Display.getDefault();
-		CreateWindow();
+		RunWindow();
 	}
 	
 	
