@@ -42,6 +42,8 @@ public class MainWindow
 
 		// ============== exit button ================
 		exitButton = new Button(shell, SWT.NONE);
+		exitButton.setBounds(114, 261, 139, 42);
+		exitButton.setText("Quit");
 		exitButton.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -51,12 +53,13 @@ public class MainWindow
 				shell.dispose();
 			}
 		});
-		exitButton.setBounds(114, 261, 139, 42);
-		exitButton.setText("Quit");
+
 		
 		
 		// ==============register button ===========
 		registerButton = new Button(shell, SWT.NONE);
+		registerButton.setBounds(114, 40, 139, 42);
+		registerButton.setText("Register");
 		registerButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -66,21 +69,21 @@ public class MainWindow
 				display.sleep();
 			}
 		});
-		registerButton.setBounds(114, 40, 139, 42);
-		registerButton.setText("Register");
+
 		
 		
 		// =============== import button ============
 		importButton = new Button(shell, SWT.NONE);
+		importButton.setBounds(114, 101, 139, 42);
+		importButton.setText("Import");
 		importButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				// import button is selected
-				
+				new ImportWindow();
 			}
 		});
-		importButton.setBounds(114, 101, 139, 42);
-		importButton.setText("Import");
+
 		
 
 		shell.open();

@@ -84,6 +84,8 @@ public class RegisterWindow
 		
 		// ======== back button =========
 		backButton = new Button(shell, SWT.NONE);
+		backButton.setBounds(10, 228, 139, 42);
+		backButton.setText("Back");
 		backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -91,12 +93,13 @@ public class RegisterWindow
 				shell.close();
 			}
 		});
-		backButton.setBounds(10, 228, 139, 42);
-		backButton.setText("Back");
+
 		
 		
 		// ====== register button =========
 		registerButton = new Button(shell, SWT.NONE);
+		registerButton.setBounds(225, 228, 139, 42);
+		registerButton.setText("Register");
 		registerButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -104,13 +107,14 @@ public class RegisterWindow
 				new LockerWindow();
 			}
 		});
-		registerButton.setBounds(225, 228, 139, 42);
-		registerButton.setText("Register");
+
 		
 		
 		
 		// ====== search button ========
 		searchButton = new Button(shell, SWT.NONE);
+		searchButton.setBounds(177, 22, 139, 42);
+		searchButton.setText("Search");
 		searchButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -121,11 +125,10 @@ public class RegisterWindow
 				scienceLable.setText("Science");
 			}
 		});
-		searchButton.setBounds(177, 22, 139, 42);
-		searchButton.setText("Search");
+
 		
 		
-		
+		// ====== shell open, close =====
 		shell.open();
 		
 		while (!shell.isDisposed())

@@ -56,12 +56,10 @@ public class LockerWindow
 		buildingCombo = new Combo(shell, SWT.NONE);
 		
 		final String testSet[] = {"Bldg1", "Bldg2", "Bldg3"};
-		
 		buildingCombo.setItems(testSet);
-		buildingCombo.setBounds(32, 39, 114, 40);
 		
-		buildingCombo.addSelectionListener(new SelectionAdapter()
-		{
+		buildingCombo.setBounds(32, 39, 114, 40);
+		buildingCombo.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e)
 			{
 				if(buildingCombo.getText().equals(testSet[0]))
@@ -84,10 +82,7 @@ public class LockerWindow
 			}
 		});
 		
-		
 
-		
-		
 		// ========= agree check button =========
 		agreeCheckButton = new Button(shell, SWT.CHECK);
 		agreeCheckButton.setBounds(207, 144, 114, 32);
@@ -96,6 +91,8 @@ public class LockerWindow
 		
 		// ========= back button ===========
 		backButton = new Button(shell, SWT.NONE);
+		backButton.setBounds(7, 241, 139, 42);
+		backButton.setText("Back");
 		backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -103,8 +100,7 @@ public class LockerWindow
 				shell.close();
 			}
 		});
-		backButton.setBounds(7, 241, 139, 42);
-		backButton.setText("Back");
+
 		
 		
 		// ======== rent button ===========
