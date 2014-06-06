@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import lms.db.DBProxy;
-import lms.stubdb.StubDB;
 import lombok.Getter;
 
 public class Term implements BusinessObject
@@ -15,16 +14,15 @@ public class Term implements BusinessObject
 	@Getter
 	private String name;
 	
-	public Term(String name)
-	{
-		this.id = UUID.randomUUID();
-		this.name = name;
-	}
-	
 	public Term(UUID id, String name)
 	{
 		this.id = id;
 		this.name = name;
+	}
+	
+	public Term(String name)
+	{
+		this(UUID.randomUUID(), name);
 	}
 	
 	@Override
@@ -36,7 +34,7 @@ public class Term implements BusinessObject
 	@Override
 	public void save()
 	{
-		StubDB.saveTerm(this);
+		DBProxy.saveTerm(this);
 	}
 	
 	public static Term getById(UUID id)
@@ -46,7 +44,7 @@ public class Term implements BusinessObject
 	
 	public static ArrayList<Term> getAll()
 	{
-		return null;
+		return DBProxy.getAllTerms();
 	}
 	
 	

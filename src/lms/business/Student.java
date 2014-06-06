@@ -7,7 +7,7 @@ import lms.db.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Student implements BusinessObject
+public class Student implements TermBased
 {
 	@Getter
 	private UUID id;
@@ -49,13 +49,7 @@ public class Student implements BusinessObject
 	public Student(String firstName, String lastName, String email, int studentNumber,
 			boolean scienceStudent, UUID term)
 	{
-		this.id = UUID.randomUUID();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.studentNumber = studentNumber;
-		this.scienceStudent = scienceStudent;
-		this.term = term;
+		this(UUID.randomUUID(), firstName, lastName, email, studentNumber, scienceStudent, term);
 	}
 	
 	@Override
@@ -77,17 +71,12 @@ public class Student implements BusinessObject
 	
 	public static Student getByStudentNumber(int number)
 	{
-		return null;
-	}
-	
-	public static ArrayList<Student> getAll()
-	{
-		return null;
+		return DBProxy.getStudentByNumber(number);
 	}
 	
 	public static ArrayList<Student> getListByTerm(UUID term)
 	{
-		return null;
+		return DBProxy.getStudentsListByTerm(term);
 	}
 	
 }
