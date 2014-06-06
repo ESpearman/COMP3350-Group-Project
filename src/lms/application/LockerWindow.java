@@ -78,7 +78,7 @@ public class LockerWindow
 				}
 				else
 				{
-					lockerCombo.add("There is no item");
+					lockerCombo.setEnabled(false);
 					lockerCombo.setText("Nothing!!");
 				}
 			}
