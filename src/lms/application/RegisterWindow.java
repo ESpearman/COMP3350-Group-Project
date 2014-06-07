@@ -21,7 +21,6 @@ public class RegisterWindow
 	private Text lastNameText;
 	private Text emailText;
 	
-	
 	private Button searchButton;
 	private Button backButton;
 	private Button registerButton;
@@ -45,7 +44,6 @@ public class RegisterWindow
 		shell.setText("Register");
 		
 		
-		
 		// ====== search text =========
 		searchText = new Text(shell, SWT.BORDER);
 		searchText.setBounds(39, 26, 82, 38);
@@ -56,12 +54,9 @@ public class RegisterWindow
 		firstNameText.setBounds(39, 92, 82, 38);
 		
 		
-		
 		// ====== last name text ========
 		lastNameText = new Text(shell, SWT.BORDER);
 		lastNameText.setBounds(234, 92, 82, 38);
-		
-		
 		
 		
 		// ====== email text =======
@@ -69,56 +64,55 @@ public class RegisterWindow
 		emailText.setBounds(39, 150, 82, 38);
 		
 		
-		
-		
 		// ====== separate bar ======
 		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
 		searchSeparate.setBounds(10, 70, 354, 16);
 		
 
-		
 		// ====== Sci/non-Sci student lable ========
 		scienceLable = new Label(shell, SWT.NONE);
 		scienceLable.setBounds(205, 153, 111, 32);
-		
 		
 		
 		// ======== back button =========
 		backButton = new Button(shell, SWT.NONE);
 		backButton.setBounds(10, 228, 139, 42);
 		backButton.setText("Back");
-		backButton.addSelectionListener(new SelectionAdapter() {
+		backButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// when back button is selected
 				shell.close();
 			}
 		});
 
 		
-		
 		// ====== register button =========
 		registerButton = new Button(shell, SWT.NONE);
 		registerButton.setBounds(225, 228, 139, 42);
 		registerButton.setText("Register");
-		registerButton.addSelectionListener(new SelectionAdapter() {
+		registerButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// when register button is selected
 				new LockerWindow();
 			}
 		});
 
 		
-		
-		
 		// ====== search button ========
 		searchButton = new Button(shell, SWT.NONE);
 		searchButton.setBounds(177, 22, 139, 42);
 		searchButton.setText("Search");
-		searchButton.addSelectionListener(new SelectionAdapter() {
+		searchButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// when search button is selected
 				firstNameText.setText("firstName");
 				lastNameText.setText("lastName");
@@ -127,7 +121,6 @@ public class RegisterWindow
 			}
 		});
 
-		
 		
 		// ====== shell open, close =====
 		shell.open();

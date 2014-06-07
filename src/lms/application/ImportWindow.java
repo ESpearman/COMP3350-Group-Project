@@ -20,7 +20,6 @@ public class ImportWindow
 	private Button lockerRadio;
 	private Button studentRadio;
 	
-	
 	private Button importButton;
 	private Button backButton;
 	private Button browseButton;
@@ -63,9 +62,11 @@ public class ImportWindow
 		importButton = new Button(shell, SWT.NONE);
 		importButton.setBounds(225, 241, 139, 42);
 		importButton.setText("Import");
-		importButton.addSelectionListener(new SelectionAdapter() {
+		importButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// when import button is selected
 				// new Dialog pop;
 				
@@ -73,14 +74,15 @@ public class ImportWindow
 		});
 
 		
-		
 		//======== back button ==========
 		backButton = new Button(shell, SWT.NONE);
 		backButton.setBounds(10, 241, 139, 42);
 		backButton.setText("Back");
-		backButton.addSelectionListener(new SelectionAdapter() {
+		backButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// when back button is selected
 				shell.close();
 			}
@@ -91,9 +93,11 @@ public class ImportWindow
 		browseButton = new Button(shell, SWT.NONE);
 		browseButton.setBounds(178, 73, 139, 42);
 		browseButton.setText("Browse");
-		browseButton.addSelectionListener(new SelectionAdapter() {
+		browseButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// browse button is selected
 				
 			}

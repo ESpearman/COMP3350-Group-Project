@@ -20,7 +20,6 @@ public class LockerWindow
 	private Combo buildingCombo;
 	private Combo lockerCombo;
 	
-	
 	private Button backButton;
 	private Button rentButton;
 	
@@ -60,7 +59,8 @@ public class LockerWindow
 		buildingCombo.setItems(testSet);
 		
 		buildingCombo.setBounds(32, 39, 114, 40);
-		buildingCombo.addSelectionListener(new SelectionAdapter(){
+		buildingCombo.addSelectionListener(new SelectionAdapter()
+		{
 			public void widgetSelected(SelectionEvent e)
 			{
 				if(buildingCombo.getText().equals(testSet[0]))
@@ -94,15 +94,16 @@ public class LockerWindow
 		backButton = new Button(shell, SWT.NONE);
 		backButton.setBounds(7, 241, 139, 42);
 		backButton.setText("Back");
-		backButton.addSelectionListener(new SelectionAdapter() {
+		backButton.addSelectionListener(new SelectionAdapter()
+		{
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
+			public void widgetSelected(SelectionEvent arg0)
+			{
 				// back button is selected
 				shell.close();
 			}
 		});
 
-		
 		
 		// ======== rent button ===========
 		rentButton = new Button(shell, SWT.NONE);
