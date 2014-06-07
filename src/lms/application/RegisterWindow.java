@@ -21,6 +21,7 @@ public class RegisterWindow
 	private Text lastNameText;
 	private Text emailText;
 	
+	
 	private Button searchButton;
 	private Button backButton;
 	private Button registerButton;

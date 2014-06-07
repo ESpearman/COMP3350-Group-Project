@@ -20,6 +20,7 @@ public class LockerWindow
 	private Combo buildingCombo;
 	private Combo lockerCombo;
 	
+	
 	private Button backButton;
 	private Button rentButton;
 	
