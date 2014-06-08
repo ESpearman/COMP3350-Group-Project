@@ -1,4 +1,4 @@
-package test.businessTests.logicTests;
+package test.business.logic;
 
 import junit.framework.TestCase;
 import lms.business.logic.SpreadsheetImporter;
