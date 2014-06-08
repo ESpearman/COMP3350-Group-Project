@@ -101,8 +101,19 @@ public class LockerWindow
 		
 		// ======== rent button ===========
 		btnRent = new Button(shell, SWT.NONE);
+		btnRent.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				// rent button selected
+				shell.close();
+			}
+		});
 		btnRent.setBounds(263, 287, 111, 27);
 		btnRent.setText("Rent");
+		
+		
 		
 		lblPrice = new Label(shell, SWT.NONE);
 		lblPrice.setBounds(7, 39, 234, 23);
