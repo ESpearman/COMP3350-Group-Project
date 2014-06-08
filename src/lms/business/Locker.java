@@ -24,7 +24,7 @@ public class Locker implements BusinessObject
 	@Getter
 	@Setter
 	private LockerSize size;
-	
+
 	public Locker(UUID id, UUID term, int number, UUID building, LockerSize size)
 	{
 		this.id = id;

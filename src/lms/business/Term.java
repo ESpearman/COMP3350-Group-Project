@@ -13,7 +13,6 @@ public class Term implements BusinessObject
 	
 	@Getter
 	private String name;
-	
 	public Term(UUID id, String name)
 	{
 		this.id = id;
