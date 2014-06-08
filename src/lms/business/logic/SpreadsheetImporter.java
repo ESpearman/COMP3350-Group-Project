@@ -12,8 +12,7 @@ import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetImporter 
 {
-	
-	public void importStudents(String path) 
+	public static void importStudents(String path) 
 	{
 		try 
 		{
@@ -34,7 +33,7 @@ public class SpreadsheetImporter
 				firstName = row.getCell(0).getStringCellValue();
 				lastName = row.getCell(1).getStringCellValue();
 				email = row.getCell(2).getStringCellValue();
-				studentNumber = (int) row.getCell(3).getNumericCellValue();
+				studentNumber = (int)row.getCell(3).getNumericCellValue();
 
 				currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, term);
 				StubDB.saveStudent(currStudent);
