@@ -44,7 +44,7 @@ public class Locker implements BusinessObject
 	{
 		DBProxy.saveLocker(this);
 	}
-	
+
 	public static Locker getById(UUID id)
 	{
 		return DBProxy.getLockerById(id);
