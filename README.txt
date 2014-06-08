@@ -4,11 +4,11 @@ COMP3350-Group-Project
 Group 8's project for COMP 3350 - Summer 2014
 
 src
-    lms.application
-        ImportWindow.java
-        LockerWindow.java
-        MainWindow.java
-        RegisterWindow.java
+    lms.application                 - 
+        ImportWindow.java           - 
+        LockerWindow.java           - 
+        MainWindow.java             - 
+        RegisterWindow.java         - 
     lms.business
         Building.java
         BusinessObject.java
