@@ -112,20 +112,29 @@ public class RegisterWindow
 			{
 				int textLength = txtStudentNumber.getCharCount();
 				int studentNumber;
+				
 				//Sanitize input, must be between 7 digits and 10 digits
 				if(textLength >= 7 && textLength <= 10)
 				{
-					studentNumber = Integer.parseInt(txtStudentNumber.getText());
-					Student searchedStudent = SearchStudent.getByStudentNumber(studentNumber);
-					
-					// If the student exists in the database, auto-populate
-					if(searchedStudent != null)
+					try
 					{
-						txtFirstName.setText(searchedStudent.getFirstName());
-						txtLastName.setText(searchedStudent.getLastName());
-						txtEmail.setText(searchedStudent.getEmail());
-						btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+						studentNumber = Integer.parseInt(txtStudentNumber.getText());
+						Student searchedStudent = SearchStudent.getByStudentNumber(studentNumber);
+						
+						// If the student exists in the database, auto-populate
+						if(searchedStudent != null)
+						{
+							txtFirstName.setText(searchedStudent.getFirstName());
+							txtLastName.setText(searchedStudent.getLastName());
+							txtEmail.setText(searchedStudent.getEmail());
+							btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+						}
+					} 
+					catch(NumberFormatException e)
+					{
+						 // bad input
 					}
+					
 				}
 			}
 		});
