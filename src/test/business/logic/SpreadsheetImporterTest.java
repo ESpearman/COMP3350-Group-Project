@@ -1,4 +1,4 @@
-package test.businessTests.logicTests;
+package test.business.logic;
 
 import java.util.ArrayList;
 import java.util.UUID;
