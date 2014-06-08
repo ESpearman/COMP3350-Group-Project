@@ -14,9 +14,9 @@ public class MainWindow
 {
 	private Display display;
 	private Shell shell;
-	private Button registerButton;
-	private Button importButton;
-	private Button exitButton;
+	private Button btnRegister;
+	private Button btnImport;
+	private Button btnQuit;
 	
 	/**
 	 * Launch the application.
@@ -27,7 +27,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(400, 400);
+		shell.setSize(171, 197);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -40,10 +40,10 @@ public class MainWindow
 		
 
 		// ============== exit button ================
-		exitButton = new Button(shell, SWT.NONE);
-		exitButton.setBounds(114, 261, 139, 42);
-		exitButton.setText("Quit");
-		exitButton.addSelectionListener(new SelectionAdapter()
+		btnQuit = new Button(shell, SWT.NONE);
+		btnQuit.setBounds(10, 124, 135, 25);
+		btnQuit.setText("Quit");
+		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -55,10 +55,10 @@ public class MainWindow
 
 		
 		// ==============register button ===========
-		registerButton = new Button(shell, SWT.NONE);
-		registerButton.setBounds(114, 40, 139, 42);
-		registerButton.setText("Register");
-		registerButton.addSelectionListener(new SelectionAdapter()
+		btnRegister = new Button(shell, SWT.NONE);
+		btnRegister.setBounds(10, 10, 135, 25);
+		btnRegister.setText("Register");
+		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -72,10 +72,10 @@ public class MainWindow
 
 		
 		// =============== import button ============
-		importButton = new Button(shell, SWT.NONE);
-		importButton.setBounds(114, 101, 139, 42);
-		importButton.setText("Import");
-		importButton.addSelectionListener(new SelectionAdapter()
+		btnImport = new Button(shell, SWT.NONE);
+		btnImport.setBounds(10, 41, 135, 25);
+		btnImport.setText("Import");
+		btnImport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)

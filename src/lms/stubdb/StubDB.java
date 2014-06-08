@@ -13,11 +13,22 @@ import lms.business.TermBased;
 
 public class StubDB
 {
+	//Do not call the methods in this class - database queries should be made using the methods in the business objects
+	
 	private static ArrayList<BusinessObject> terms;
 	private static ArrayList<BusinessObject> students;
 	private static ArrayList<BusinessObject> lockers;
 	private static ArrayList<BusinessObject> buildings;
 	private static ArrayList<BusinessObject> rentals;
+	
+	static
+	{
+		terms = new ArrayList<BusinessObject>();
+		students = new ArrayList<BusinessObject>();
+		lockers = new ArrayList<BusinessObject>();
+		buildings = new ArrayList<BusinessObject>();
+		rentals = new ArrayList<BusinessObject>();
+	}
 	
 	public static void resetDB()
 	{

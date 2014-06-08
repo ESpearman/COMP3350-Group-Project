@@ -6,24 +6,24 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;
 
 public class LockerWindow
 {
 	private Shell shell;
 	private Display display;
-	private Text priceText;
 	
-	private Combo buildingCombo;
-	private Combo lockerCombo;
+	private Combo drpBuilding;
+	private Combo drpLocker;
 	
-	private Button backButton;
-	private Button rentButton;
+	private Button btnBack;
+	private Button btnRent;
 	
-	private Button agreeCheckButton;
+	private Button chkAgreement;
+	private Label lblPrice;
 
 	public void runWindow()
 	{
@@ -41,60 +41,54 @@ public class LockerWindow
 		shell.setText("Register");
 		
 		
-		// ========== price text field =============
-		priceText = new Text(shell, SWT.BORDER);
-		priceText.setEditable(false);
-		priceText.setBounds(32, 141, 114, 38);
-		
-		
 		// ===== locker combo ( dropdown list ) =======
-		lockerCombo = new Combo(shell, SWT.NONE);
-		lockerCombo.setBounds(207, 39, 114, 40);
+		drpLocker = new Combo(shell, SWT.NONE);
+		drpLocker.setBounds(127, 10, 114, 40);
 		
 		
 		// ======= building combo ( dropdown list ) =======
-		buildingCombo = new Combo(shell, SWT.NONE);
+		drpBuilding = new Combo(shell, SWT.NONE);
 		
 		final String testSet[] = {"Bldg1", "Bldg2", "Bldg3"};
-		buildingCombo.setItems(testSet);
+		drpBuilding.setItems(new String[] {});
 		
-		buildingCombo.setBounds(32, 39, 114, 40);
-		buildingCombo.addSelectionListener(new SelectionAdapter()
+		drpBuilding.setBounds(7, 10, 114, 40);
+		drpBuilding.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
-				if(buildingCombo.getText().equals(testSet[0]))
+				if(drpBuilding.getText().equals(testSet[0]))
 				{
 					String lockerTest[] = {"locker1", "locker2","locker3"};
-					lockerCombo.setItems(lockerTest);
-					lockerCombo.setEnabled(true);
+					drpLocker.setItems(lockerTest);
+					drpLocker.setEnabled(true);
 				}
-				else if(buildingCombo.getText().equals(testSet[1]))
+				else if(drpBuilding.getText().equals(testSet[1]))
 				{
 					String lockerTest[] = {"locker4", "locker5","locker6"};
-					lockerCombo.setItems(lockerTest);
-					lockerCombo.setEnabled(true);
+					drpLocker.setItems(lockerTest);
+					drpLocker.setEnabled(true);
 				}
 				else
 				{
-					lockerCombo.setEnabled(false);
-					lockerCombo.setText("Nothing!!");
+					drpLocker.setEnabled(false);
+					drpLocker.setText("Nothing!!");
 				}
 			}
 		});
 		
 
 		// ========= agree check button =========
-		agreeCheckButton = new Button(shell, SWT.CHECK);
-		agreeCheckButton.setBounds(207, 144, 114, 32);
-		agreeCheckButton.setText("Agree");
+		chkAgreement = new Button(shell, SWT.CHECK);
+		chkAgreement.setBounds(7, 212, 114, 23);
+		chkAgreement.setText("Agree");
 		
 		
 		// ========= back button ===========
-		backButton = new Button(shell, SWT.NONE);
-		backButton.setBounds(7, 241, 139, 42);
-		backButton.setText("Back");
-		backButton.addSelectionListener(new SelectionAdapter()
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.setBounds(7, 287, 111, 27);
+		btnBack.setText("Back");
+		btnBack.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -106,9 +100,13 @@ public class LockerWindow
 
 		
 		// ======== rent button ===========
-		rentButton = new Button(shell, SWT.NONE);
-		rentButton.setBounds(225, 241, 139, 42);
-		rentButton.setText("Rent");
+		btnRent = new Button(shell, SWT.NONE);
+		btnRent.setBounds(263, 287, 111, 27);
+		btnRent.setText("Rent");
+		
+		lblPrice = new Label(shell, SWT.NONE);
+		lblPrice.setBounds(7, 39, 234, 23);
+		lblPrice.setText("Price: ");
 		
 
 		// ======shell open, close ========

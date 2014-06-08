@@ -12,6 +12,8 @@ import lms.stubdb.StubDB;
 
 public class DBProxy
 {
+	//This class is only meant to be used as an interface to the database for business objects
+	//Do not call these methods - DB queries should be made using the methods in the business objects
 	
 	public static Term getTermById(UUID id)
 	{

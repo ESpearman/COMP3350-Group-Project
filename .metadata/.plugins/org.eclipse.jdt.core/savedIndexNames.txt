@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+B:\Tayler\GitHub\COMP3350-Group-Project\.metadata\.plugins\org.eclipse.jdt.core

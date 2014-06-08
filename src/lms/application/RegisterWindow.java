@@ -16,17 +16,16 @@ public class RegisterWindow
 	private Display display;
 	private Shell shell;
 	
-	private Text searchText;
-	private Text firstNameText;
-	private Text lastNameText;
-	private Text emailText;
+	private Text txtStudentNumber;
+	private Text txtFirstName;
+	private Text txtLastName;
+	private Text txtEmail;
 	
-	private Button searchButton;
-	private Button backButton;
-	private Button registerButton;
+	private Button btnSearch;
+	private Button btnBack;
+	private Button btnRegister;
 	
 	private Label searchSeparate;
-	private Label scienceLable;
 	
 	public void runWindow()
 	{
@@ -45,40 +44,35 @@ public class RegisterWindow
 		
 		
 		// ====== search text =========
-		searchText = new Text(shell, SWT.BORDER);
-		searchText.setBounds(39, 26, 82, 38);
+		txtStudentNumber = new Text(shell, SWT.BORDER);
+		txtStudentNumber.setBounds(127, 4, 111, 27);
 
 		
 		// ===== first name text ========
-		firstNameText = new Text(shell, SWT.BORDER);
-		firstNameText.setBounds(39, 92, 82, 38);
+		txtFirstName = new Text(shell, SWT.BORDER);
+		txtFirstName.setBounds(127, 59, 111, 27);
 		
 		
 		// ====== last name text ========
-		lastNameText = new Text(shell, SWT.BORDER);
-		lastNameText.setBounds(234, 92, 82, 38);
+		txtLastName = new Text(shell, SWT.BORDER);
+		txtLastName.setBounds(127, 92, 111, 27);
 		
 		
 		// ====== email text =======
-		emailText = new Text(shell, SWT.BORDER);
-		emailText.setBounds(39, 150, 82, 38);
+		txtEmail = new Text(shell, SWT.BORDER);
+		txtEmail.setBounds(127, 125, 111, 27);
 		
 		
 		// ====== separate bar ======
 		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 70, 354, 16);
-		
-
-		// ====== Sci/non-Sci student lable ========
-		scienceLable = new Label(shell, SWT.NONE);
-		scienceLable.setBounds(205, 153, 111, 32);
+		searchSeparate.setBounds(10, 37, 354, 16);
 		
 		
 		// ======== back button =========
-		backButton = new Button(shell, SWT.NONE);
-		backButton.setBounds(10, 228, 139, 42);
-		backButton.setText("Back");
-		backButton.addSelectionListener(new SelectionAdapter()
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.setBounds(10, 287, 122, 27);
+		btnBack.setText("Back");
+		btnBack.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -90,10 +84,10 @@ public class RegisterWindow
 
 		
 		// ====== register button =========
-		registerButton = new Button(shell, SWT.NONE);
-		registerButton.setBounds(225, 228, 139, 42);
-		registerButton.setText("Register");
-		registerButton.addSelectionListener(new SelectionAdapter()
+		btnRegister = new Button(shell, SWT.NONE);
+		btnRegister.setBounds(263, 287, 111, 27);
+		btnRegister.setText("Register");
+		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -105,19 +99,39 @@ public class RegisterWindow
 
 		
 		// ====== search button ========
-		searchButton = new Button(shell, SWT.NONE);
-		searchButton.setBounds(177, 22, 139, 42);
-		searchButton.setText("Search");
-		searchButton.addSelectionListener(new SelectionAdapter()
+		btnSearch = new Button(shell, SWT.NONE);
+		btnSearch.setBounds(253, 4, 111, 27);
+		btnSearch.setText("Search");
+		
+		Label lblFirstName = new Label(shell, SWT.NONE);
+		lblFirstName.setAlignment(SWT.RIGHT);
+		lblFirstName.setBounds(10, 59, 111, 21);
+		lblFirstName.setText("First Name");
+		
+		Label lblStudentNumber = new Label(shell, SWT.NONE);
+		lblStudentNumber.setAlignment(SWT.RIGHT);
+		lblStudentNumber.setBounds(10, 7, 111, 24);
+		lblStudentNumber.setText("Student Number");
+		
+		Label lblLastName = new Label(shell, SWT.NONE);
+		lblLastName.setText("Last Name");
+		lblLastName.setAlignment(SWT.RIGHT);
+		lblLastName.setBounds(10, 92, 111, 21);
+		
+		Label lblEmailAddress = new Label(shell, SWT.NONE);
+		lblEmailAddress.setText("Email Address");
+		lblEmailAddress.setAlignment(SWT.RIGHT);
+		lblEmailAddress.setBounds(10, 125, 111, 21);
+		
+		Button btnScienceStudent = new Button(shell, SWT.CHECK);
+		btnScienceStudent.setBounds(127, 158, 111, 16);
+		btnScienceStudent.setText("Science Student");
+		btnSearch.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// when search button is selected
-				firstNameText.setText("firstName");
-				lastNameText.setText("lastName");
-				emailText.setText("Email");
-				scienceLable.setText("Science");
+				//Look up student information here
 			}
 		});
 

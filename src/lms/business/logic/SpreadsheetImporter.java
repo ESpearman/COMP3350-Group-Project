@@ -1,9 +1,10 @@
-package lms.business;
+package lms.business.logic;
 
 import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
 
+import lms.business.Student;
 import lms.stubdb.StubDB;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -11,12 +12,11 @@ import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetImporter 
 {
-
+	
 	public void importStudents(String path) 
 	{
 		try 
 		{
-
 			Workbook workbook = WorkbookFactory.create(new File(path));
 			Sheet studentSheet = workbook.getSheetAt(0);
 
@@ -41,12 +41,10 @@ public class SpreadsheetImporter
 			}
 
 		}
-
 		catch (IOException ioe) 
 		{
 			ioe.printStackTrace();
 		}
-
 		catch (InvalidFormatException ife) 
 		{
 			ife.printStackTrace();
