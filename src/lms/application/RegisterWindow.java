@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import lms.business.Student;
+import lms.business.logic.SearchStudent;
 
 public class RegisterWindow
 {
@@ -22,6 +24,7 @@ public class RegisterWindow
 	private Text txtEmail;
 	
 	private Button btnSearch;
+	private Button btnScienceStudent;
 	private Button btnBack;
 	private Button btnRegister;
 	
@@ -102,6 +105,23 @@ public class RegisterWindow
 		btnSearch = new Button(shell, SWT.NONE);
 		btnSearch.setBounds(253, 4, 111, 27);
 		btnSearch.setText("Search");
+		btnSearch.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				Student searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
+						
+				//If the student exists in the database, auto-populate
+				if(searchedStudent != null)
+				{
+					txtFirstName.setText(searchedStudent.getFirstName());
+					txtLastName.setText(searchedStudent.getLastName());
+					txtEmail.setText(searchedStudent.getEmail());
+					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+				}
+			} 
+		});
 		
 		Label lblFirstName = new Label(shell, SWT.NONE);
 		lblFirstName.setAlignment(SWT.RIGHT);
@@ -123,17 +143,10 @@ public class RegisterWindow
 		lblEmailAddress.setAlignment(SWT.RIGHT);
 		lblEmailAddress.setBounds(10, 125, 111, 21);
 		
-		Button btnScienceStudent = new Button(shell, SWT.CHECK);
+		btnScienceStudent = new Button(shell, SWT.CHECK);
 		btnScienceStudent.setBounds(127, 158, 111, 16);
 		btnScienceStudent.setText("Science Student");
-		btnSearch.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				//Look up student information here
-			}
-		});
+		
 
 		
 		// ====== shell open, close =====
