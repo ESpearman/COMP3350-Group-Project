@@ -29,9 +29,9 @@ public class RegisterWindow
 	private Text txtEmail;
 	
 	private Button btnSearch;
-	private Button btnScienceStudent;
 	private Button btnBack;
 	private Button btnRegister;
+	private Button btnScienceStudent;
 	
 	private Label searchSeparate;
 	
@@ -125,6 +125,7 @@ public class RegisterWindow
 		btnSearch = new Button(shell, SWT.NONE);
 		btnSearch.setBounds(253, 4, 111, 27);
 		btnSearch.setText("Search");
+
 		btnSearch.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -166,7 +167,14 @@ public class RegisterWindow
 		btnScienceStudent = new Button(shell, SWT.CHECK);
 		btnScienceStudent.setBounds(127, 158, 111, 16);
 		btnScienceStudent.setText("Science Student");
-		
+		btnSearch.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				//Look up student information here
+			}
+		});
 
 		
 		// ====== shell open, close =====
