@@ -110,33 +110,17 @@ public class RegisterWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				int textLength = txtStudentNumber.getCharCount();
-				int studentNumber;
-				
-				//Sanitize input, must be between 7 digits and 10 digits
-				if(textLength >= 7 && textLength <= 10)
-				{
-					try
-					{
-						studentNumber = Integer.parseInt(txtStudentNumber.getText());
-						Student searchedStudent = SearchStudent.getByStudentNumber(studentNumber);
+				Student searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
 						
-						// If the student exists in the database, auto-populate
-						if(searchedStudent != null)
-						{
-							txtFirstName.setText(searchedStudent.getFirstName());
-							txtLastName.setText(searchedStudent.getLastName());
-							txtEmail.setText(searchedStudent.getEmail());
-							btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
-						}
-					} 
-					catch(NumberFormatException e)
-					{
-						 // bad input
-					}
-					
+				//If the student exists in the database, auto-populate
+				if(searchedStudent != null)
+				{
+					txtFirstName.setText(searchedStudent.getFirstName());
+					txtLastName.setText(searchedStudent.getLastName());
+					txtEmail.setText(searchedStudent.getEmail());
+					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
 				}
-			}
+			} 
 		});
 		
 		Label lblFirstName = new Label(shell, SWT.NONE);
