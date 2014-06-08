@@ -1,9 +1,10 @@
-package lms.business;
+package test.businessTests.logicTests;
 
 import junit.framework.TestCase;
 import lms.business.logic.SpreadsheetImporter;
 
-public class SpreadsheetImporterTest extends TestCase {
+public class SpreadsheetImporterTest extends TestCase 
+{
 	
 	
 	public void setUp()
@@ -13,7 +14,7 @@ public class SpreadsheetImporterTest extends TestCase {
 	
 	public void testStudentImport()
 	{
-		SpreadsheetImporter.importStudents("B:\\Tayler\\Downloads\\StudentSheet.xlsx");
+		SpreadsheetImporter.importStudents("\\src\\test\\testFiles\\Students1.xlsx");
 		assertEquals(true, true);
 	}
 }
