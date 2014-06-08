@@ -5,18 +5,20 @@ import java.io.File;
 import java.io.IOException;
 
 import lms.business.Student;
-import lms.stubdb.StubDB;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetImporter 
 {
-	public static void importStudents(String path) 
+	public static void importStudents(String relativePath) 
 	{
 		try 
 		{
-			Workbook workbook = WorkbookFactory.create(new File(path));
+			String absolutePath = new File("").getAbsolutePath();
+			String fullPath = absolutePath + relativePath;
+			
+			Workbook workbook = WorkbookFactory.create(new File(fullPath));
 			Sheet studentSheet = workbook.getSheetAt(0);
 
 			Student currStudent;
@@ -36,7 +38,7 @@ public class SpreadsheetImporter
 				studentNumber = (int)row.getCell(3).getNumericCellValue();
 
 				currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, term);
-				StubDB.saveStudent(currStudent);
+				currStudent.save();
 			}
 
 		}
