@@ -1,58 +1,58 @@
-11:08 – everyone here ( greeting, intro about application, class project )
+11:08 - all members, client ( greeting, intro about application, class project )
 -	not much network thing in first, possibly at the end
-11:11 – locker deadline.
+11:11 - locker deadline
 Record start
-11:13 – explain current using in excel, basically manual.
-11:15 – full year ( half locker, full locker, non-science student)
+11:13 - explain current using in excel, basically manual.
+11:15 - full year ( half locker, full locker, non-science student)
 	need email, stu number
-11:18 – will send email ( receipt )
-11:19 – name(first, last ), stu number, email ( not have to be UM email account )
-11:20 – need non-science stu or not
-11:21 – edit(manage) building ( admin account ? )
-11:22 – print out feature
-11:24 – need server database computer
+11:18 - will send email ( receipt )
+11:19 - name(first, last ), stu number, email ( not have to be UM email account )
+11:20 - need non-science stu or not
+11:21 - edit(manage) building ( admin account ? )
+11:22 - print out feature
+11:24 - need server database computer
 -	need to talk to UM computer guys
-11:25 – multiple computer uses
+11:25 - multiple computer uses
 -	print error msg for already taken locker
-11:29 – need data ( science student or not ) to calculate price
-11:31 – doesn’t care shared lock, allow one person can take one locker only ( no multiple )
-11:34 – back up data needed for future council
-11:35 – open source program that can be modified
-11:36 – vision – 
+11:29 - need data ( science student or not ) to calculate price
+11:31 - doesn't care shared lock, allow one person can take one locker only ( no multiple )
+11:34 - back up data needed for future council
+11:35 - open source program that can be modified
+11:36 - vision -
 -	feature
-11:38 – interface/ intuitive ( easy use ) basic ( high )
-11:40 – delete/manage(edit)
-11:41 – based on term(period), who is taking which locker
-11:42 – interface - drop box ( building, locker number )
-11:43 – program track the locker whether or not taken
-11:44 – documentation  ( low )
-11:45 – import/export data ( low ) ( excel )
-11:46 – extend ( add person to next term )
-11:47 – big user story – registering student by term
-11:50 – add student by term ( high )
-11:55 – send receipt ( low, later )
-11:56 – import student data(excel) to data
-11:58 – pop up screen ( student number?, name, faculty )
+11:38 - interface/ intuitive ( easy use ) basic ( high )
+11:40 - delete/manage(edit)
+11:41 - based on term(period), who is taking which locker
+11:42 - interface - drop box ( building, locker number )
+11:43 - program track the locker whether or not taken
+11:44 - documentation  ( low )
+11:45 - import/export data ( low ) ( excel )
+11:46 - extend ( add person to next term )
+11:47 - big user story * registering student by term
+11:50 - add student by term ( high )
+11:55 - send receipt ( low, later )
+11:56 - import student data(excel) to data
+11:58 - pop up screen ( student number?, name, faculty )
 
 start
-12:04 – summary
+12:04 - summary
 
 system that can manage locker. Feature ( Adding , UI, drobdown box interface, view the data, emailing, documentation(readme) ). Feedback if available
 
 client gone
 
 
-12:18 – UI plug in
-12:20 – database design plan ( slick ? )
+12:18 - UI plug in
+12:20 - database design plan ( slick ? )
 	( local DB, net DB )
-12:23 – emailing is out of scope
-12:26 – calculate price based on science / non-science faculty
-12:28 – need to keep track sci/ non-sci, display that info
-12:33 – print error msg if at the same time registered
-12:37 – admin ? for modifying data ( add, some )
-12:50 – video editing
+12:23 - emailing is out of scope
+12:26 -calculate price based on science / non-science faculty
+12:28 - need to keep track sci/ non-sci, display that info
+12:33 - print error msg if at the same time registered
+12:37 - admin ? for modifying data ( add, some )
+12:50 - who will do video editing ?
 
-12:51 – GUI
+12:51 discuss GUI
 
 
 
@@ -81,14 +81,14 @@ all members
 
 Fri, Jun 6
 10:30 all member
-10:35 GUI design – import button ( excel file ) and text(lable) for file name( path )
-10:40 GUI design – draw on whiteboard( sketches ) story board.
+10:35 GUI design *import button ( excel file ) and text(lable) for file name( path )
+10:40 GUI design *draw on whiteboard( sketches ) story board.
 	Export button (hidden or no for iter1), 
-11:05 GUI design – done
+11:05 GUI design *done
 11:06 architecture design
 11:11 stubDB, Business Objects.
 11:30 draw arch
 
-11:33 progrmg standard - variable name camel case, constant all caps, class name caps, open bracket after newline
-11:38 standard – no spacing btw braces bracket etc
+11:33 programming standard - variable name camel case, constant all caps, class name caps, open bracket after newline
+11:38 standard *no spacing btw braces bracket etc
 11:40 will have code freeze on sunday ( 24hr before submit deadline )
