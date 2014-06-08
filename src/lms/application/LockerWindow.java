@@ -38,7 +38,7 @@ public class LockerWindow
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
 		shell.setLocation (x, y);
-		shell.setText("Register");
+		shell.setText("Select Locker");
 		
 		
 		// ===== locker combo ( dropdown list ) =======

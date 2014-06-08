@@ -35,7 +35,7 @@ public class ImportWindow
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
 		shell.setLocation (x, y);
-		shell.setText("Register");
+		shell.setText("Import");
 		
 		
 		// ====== file (path) text field =======
