@@ -1,47 +1,38 @@
 package lms.business;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
-import lombok.Getter;
-
-public class RegisterStudent // I am not sure what to implement here, implements BusinessObject
+public class RegisterStudent
 {
-	@Getter
-	private static UUID id; 
-	
-	public RegisterStudent(UUID id)
+	public static void upsertStudent(Student searchedStudent, String firstName, String lastName, String email, int studentNumber,
+			 boolean scienceStudent, UUID term)
 	{
-		RegisterStudent.id = id;
-	}
-	public static void createStudent(UUID id, String firstName, String lastName, String email, int studentNumber,
-									 boolean scienceStudent, UUID term)
-	{
-		Student newStudent = null;
-		@SuppressWarnings("static-access")
-		//I think i need search here!!!
-		Student otherStudent = otherStudent.getByStudentNumber(studentNumber); 
-		if(otherStudent != null)
+		if(searchedStudent == null)
 		{
-			newStudent  = new Student(firstName, lastName, email, studentNumber, scienceStudent, term);
+			insertStudent(firstName, lastName, email, studentNumber, scienceStudent, term);
 		}
 		else
 		{
-			newStudent = new Student(id, firstName, lastName, email, studentNumber, scienceStudent, term); 
+			updateStudent(searchedStudent, firstName, lastName, email, scienceStudent);
 		}
-		newStudent.save();
-
 	}
 	
-	/*
-	@Override
-	public BusinessObject clone()
+	private static void insertStudent(String firstName, String lastName, String email, int studentNumber,
+									 boolean scienceStudent, UUID term)
 	{
-		return (BusinessObject)(new Student(id, firstName, lastName, email, studentNumber, scienceStudent, term));
+		
+		Student theStudent = new Student(firstName, lastName, email, studentNumber, scienceStudent, term);
+		theStudent.save();
+
 	}
-	 */
-
 	
-
+	public static void updateStudent(Student searchedStudent, String firstName, String lastName, String email,
+			 boolean scienceStudent)
+	{
+		searchedStudent.setFirstName(firstName);
+		searchedStudent.setLastName(lastName);
+		searchedStudent.setEmail(email);
+		searchedStudent.setScienceStudent(scienceStudent);
+		searchedStudent.save();
+	}
 }

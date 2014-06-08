@@ -1,7 +1,10 @@
 package lms.application;
 
+import java.util.UUID;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -10,6 +13,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
+import lms.business.RegisterStudent;
 import lms.business.Student;
 import lms.business.logic.SearchStudent;
 
@@ -29,6 +34,8 @@ public class RegisterWindow
 	private Button btnRegister;
 	
 	private Label searchSeparate;
+	
+	private Student searchedStudent;
 	
 	public void runWindow()
 	{
@@ -95,8 +102,21 @@ public class RegisterWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// when register button is selected
-				new LockerWindow();
+				try
+				{
+					int studentNumber = Integer.parseInt(txtStudentNumber.getText());
+					RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
+							txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
+					new LockerWindow();
+				}
+				catch(NumberFormatException e)
+				{
+					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
+					dlgBadNumber.setMessage("Invalid Student Number");
+					dlgBadNumber.setText("Error");
+					dlgBadNumber.open();
+				}
+				
 			}
 		});
 
@@ -110,7 +130,7 @@ public class RegisterWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				Student searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
+				searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
 						
 				//If the student exists in the database, auto-populate
 				if(searchedStudent != null)
