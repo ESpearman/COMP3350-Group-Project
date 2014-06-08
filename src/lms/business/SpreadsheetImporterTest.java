@@ -1,7 +1,7 @@
 package lms.business;
 
 import junit.framework.TestCase;
-import lms.stubdb.StubDB;
+import lms.business.logic.SpreadsheetImporter;
 
 public class SpreadsheetImporterTest extends TestCase {
 	
