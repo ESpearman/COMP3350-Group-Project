@@ -14,22 +14,36 @@ public class SearchLockers
 		UUID currentTerm = CurrentTermInfo.currentTerm.getId();
 		ArrayList<Locker> currentLockers = Locker.getListByterm(currentTerm);
 		ArrayList<Rental> currentRentals = Rental.getListByTerm(currentTerm);
-		
-		//Remove lockers that are rented
-		for(int i = 0; i < currentRentals.size(); i++)
-		{
-			UUID locker = currentRentals.get(i).getLocker();
-			currentLockers.remove(Locker.getById(locker));
-		}
+		ArrayList<Locker> newLockers = new ArrayList<Locker>();
+		ArrayList<Locker> unusedLockers = new ArrayList<Locker>();
 		
 		//Remove lockers from different buildings
-		for(int i = 0; i < currentLockers.size(); i++){
-			if(building != currentLockers.get(i).getBuilding())
+		for(Locker locker: currentLockers)
+		{
+			if(building.equals(locker.getBuilding()))
 			{
-				currentLockers.remove(i);
+				newLockers.add(locker);		
 			}
 		}
 		
-		return currentLockers;
+		//Remove lockers that are rented
+		for(Locker locker: newLockers)
+		{
+			boolean flag = true;
+			for(Rental rent: currentRentals)
+			{			
+				if(rent.getLocker().equals(locker.getId()))
+				{
+					flag = false;
+					break;
+				}
+			}
+			if(flag)
+			{
+				unusedLockers.add(locker);
+			}
+		}
+		
+		return unusedLockers;
 	}
 }

@@ -77,7 +77,7 @@ public class MainWindow
 		// =============== import button ============
 		btnImport = new Button(shell, SWT.NONE);
 		btnImport.setBounds(10, 41, 135, 25);
-		btnImport.setText("Import Students");
+		btnImport.setText("Import");
 		btnImport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
