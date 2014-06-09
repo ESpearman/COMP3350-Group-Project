@@ -113,6 +113,7 @@ public class LockerWindow
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Completed");
 					dlgSuccess.setMessage("Rented");
+					dlgSuccess.open();
 				}
 				*/
 				shell.close();

@@ -66,12 +66,14 @@ public class ImportWindow
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Completed");
 					dlgSuccess.setMessage("Importing completed");
+					dlgSuccess.open();
 				}
 				else
 				{
 					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 					dlgFail.setText("Failed");
-					dlgFail.setMessage("Importing failed");
+					dlgFail.setMessage("Importing failed : File does not exist");
+					dlgFail.open();
 				}
 
 			}
