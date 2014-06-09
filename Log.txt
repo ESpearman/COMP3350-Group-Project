@@ -78,7 +78,11 @@ all members
 
 
 
-=== I think we have one more here ?? === dividing tasks
+Tue, May 27
+all members
+
+divides developer tasks for iteration 1
+
 
 
 
@@ -95,3 +99,10 @@ Fri, Jun 6
 11:33 programming standard - variable name camel case, constant all caps, class name caps, open bracket after newline
 11:38 standard *no spacing btw braces bracket etc
 11:40 will have code freeze on sunday ( 24hr before submit deadline )
+
+
+
+
+Mon, Jun 9
+12:00 all member
+last check for submassion
