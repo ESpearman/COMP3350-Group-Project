@@ -4,29 +4,29 @@ import java.util.UUID;
 
 public class RegisterStudent
 {
-	public static void upsertStudent(Student searchedStudent, String firstName, String lastName, String email, int studentNumber,
+	public static Student upsertStudent(Student searchedStudent, String firstName, String lastName, String email, int studentNumber,
 			 boolean scienceStudent, UUID term)
 	{
 		if(searchedStudent == null)
 		{
-			insertStudent(firstName, lastName, email, studentNumber, scienceStudent, term);
+			return insertStudent(firstName, lastName, email, studentNumber, scienceStudent, term);
 		}
 		else
 		{
-			updateStudent(searchedStudent, firstName, lastName, email, scienceStudent);
+			return updateStudent(searchedStudent, firstName, lastName, email, scienceStudent);
 		}
 	}
 	
-	private static void insertStudent(String firstName, String lastName, String email, int studentNumber,
+	private static Student insertStudent(String firstName, String lastName, String email, int studentNumber,
 									 boolean scienceStudent, UUID term)
 	{
 		
 		Student theStudent = new Student(firstName, lastName, email, studentNumber, scienceStudent, term);
 		theStudent.save();
-
+		return theStudent;
 	}
 	
-	public static void updateStudent(Student searchedStudent, String firstName, String lastName, String email,
+	public static Student updateStudent(Student searchedStudent, String firstName, String lastName, String email,
 			 boolean scienceStudent)
 	{
 		searchedStudent.setFirstName(firstName);
@@ -34,5 +34,6 @@ public class RegisterStudent
 		searchedStudent.setEmail(email);
 		searchedStudent.setScienceStudent(scienceStudent);
 		searchedStudent.save();
+		return searchedStudent;
 	}
 }

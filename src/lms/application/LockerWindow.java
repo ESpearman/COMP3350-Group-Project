@@ -2,6 +2,7 @@ package lms.application;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
@@ -11,6 +12,16 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 
+import lms.business.Building;
+import lms.business.Locker;
+import lms.business.Student;
+import lms.business.Rental;
+import lms.business.logic.CurrentTermInfo;
+import lms.business.logic.SearchLockers;
+import lms.business.logic.LockerPrice;
+
+import java.util.ArrayList;
+
 public class LockerWindow
 {
 	private Shell shell;
@@ -18,6 +29,13 @@ public class LockerWindow
 	
 	private Combo drpBuilding;
 	private Combo drpLocker;
+	
+	private Student potentialRenter;
+	private ArrayList<Building> buildingsAL = Building.getAll();
+	private String buildings[] = new String[buildingsAL.size()];
+	private ArrayList<Locker> lockersAL;
+	private String lockers[];
+	private float price;
 	
 	private Button btnBack;
 	private Button btnRent;
@@ -45,35 +63,32 @@ public class LockerWindow
 		drpLocker = new Combo(shell, SWT.NONE);
 		drpLocker.setBounds(127, 10, 114, 40);
 		
-		
 		// ======= building combo ( dropdown list ) =======
 		drpBuilding = new Combo(shell, SWT.NONE);
 		
-		final String testSet[] = {"Bldg1", "Bldg2", "Bldg3"};
-		drpBuilding.setItems(new String[] {});
+		//Build up buildings to select from
+		for(int i = 0; i < buildingsAL.size(); i++)
+		{
+			buildings[i] = buildingsAL.get(i).getName();
+		}
+		drpBuilding.setItems(buildings);
 		
 		drpBuilding.setBounds(7, 10, 114, 40);
 		drpBuilding.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
-				if(drpBuilding.getText().equals(testSet[0]))
+				Building building = buildingsAL.get(drpBuilding.getSelectionIndex());
+				lockersAL = SearchLockers.getUnusedLockers(building.getId(), CurrentTermInfo.getId());
+				lockers = new String[lockersAL.size()];
+				
+				//build up lockers to select from
+				for(int i = 0; i < lockersAL.size(); i++)
 				{
-					String lockerTest[] = {"locker1", "locker2","locker3"};
-					drpLocker.setItems(lockerTest);
-					drpLocker.setEnabled(true);
+					lockers[i] = Integer.toString(lockersAL.get(i).getNumber());
 				}
-				else if(drpBuilding.getText().equals(testSet[1]))
-				{
-					String lockerTest[] = {"locker4", "locker5","locker6"};
-					drpLocker.setItems(lockerTest);
-					drpLocker.setEnabled(true);
-				}
-				else
-				{
-					drpLocker.setEnabled(false);
-					drpLocker.setText("Nothing!!");
-				}
+				drpLocker.setItems(lockers);
+				drpLocker.setEnabled(true);
 			}
 		});
 		
@@ -106,16 +121,44 @@ public class LockerWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// rent button selected
-				/*
-				if(rent is valid && successful)
+				if(drpLocker.getSelectionIndex() != -1 && drpBuilding.getSelectionIndex() != -1)
 				{
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Completed");
-					dlgSuccess.setMessage("Rented");
-					dlgSuccess.open();
+					//This could probably be moved into a RegisterRental.java business logic class
+					
+					//Check if student already has a rental, otherwise rent
+					ArrayList<Rental> currentRentalTerm = Rental.getListByTerm(CurrentTermInfo.getId());
+					boolean isRenting = false;
+					
+					//Check current term if they're renting a locker
+					for(int i = 0; i < currentRentalTerm.size() && isRenting == false; i++)
+					{
+						if(currentRentalTerm.get(i).getStudent() == potentialRenter.getId())
+						{
+							isRenting = true;
+						}
+					}
+					
+					if(isRenting == false && chkAgreement.getSelection()) 
+					{
+						Locker selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
+						price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
+						Rental newRental = new Rental(CurrentTermInfo.getId(), potentialRenter.getId(), 
+								selectedLocker.getId(), price, true); //chkAgreement must be true to enter this if statement
+						newRental.save();
+						
+						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+						dlgSuccess.setText("Completed");
+						dlgSuccess.setMessage("Rented");
+						dlgSuccess.open();
+					}
+					else
+					{
+						MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
+						dlgBadNumber.setMessage("Student is already renting a locker this term or has not agreed");
+						dlgBadNumber.setText("Error");
+						dlgBadNumber.open();
+					}
 				}
-				*/
 				shell.close();
 			}
 		});
@@ -141,9 +184,10 @@ public class LockerWindow
 		}
 	}
 	
-	public LockerWindow()
+	public LockerWindow(Student newStudent)
 	{
 		display = Display.getDefault();
+		potentialRenter = newStudent;
 		runWindow();
 	}
 }

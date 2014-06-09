@@ -105,9 +105,9 @@ public class RegisterWindow
 				try
 				{
 					int studentNumber = Integer.parseInt(txtStudentNumber.getText());
-					RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
+					Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 							txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
-					new LockerWindow();
+					new LockerWindow(newStudent);
 				}
 				catch(NumberFormatException e)
 				{
