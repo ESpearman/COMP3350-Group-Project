@@ -2,28 +2,17 @@ package lms.business.logic;
 
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class CurrentTermInfo 
 {
+	@Getter
+	@Setter
 	private static UUID id;
+	
+	@Getter
+	@Setter
 	private static String name;
 	
-	public static UUID getId() 
-	{
-		return id;
-	}
-	
-	public static void setId(UUID id) 
-	{
-		CurrentTermInfo.id = id;
-	}
-	
-	public static String getName() 
-	{
-		return name;
-	}
-	
-	public static void setName(String name) 
-	{
-		CurrentTermInfo.name = name;
-	}	
 }
