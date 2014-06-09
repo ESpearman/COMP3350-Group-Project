@@ -1,6 +1,8 @@
-package lms.business;
+package lms.business.logic;
 
 import java.util.UUID;
+
+import lms.business.Student;
 
 public class RegisterStudent
 {

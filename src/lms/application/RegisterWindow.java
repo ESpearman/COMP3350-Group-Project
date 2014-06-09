@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-import lms.business.RegisterStudent;
 import lms.business.Student;
+import lms.business.logic.RegisterStudent;
 import lms.business.logic.SearchStudent;
 
 public class RegisterWindow
