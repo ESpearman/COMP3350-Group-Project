@@ -2,6 +2,7 @@ package lms.business.logic;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import lms.business.Building;
 import lms.business.Locker;
@@ -13,15 +14,12 @@ import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetImporter 
 {
-	public static void importStudents(String relativePath)
+	public static void importStudents(String path)
 	{
 		
 		try 
 		{
-			String absolutePath = new File("").getAbsolutePath();
-			String fullPath = absolutePath + relativePath;
-			
-			Workbook workbook = WorkbookFactory.create(new File(fullPath));
+			Workbook workbook = WorkbookFactory.create(new File(path));
 			Sheet studentSheet = workbook.getSheetAt(0);
 
 			Student currStudent;
@@ -60,31 +58,45 @@ public class SpreadsheetImporter
 		}
 	}
 	
-	public static void importLockers(String relativePath)
+	public static void importLockers(String path)
 	{
 		try 
 		{
-			String absolutePath = new File("").getAbsolutePath();
-			String fullPath = absolutePath + relativePath;
 			
-			Workbook workbook = WorkbookFactory.create(new File(fullPath));
+			Workbook workbook = WorkbookFactory.create(new File(path));
 			Sheet lockerSheet = workbook.getSheetAt(0);
 
 			Locker currLocker;
-			
+
 			for (Row row : lockerSheet) 
 			{
-				Building building;
+				Building building = null;
 				int lockerNumber;
 				LockerSize size;
 
 				if(!isRowEmpty(row))
 				{
-					building = new Building(row.getCell(0).getStringCellValue());
-					building.save();
+					String buildingName = row.getCell(0).getStringCellValue();
+					ArrayList<Building> existingBuildings = Building.getAll();
+					
+					for(Building existingBuilding : existingBuildings)
+					{
+						if(buildingName.equals(existingBuilding.getName()))
+						{
+							building = existingBuilding;
+						}
+					}
+					
+					if(building == null)
+					{
+						building = new Building(buildingName);
+						building.save();
+					}
+					
+
 					lockerNumber = (int)row.getCell(1).getNumericCellValue();
 				
-					if(row.getCell(2).getStringCellValue() == "FULL")
+					if(row.getCell(2).getStringCellValue().equals("FULL"))
 					{
 						size = LockerSize.FULL;
 					}
@@ -92,12 +104,11 @@ public class SpreadsheetImporter
 					{
 						size = LockerSize.HALF;
 					}
-
+					
 					currLocker = new Locker(CurrentTermInfo.id, lockerNumber, building.getId(), size);
 					currLocker.save();
 				}
 			}
-
 		}
 		
 		catch(IOException ioe) 

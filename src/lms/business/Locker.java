@@ -7,7 +7,7 @@ import lms.db.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Locker implements BusinessObject
+public class Locker implements TermBased
 {
 	@Getter
 	private UUID id;
