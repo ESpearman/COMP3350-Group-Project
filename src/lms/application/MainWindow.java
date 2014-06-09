@@ -1,6 +1,7 @@
 package lms.application;
 
 
+import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 
 import org.eclipse.swt.widgets.Display;
@@ -110,7 +111,10 @@ public class MainWindow
 	
 	public static void main(String[] args)
 	{
-		CurrentTermInfo.createCurrentTerm();
+		//Hard code a term to be used for iteration 1 only
+		Term term = new Term("Demo Term");
+		CurrentTermInfo.currentTerm = term;
+		term.save();
 		
 		new MainWindow();
 	}
