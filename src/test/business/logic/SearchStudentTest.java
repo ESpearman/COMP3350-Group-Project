@@ -5,13 +5,15 @@ import lms.business.Student;
 import lms.business.logic.SearchStudent;
 import java.util.UUID;
 
-public class SearchStudentTest extends TestCase {
+public class SearchStudentTest extends TestCase
+{
 
 	Student student1;
 	Student morgan;
 	Student ghost;
 	
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		UUID id = UUID.randomUUID();
 		UUID term = UUID.randomUUID();
 		student1 = new Student(id, "morgan", "epp", "mrgnepp", 1234567, true, term);
@@ -42,6 +44,7 @@ public class SearchStudentTest extends TestCase {
 		ghost = SearchStudent.getByStudentNumber("12345678901"); //greater than 10 digits
 		assertNull("getByStudentNumber() did not return null on too much digit input", ghost);
 	}
+	
 	public void testEmptyInput()
 	{
 		ghost = SearchStudent.getByStudentNumber(""); //no student number entered

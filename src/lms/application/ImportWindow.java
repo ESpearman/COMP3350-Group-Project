@@ -2,6 +2,8 @@ package lms.application;
 
 import java.io.File;
 
+import lms.business.logic.SpreadsheetImporter;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -21,7 +23,8 @@ public class ImportWindow
 	
 	private Text txtPath;
 	
-	private Button btnImport;
+	private Button btnImportStudent;
+	private Button btnImportLocker;
 	private Button btnBack;
 	private Label lblFilePath;
 	
@@ -38,7 +41,7 @@ public class ImportWindow
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
 		shell.setLocation (x, y);
-		shell.setText("Import");
+		shell.setText("Import Students");
 		
 		
 		// ====== file (path) text field =======
@@ -46,11 +49,11 @@ public class ImportWindow
 		txtPath.setBounds(104, 10, 270, 21);
 		
 		
-		// ======= import button =========
-		btnImport = new Button(shell, SWT.NONE);
-		btnImport.setBounds(263, 82, 111, 27);
-		btnImport.setText("Import");
-		btnImport.addSelectionListener(new SelectionAdapter()
+		// ======= import student button =========
+		btnImportStudent = new Button(shell, SWT.NONE);
+		btnImportStudent.setBounds(263, 82, 111, 27);
+		btnImportStudent.setText("Import Students");
+		btnImportStudent.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -63,6 +66,43 @@ public class ImportWindow
 				File f = new File(filePath);
 				if(f.isFile())
 				{
+					SpreadsheetImporter.importStudents(filePath);
+					
+					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+					dlgSuccess.setText("Completed");
+					dlgSuccess.setMessage("Importing completed");
+					dlgSuccess.open();
+				}
+				else
+				{
+					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+					dlgFail.setText("Failed");
+					dlgFail.setMessage("Importing failed : File does not exist");
+					dlgFail.open();
+				}
+
+			}
+		});
+		
+		// ======= import lockers button =========
+		btnImportLocker = new Button(shell, SWT.NONE);
+		btnImportLocker.setBounds(135, 82, 111, 27);
+		btnImportLocker.setText("Import Lockers");
+		btnImportLocker.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				// when import button is selected
+			
+				// only check if the given path is valid
+				
+				String filePath = txtPath.getText();
+				File f = new File(filePath);
+				if(f.isFile())
+				{
+					SpreadsheetImporter.importLockers(filePath);
+					
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Completed");
 					dlgSuccess.setMessage("Importing completed");

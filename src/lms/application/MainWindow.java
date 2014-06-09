@@ -1,6 +1,9 @@
 package lms.application;
 
 
+import lms.business.Term;
+import lms.business.logic.CurrentTermInfo;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
@@ -74,7 +77,7 @@ public class MainWindow
 		// =============== import button ============
 		btnImport = new Button(shell, SWT.NONE);
 		btnImport.setBounds(10, 41, 135, 25);
-		btnImport.setText("Import");
+		btnImport.setText("Import Students");
 		btnImport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -108,6 +111,11 @@ public class MainWindow
 	
 	public static void main(String[] args)
 	{
+		//Hard code a term to be used for iteration 1 only
+		Term term = new Term("Demo Term");
+		CurrentTermInfo.currentTerm = term;
+		term.save();
+		
 		new MainWindow();
 	}
 }
