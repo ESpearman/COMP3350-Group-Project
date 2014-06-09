@@ -11,7 +11,8 @@ public class SearchStudentTest extends TestCase {
 	Student morgan;
 	Student ghost;
 	
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception
+	{
 		UUID id = UUID.randomUUID();
 		UUID term = UUID.randomUUID();
 		student1 = new Student(id, "morgan", "epp", "mrgnepp", 1234567, true, term);

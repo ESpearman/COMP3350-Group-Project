@@ -65,6 +65,11 @@ public class SearchLockersTest extends TestCase
 		Locker locker2 = new Locker(newUUID1, currTerm.getId(), 666, buildingUUID, LockerSize.FULL);
 		Rental rental = new Rental(currTerm.getId(), student.getId(), locker2.getId(), price, true);
 		
+		rental.save();
+		locker2.save();
+		student.save();
+		building.save();
+		
 		unusedLockers = SearchLockers.getUnusedLockers(building.getId(), currTerm.getId());
 		assertTrue(unusedLockers.size() == 0);
 	}

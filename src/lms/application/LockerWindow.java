@@ -36,6 +36,7 @@ public class LockerWindow
 	private ArrayList<Locker> lockersAL;
 	private String lockers[];
 	private float price;
+	private Locker selectedLocker;
 	
 	private Button btnBack;
 	private Button btnRent;
@@ -62,6 +63,15 @@ public class LockerWindow
 		// ===== locker combo ( dropdown list ) =======
 		drpLocker = new Combo(shell, SWT.NONE);
 		drpLocker.setBounds(127, 10, 114, 40);
+		drpLocker.addSelectionListener(new SelectionAdapter()
+		{
+			public void widgetSelected(SelectionEvent e)
+			{
+				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
+				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
+				lblPrice.setText("Price: " + price);
+			}
+		});
 		
 		// ======= building combo ( dropdown list ) =======
 		drpBuilding = new Combo(shell, SWT.NONE);
@@ -140,8 +150,6 @@ public class LockerWindow
 					
 					if(isRenting == false && chkAgreement.getSelection()) 
 					{
-						Locker selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
-						price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
 						Rental newRental = new Rental(CurrentTermInfo.currentTerm.getId(), potentialRenter.getId(), 
 								selectedLocker.getId(), price, true); //chkAgreement must be true to enter this if statement
 						newRental.save();
@@ -150,6 +158,7 @@ public class LockerWindow
 						dlgSuccess.setText("Completed");
 						dlgSuccess.setMessage("Rented");
 						dlgSuccess.open();
+						shell.close();
 					}
 					else
 					{
@@ -159,7 +168,6 @@ public class LockerWindow
 						dlgBadNumber.open();
 					}
 				}
-				shell.close();
 			}
 		});
 		btnRent.setBounds(263, 287, 111, 27);

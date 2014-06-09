@@ -33,11 +33,11 @@ public class LockerPrice
 		{
 			if(lockerSize == LockerSize.HALF)
 			{
-				cost = NONSCI_FULL ;
+				cost = NONSCI_HALF ;
 			}
 			else
 			{
-				cost = NONSCI_HALF;
+				cost = NONSCI_FULL;
 			}
 		}
 		return cost;
