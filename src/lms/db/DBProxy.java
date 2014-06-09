@@ -80,7 +80,7 @@ public class DBProxy
 		return StubDB.getStudentsListByTerm(term);
 	}
 	
-	public static ArrayList<Locker> getLocerksListByTerm(UUID term)
+	public static ArrayList<Locker> getLockersListByTerm(UUID term)
 	{
 		return StubDB.getLockersListByTerm(term);
 	}

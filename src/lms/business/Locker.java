@@ -52,7 +52,7 @@ public class Locker implements TermBased
 	
 	public static ArrayList<Locker> getListByterm(UUID term)
 	{
-		return DBProxy.getLocerksListByTerm(term);
+		return DBProxy.getLockersListByTerm(term);
 	}
 	
 	public static Locker getByNumber(int number)
