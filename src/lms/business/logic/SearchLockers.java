@@ -11,7 +11,7 @@ public class SearchLockers
 {
 	public static ArrayList<Locker> getUnusedLockers(UUID building, UUID term)
 	{
-		UUID currentTerm = CurrentTermInfo.getId();
+		UUID currentTerm = CurrentTermInfo.currentTerm.getId();
 		ArrayList<Locker> currentLockers = Locker.getListByterm(currentTerm);
 		ArrayList<Rental> currentRentals = Rental.getListByTerm(currentTerm);
 		

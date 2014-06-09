@@ -79,7 +79,7 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent e)
 			{
 				Building building = buildingsAL.get(drpBuilding.getSelectionIndex());
-				lockersAL = SearchLockers.getUnusedLockers(building.getId(), CurrentTermInfo.getId());
+				lockersAL = SearchLockers.getUnusedLockers(building.getId(), CurrentTermInfo.currentTerm.getId());
 				lockers = new String[lockersAL.size()];
 				
 				//build up lockers to select from
@@ -126,7 +126,7 @@ public class LockerWindow
 					//This could probably be moved into a RegisterRental.java business logic class
 					
 					//Check if student already has a rental, otherwise rent
-					ArrayList<Rental> currentRentalTerm = Rental.getListByTerm(CurrentTermInfo.getId());
+					ArrayList<Rental> currentRentalTerm = Rental.getListByTerm(CurrentTermInfo.currentTerm.getId());
 					boolean isRenting = false;
 					
 					//Check current term if they're renting a locker
@@ -142,7 +142,7 @@ public class LockerWindow
 					{
 						Locker selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
 						price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
-						Rental newRental = new Rental(CurrentTermInfo.getId(), potentialRenter.getId(), 
+						Rental newRental = new Rental(CurrentTermInfo.currentTerm.getId(), potentialRenter.getId(), 
 								selectedLocker.getId(), price, true); //chkAgreement must be true to enter this if statement
 						newRental.save();
 						
