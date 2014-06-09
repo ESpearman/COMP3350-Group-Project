@@ -107,6 +107,14 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// rent button selected
+				/*
+				if(rent is valid && successful)
+				{
+					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+					dlgSuccess.setText("Completed");
+					dlgSuccess.setMessage("Rented");
+				}
+				*/
 				shell.close();
 			}
 		});

@@ -1,7 +1,10 @@
 package lms.application;
 
+import java.io.File;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
@@ -53,8 +56,24 @@ public class ImportWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// when import button is selected
-				// new Dialog pop;
 				
+				// only check if the given path is valid
+				
+				String filePath = txtPath.getText();
+				File f = new File(filePath);
+				if(f.isFile())
+				{
+					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+					dlgSuccess.setText("Completed");
+					dlgSuccess.setMessage("Importing completed");
+				}
+				else
+				{
+					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+					dlgFail.setText("Failed");
+					dlgFail.setMessage("Importing failed");
+				}
+
 			}
 		});
 
