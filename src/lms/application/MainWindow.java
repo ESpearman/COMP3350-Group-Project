@@ -3,6 +3,7 @@ package lms.application;
 
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
+import lms.business.logic.DemoDataGenerator;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
@@ -115,6 +116,8 @@ public class MainWindow
 		Term term = new Term("Demo Term");
 		CurrentTermInfo.currentTerm = term;
 		term.save();
+		
+		DemoDataGenerator.generate();
 		
 		new MainWindow();
 	}
