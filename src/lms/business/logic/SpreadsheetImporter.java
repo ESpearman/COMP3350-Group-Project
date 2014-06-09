@@ -40,7 +40,7 @@ public class SpreadsheetImporter
 					email = row.getCell(2).getStringCellValue();
 					studentNumber = (int)row.getCell(3).getNumericCellValue();
 	
-					currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, CurrentTermInfo.id);
+					currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, CurrentTermInfo.getId());
 					currStudent.save();
 				}
 			}
@@ -105,7 +105,7 @@ public class SpreadsheetImporter
 						size = LockerSize.HALF;
 					}
 					
-					currLocker = new Locker(CurrentTermInfo.id, lockerNumber, building.getId(), size);
+					currLocker = new Locker(CurrentTermInfo.getId(), lockerNumber, building.getId(), size);
 					currLocker.save();
 				}
 			}

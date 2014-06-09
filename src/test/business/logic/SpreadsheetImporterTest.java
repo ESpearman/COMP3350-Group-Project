@@ -22,14 +22,14 @@ public class SpreadsheetImporterTest extends TestCase
 		Term currentTerm = new Term(UUID.randomUUID(), "Summer 2014");
 		currentTerm.save();
 		
-		CurrentTermInfo.id = currentTerm.getId();
-		CurrentTermInfo.name = currentTerm.getName();
+		CurrentTermInfo.setId(currentTerm.getId());
+		CurrentTermInfo.setName(currentTerm.getName());
 	}
 	
 	public void testBlankSheetStudent()
 	{
 		SpreadsheetImporter.importStudents(getPath("\\src\\test\\testFiles\\Students0.xlsx"));
-		students = Student.getListByTerm(CurrentTermInfo.id);
+		students = Student.getListByTerm(CurrentTermInfo.getId());
 		
 		assertEquals(0, students.size());
 	}
@@ -37,7 +37,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSXImportStudent()
 	{
 		SpreadsheetImporter.importStudents(getPath("\\src\\test\\testFiles\\Students1.xlsx"));
-		students = Student.getListByTerm(CurrentTermInfo.id);
+		students = Student.getListByTerm(CurrentTermInfo.getId());
 		
 		assertEquals("Alice", students.get(0).getFirstName());
 		assertEquals("Zuwatski", students.get(0).getLastName());
@@ -48,7 +48,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSImportStudent()
 	{
 		SpreadsheetImporter.importStudents(getPath("\\src\\test\\testFiles\\Students2.xls"));
-		students = Student.getListByTerm(CurrentTermInfo.id);
+		students = Student.getListByTerm(CurrentTermInfo.getId());
 		
 		assertEquals("Isabelle", students.get(8).getFirstName());
 		assertEquals("Ricardo", students.get(8).getLastName());
@@ -59,7 +59,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testBlankRowsStudent()
 	{
 		SpreadsheetImporter.importStudents(getPath("\\src\\test\\testFiles\\Students3.xlsx"));
-		students = Student.getListByTerm(CurrentTermInfo.id);
+		students = Student.getListByTerm(CurrentTermInfo.getId());
 		
 		assertEquals("Alice", students.get(0).getFirstName());
 		assertEquals("Zuwatski", students.get(0).getLastName());
@@ -70,7 +70,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testBlankSheetLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers0.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.id);
+		lockers = Locker.getListByterm(CurrentTermInfo.getId());
 		
 		assertEquals(0, lockers.size());
 	}
@@ -78,7 +78,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSXImportLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers1.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.id);
+		lockers = Locker.getListByterm(CurrentTermInfo.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(0).getBuilding());
 		
@@ -91,7 +91,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSImportLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers2.xls"));
-		lockers = Locker.getListByterm(CurrentTermInfo.id);
+		lockers = Locker.getListByterm(CurrentTermInfo.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(5).getBuilding());
 		
@@ -104,7 +104,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testBlankRowsLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers3.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.id);
+		lockers = Locker.getListByterm(CurrentTermInfo.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(14).getBuilding());
 		
