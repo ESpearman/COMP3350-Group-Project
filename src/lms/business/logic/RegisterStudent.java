@@ -28,7 +28,7 @@ public class RegisterStudent
 		return theStudent;
 	}
 	
-	public static Student updateStudent(Student searchedStudent, String firstName, String lastName, String email,
+	private static Student updateStudent(Student searchedStudent, String firstName, String lastName, String email,
 			 boolean scienceStudent)
 	{
 		searchedStudent.setFirstName(firstName);
