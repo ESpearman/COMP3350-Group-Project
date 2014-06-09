@@ -2,8 +2,6 @@ package lms.application;
 
 import java.io.File;
 
-import lms.business.logic.SpreadsheetImporter;
-
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -65,8 +63,6 @@ public class ImportWindow
 				File f = new File(filePath);
 				if(f.isFile())
 				{
-					SpreadsheetImporter.importStudents(filePath);
-					
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Completed");
 					dlgSuccess.setMessage("Importing completed");
