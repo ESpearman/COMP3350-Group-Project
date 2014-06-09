@@ -1,4 +1,4 @@
-package lms.business.logic;
+package test.business.logic;
 
 import junit.framework.TestCase;
 import lms.business.Student;

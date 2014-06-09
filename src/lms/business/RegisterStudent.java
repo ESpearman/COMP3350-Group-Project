@@ -21,7 +21,7 @@ public class RegisterStudent // I am not sure what to implement here, implements
 		Student newStudent = null;
 		@SuppressWarnings("static-access")
 		//I think i need search here!!!
-		Student otherStudent = otherStudent.getByStudentNumber(studentNumber); 
+		Student otherStudent = Student.getByStudentNumber(studentNumber); 
 		if(otherStudent != null)
 		{
 			newStudent  = new Student(firstName, lastName, email, studentNumber, scienceStudent, term);
