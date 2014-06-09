@@ -6,4 +6,5 @@ public class CurrentTermInfo
 {
 	public static UUID id;
 	public static String name;
+	
 }
