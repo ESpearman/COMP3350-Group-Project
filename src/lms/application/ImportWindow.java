@@ -2,6 +2,8 @@ package lms.application;
 
 import java.io.File;
 
+import lms.business.logic.SpreadsheetImporter;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -38,7 +40,7 @@ public class ImportWindow
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
 		shell.setLocation (x, y);
-		shell.setText("Import");
+		shell.setText("Import Students");
 		
 		
 		// ====== file (path) text field =======
@@ -63,6 +65,8 @@ public class ImportWindow
 				File f = new File(filePath);
 				if(f.isFile())
 				{
+					SpreadsheetImporter.importStudents(filePath);
+					
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Completed");
 					dlgSuccess.setMessage("Importing completed");

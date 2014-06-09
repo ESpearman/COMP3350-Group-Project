@@ -15,4 +15,9 @@ public class CurrentTermInfo
 	@Setter
 	private static String name;
 	
+	public static void createCurrentTerm()
+	{
+		id = UUID.randomUUID();
+		name = "default";
+	}
 }
