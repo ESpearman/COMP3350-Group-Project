@@ -1,0 +1,97 @@
+11:08 - all members, clients ( greeting, intro about application, group project )
+-	not much network thing in first, possibly at the end if time permitted
+11:11 - locker deadline
+Video Record start
+11:13 - client explain current tasks being done. using excel, and checkbook basically manual.
+11:15 - several options for pricing.
+		(full year, half year, half locker, full locker, science/non-sci student)
+		need to enter email address, student number in application
+11:18 - will send email as receipt
+11:19 - name( separately, first, last), student number
+		and email address ( it doens't have to be UofM email account )
+11:20 - need to check science/non-science student
+11:21 - need to edit(manage) building ( possible solution : admin account ? )
+11:22 - print out feature
+11:24 - application will need server database computer
+		need to talk to UofM associates
+11:25 - to make it for computers in multiple location
+		prints out error message for already taken locker (at other location/same time)
+11:29 - needs information ( science student or not ) to calculate price
+11:31 - doesn't care shared lock, allow one person can take one locker only ( no multiple )
+11:34 - back up data needed for future council
+11:35 - will make it as open source program that can be modified (freely)
+11:36 - discuss vision -
+		*features
+11:38 - intuitive interface ( easy use )( high )
+11:40 - delete/manage(edit) functionality
+11:41 - review function. based on term(period), who is taking which locker
+11:42 - interface - drop down list (combo) ( building, locker number )
+11:43 - program will track the locker whether or not taken
+11:44 - documentation ( low )
+11:45 - import/export data ( low ) ( excel )
+11:46 - extend ( add person to next term )
+11:47 - big user story * registering student by term
+11:50 - add student by term ( high )
+11:55 - send receipt ( low, later )
+11:56 - import student data(excel) to data
+11:58 - pop up screen ( student number, name, faculty )
+
+record start again
+12:04 - summary
+
+system that can manage locker.
+Feature ( Adding , UI, drobdown box interface, view the data, emailing, documentation(readme) ).
+Feedback if available
+
+client gone
+
+12:18 - UI plug in
+12:20 - database design plan ( slick ? )
+	( local DB, net DB )
+12:23 - emailing is out of scope
+12:26 -calculate price based on science / non-science faculty
+12:28 - need to keep track sci/ non-sci, display that info
+12:33 - print error msg if at the same time registered
+12:37 - admin account for modifying data ( add, some )
+12:50 - who will do video editing ?
+
+12:51 discuss GUI
+
+
+
+Tuesday May 20
+
+All members present
+
+1:50 - Quick discussion on architecture - all group members have agreed on changes from standard architecture to make use of Scala, Sbt, and the Slick library and other minor changes
+1:55 - Went over vision statement and made minor changes
+
+
+
+Thu may 22
+
+all members
+
+1:59 - no slick ( db ) for class requirement
+2:02 - discuss on last meeting conversation for user stories
+2:03 - last check for submitting iteration 0
+
+
+
+=== I think we have one more here ?? === dividing tasks
+
+
+
+Fri, Jun 6
+10:30 all member
+10:35 GUI design *import button ( excel file ) and text(lable) for file name( path )
+10:40 GUI design *draw on whiteboard( sketches ) story board.
+	Export button (hidden or no for iter1), 
+11:05 GUI design *done
+11:06 architecture design
+11:11 stubDB, Business Objects.
+11:30 draw arch
+
+11:33 programming standard - variable name camel case, constant all caps, class name caps, open bracket after newline
+11:38 standard *no spacing btw braces bracket etc
+11:40 will have code freeze on sunday ( 24hr before submit deadline )
