@@ -23,13 +23,14 @@ public class ImportWindow
 	private Shell shell;
 	
 	private Text txtPath;
-	
-	private Button btnImportStudent;
-	private Button btnImportLocker;
 	private Button btnBack;
-	private Label lblFilePath;
 	private Button btnBrowse;
 	
+	private Button btnLockers;
+	private Button btnStudents;
+	
+	private Label lblFilePath;
+	private Button btnImport;
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
@@ -72,85 +73,14 @@ public class ImportWindow
 				
 			}
 		});
-		btnBrowse.setBounds(299, 33, 75, 25);
+		btnBrowse.setBounds(299, 37, 75, 25);
 		btnBrowse.setText("Browse");
 		
 		
 		// ====== file (path) text field =======
 		txtPath = new Text(shell, SWT.BORDER);
 		txtPath.setEditable(false);
-		txtPath.setBounds(75, 35, 218, 21);
-		
-		
-		// ======= import student button =========
-		btnImportStudent = new Button(shell, SWT.NONE);
-		btnImportStudent.setBounds(263, 82, 111, 27);
-		btnImportStudent.setText("Import Students");
-		btnImportStudent.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// when import button is selected
-				
-				// only check if the given path is valid (exist?)
-				
-				String filePath = txtPath.getText();
-				File f = new File(filePath);
-				if(f.isFile())
-				{
-					SpreadsheetImporter.importStudents(filePath);
-					
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Completed");
-					dlgSuccess.setMessage("Importing completed");
-					dlgSuccess.open();
-				}
-				else
-				{
-					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-					dlgFail.setText("Failed");
-					dlgFail.setMessage("Importing failed : File does not exist");
-					dlgFail.open();
-				}
-
-			}
-		});
-		
-		// ======= import lockers button =========
-		btnImportLocker = new Button(shell, SWT.NONE);
-		btnImportLocker.setBounds(135, 82, 111, 27);
-		btnImportLocker.setText("Import Lockers");
-		btnImportLocker.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// when import button is selected
-			
-				// only check if the given path is valid
-				
-				String filePath = txtPath.getText();
-				File f = new File(filePath);
-				if(f.isFile())
-				{
-					SpreadsheetImporter.importLockers(filePath);
-					
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Completed");
-					dlgSuccess.setMessage("Importing completed");
-					dlgSuccess.open();
-				}
-				else
-				{
-					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-					dlgFail.setText("Failed");
-					dlgFail.setMessage("Importing failed : File does not exist");
-					dlgFail.open();
-				}
-
-			}
-		});
+		txtPath.setBounds(75, 39, 218, 21);
 
 		
 		//======== back button ==========
@@ -168,10 +98,93 @@ public class ImportWindow
 		});
 		
 		
+		// ====== label 'filePath' ==========
 		lblFilePath = new Label(shell, SWT.NONE);
 		lblFilePath.setAlignment(SWT.RIGHT);
-		lblFilePath.setBounds(10, 38, 59, 21);
+		lblFilePath.setBounds(10, 42, 59, 21);
 		lblFilePath.setText("File Path");
+		
+		
+		// ========== locker radio button ============
+		btnLockers = new Button(shell, SWT.RADIO);
+		btnLockers.setBounds(75, 17, 90, 16);
+		btnLockers.setText("Lockers");
+		
+		
+		// =========== students radio button ========
+		btnStudents = new Button(shell, SWT.RADIO);
+		btnStudents.setBounds(171, 17, 90, 16);
+		btnStudents.setText("Students");
+		
+		
+		// =========== import button =================
+		btnImport = new Button(shell, SWT.NONE);
+		btnImport.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				if(btnLockers.getSelection())
+				{
+					// locker importing
+					
+					String filePath = txtPath.getText();
+					File f = new File(filePath);
+					if(f.isFile())
+					{
+						SpreadsheetImporter.importLockers(filePath);
+						
+						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+						dlgSuccess.setText("Completed");
+						dlgSuccess.setMessage("Lockers Importing completed");
+						dlgSuccess.open();
+					}
+					else
+					{
+						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+						dlgFail.setText("Failed");
+						dlgFail.setMessage("Importing failed : File does not exist");
+						dlgFail.open();
+					}
+				}
+				else if(btnStudents.getSelection())
+				{
+					// student importing
+					
+					String filePath = txtPath.getText();
+					File f = new File(filePath);
+					if(f.isFile())
+					{
+						SpreadsheetImporter.importStudents(filePath);
+						
+						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+						dlgSuccess.setText("Completed");
+						dlgSuccess.setMessage("Students Importing completed");
+						dlgSuccess.open();
+					}
+					else
+					{
+						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+						dlgFail.setText("Failed");
+						dlgFail.setMessage("Importing failed : File does not exist");
+						dlgFail.open();
+					}
+				}
+				else
+				{
+					// no radio button is selected (error)
+					
+					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+					dlgFail.setText("Failed");
+					dlgFail.setMessage("Importing failed : Choose importing option (Student or Lockers)");
+					dlgFail.open();
+					
+				}
+			}
+		});
+		btnImport.setBounds(263, 83, 111, 25);
+		btnImport.setText("Import");
+
 
 
 		// ======shell open, close ========
