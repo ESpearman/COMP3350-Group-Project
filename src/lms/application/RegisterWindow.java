@@ -132,6 +132,8 @@ public class RegisterWindow
 				}
 				catch(NumberFormatException e)
 				{
+					// not sure if this check still needed
+					
 					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
 					dlgBadNumber.setMessage("Invalid Student Number");
 					dlgBadNumber.setText("Error");
