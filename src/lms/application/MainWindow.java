@@ -21,6 +21,7 @@ public class MainWindow
 	private Button btnRegister;
 	private Button btnImport;
 	private Button btnQuit;
+	private Button btnExport;
 	
 	/**
 	 * Launch the application.
@@ -88,6 +89,26 @@ public class MainWindow
 				new ImportWindow();
 			}
 		});
+		
+		
+		// =============== export button ==============
+		btnExport = new Button(shell, SWT.NONE);
+		btnExport.setBounds(10, 72, 135, 25);
+		btnExport.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				// Export button is selected
+				new ExportWindow();
+			}
+		});
+		btnExport.setText("Export");
+		
+		
+		
+		
+
 
 		
 		//======= shell open, close ======
