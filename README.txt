@@ -3,6 +3,7 @@ COMP3350-Group-Project
 
 Version control system location :
 https://github.com/ESpearman/COMP3350-Group-Project
+Iteration 1 files can be found in the iteration 1 branch
 
     When our JUnit tests were run in eclipse during development, all of them ran and passed, and continue to do so,
 however, when we tried running them via our RunUnitTest.bat script, several of our tests began failing
