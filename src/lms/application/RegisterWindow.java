@@ -59,7 +59,6 @@ public class RegisterWindow
 		txtStudentNumber = new Text(shell, SWT.BORDER);
 		txtStudentNumber.setBounds(127, 4, 111, 27);
 		txtStudentNumber.setTextLimit(7);
-		
 		txtStudentNumber.addListener(SWT.Verify, new Listener()
 		{
 			// allow only digits
