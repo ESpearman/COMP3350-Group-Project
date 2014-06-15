@@ -59,7 +59,17 @@ public class ImportWindow
 			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx"});
 			    dlgOpen.setFilterPath("c:\\");
 			    dlgOpen.open();
-				txtPath.setText(dlgOpen.getFilterPath()+"\\"+dlgOpen.getFileName());
+			    if (dlgOpen.getFileName().compareTo("")==0)
+			    {
+			    	// file not selected on dialog
+			    	txtPath.setText("");
+			    }
+			    else
+			    {
+			    	// file selected
+			    	txtPath.setText(dlgOpen.getFilterPath()+"\\"+dlgOpen.getFileName());
+			    }
+				
 			}
 		});
 		btnBrowse.setBounds(299, 33, 75, 25);
