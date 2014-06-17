@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
@@ -56,6 +58,25 @@ public class RegisterWindow
 		// ====== search text =========
 		txtStudentNumber = new Text(shell, SWT.BORDER);
 		txtStudentNumber.setBounds(127, 4, 111, 27);
+		txtStudentNumber.setTextLimit(7);
+		txtStudentNumber.addListener(SWT.Verify, new Listener()
+		{
+			// allow only digits
+			public void handleEvent(Event e)
+			{
+				String string = e.text;
+				char[] chars = new char[string.length()];
+				string.getChars(0, chars.length, chars, 0);
+				for (int i = 0; i < chars.length; i++)
+				{
+					if (!('0' <= chars[i] && chars[i] <= '9'))
+					{
+						e.doit = false;
+						return;
+					}
+				}
+			}
+		});
 
 		
 		// ===== first name text ========
@@ -111,6 +132,8 @@ public class RegisterWindow
 				}
 				catch(NumberFormatException e)
 				{
+					// not sure if this check still needed
+					
 					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
 					dlgBadNumber.setMessage("Invalid Student Number");
 					dlgBadNumber.setText("Error");
@@ -163,6 +186,8 @@ public class RegisterWindow
 		lblEmailAddress.setText("Email Address");
 		lblEmailAddress.setAlignment(SWT.RIGHT);
 		lblEmailAddress.setBounds(10, 125, 111, 21);
+		
+		
 		
 		btnScienceStudent = new Button(shell, SWT.CHECK);
 		btnScienceStudent.setBounds(127, 158, 111, 16);
