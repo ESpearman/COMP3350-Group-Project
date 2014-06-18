@@ -23,7 +23,7 @@ public class RegisterStudentsTest extends TestCase
 	public void testUpdateStudent()
 	{
 		testUpdate = RegisterStudent.upsertStudent(newStudent, "Morgan", "kohistani","umkohisb", 1234567, true, term);
-		assertTrue("updateStudent() did not update student number", newStudent.getFirstName() == "Morgan");
+		assertTrue("updateStudent() did not update student number", newStudent.getFirstName().equals("Morgan"));
 	}
 	public void testInsertStudent()
 	{

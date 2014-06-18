@@ -2,6 +2,7 @@ package test;
 
 import test.business.logic.RegisterStudentsTest;
 import test.business.logic.SearchStudentTest;
+import test.business.logic.SearchLockersTest;
 import test.business.logic.SpreadsheetImporterTest;
 import test.stubdb.StubDBTest;
 import junit.framework.Test;
@@ -23,6 +24,7 @@ public class AllTests
     {
         suite.addTestSuite(RegisterStudentsTest.class);
         suite.addTestSuite(SearchStudentTest.class);
+        suite.addTestSuite(SearchLockersTest.class);
         suite.addTestSuite(SpreadsheetImporterTest.class);
     }
 
