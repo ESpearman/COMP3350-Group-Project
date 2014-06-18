@@ -21,7 +21,7 @@ public class SearchStudentTest extends TestCase {
 	public void testValidInput()
 	{
 		morgan = SearchStudent.getByStudentNumber("2345678"); //Should return valid
-		assertTrue("getByStudentNumber() did not return proper first name", morgan.getFirstName().equals("morgan"));
+		assertTrue("getByStudentNumber() did not return proper first name\nexpected: Morgan\nactual:" + morgan.getFirstName(), morgan.getFirstName().equals("morgan"));
 		assertTrue("getByStudentNumber() did not return proper last name", morgan.getLastName().equals("epp"));
 		assertTrue("getByStudentNumber() did not return that they're a science student", morgan.isScienceStudent());
 	}
