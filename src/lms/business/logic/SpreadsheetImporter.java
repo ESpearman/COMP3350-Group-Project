@@ -16,33 +16,13 @@ public class SpreadsheetImporter
 {
 	public static void importStudents(String path)
 	{
-		
 		try 
 		{
-			Workbook workbook = WorkbookFactory.create(new File(path));
-			Sheet studentSheet = workbook.getSheetAt(0);
+			Sheet studentSheet = getSheet(path);
 
-			Student currStudent;
-			boolean isScienceStudent = true;
-			
 			for (Row row : studentSheet) 
 			{
-				String firstName;
-				String lastName;
-				String email;
-				int studentNumber;
-				
-				if(!isRowEmpty(row))
-				{
-	
-					firstName = row.getCell(0).getStringCellValue();
-					lastName = row.getCell(1).getStringCellValue();
-					email = row.getCell(2).getStringCellValue();
-					studentNumber = (int)row.getCell(3).getNumericCellValue();
-	
-					currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, CurrentTermInfo.currentTerm.getId());
-					currStudent.save();
-				}
+				addScienceStudent(row);
 			}
 
 		}
@@ -62,52 +42,11 @@ public class SpreadsheetImporter
 	{
 		try 
 		{
-			
-			Workbook workbook = WorkbookFactory.create(new File(path));
-			Sheet lockerSheet = workbook.getSheetAt(0);
-
-			Locker currLocker;
+			Sheet lockerSheet = getSheet(path);
 
 			for (Row row : lockerSheet) 
 			{
-				Building building = null;
-				int lockerNumber;
-				LockerSize size;
-
-				if(!isRowEmpty(row))
-				{
-					String buildingName = row.getCell(0).getStringCellValue();
-					ArrayList<Building> existingBuildings = Building.getAll();
-					
-					for(Building existingBuilding : existingBuildings)
-					{
-						if(buildingName.equals(existingBuilding.getName()))
-						{
-							building = existingBuilding;
-						}
-					}
-					
-					if(building == null)
-					{
-						building = new Building(buildingName);
-						building.save();
-					}
-					
-
-					lockerNumber = (int)row.getCell(1).getNumericCellValue();
-				
-					if(row.getCell(2).getStringCellValue().equals("FULL"))
-					{
-						size = LockerSize.FULL;
-					}
-					else
-					{
-						size = LockerSize.HALF;
-					}
-					
-					currLocker = new Locker(CurrentTermInfo.currentTerm.getId(), lockerNumber, building.getId(), size);
-					currLocker.save();
-				}
+				addLocker(row);
 			}
 		}
 		
@@ -121,10 +60,94 @@ public class SpreadsheetImporter
 			ife.printStackTrace();
 		}
 	}
+
+	private static Sheet getSheet(String path) throws 
+		IOException,
+		InvalidFormatException 
+	{
+		Workbook workbook = WorkbookFactory.create(new File(path));
+		Sheet sheet = workbook.getSheetAt(0);
+		return sheet;
+	}
+
+	private static void addScienceStudent(Row row)
+	{
+		Student currStudent;
+		String firstName;
+		String lastName;
+		String email;
+		int studentNumber;
+		boolean isScienceStudent = true;
+		
+		if(!isRowEmpty(row))
+		{
+
+			firstName = row.getCell(0).getStringCellValue();
+			lastName = row.getCell(1).getStringCellValue();
+			email = row.getCell(2).getStringCellValue();
+			studentNumber = (int)row.getCell(3).getNumericCellValue();
+
+			currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, CurrentTermInfo.currentTerm.getId());
+			currStudent.save();
+		}
+	}
+
+	private static void addLocker(Row row)
+	{
+		Locker currLocker;
+		Building building = null;
+		int lockerNumber;
+		LockerSize size;
+
+		if(!isRowEmpty(row))
+		{
+			String buildingName = row.getCell(0).getStringCellValue();
+			building = determineBuilding(buildingName);
+
+			lockerNumber = (int)row.getCell(1).getNumericCellValue();
+			size = determineLockerSize(row.getCell(2).getStringCellValue());
+			
+			currLocker = new Locker(CurrentTermInfo.currentTerm.getId(), lockerNumber, building.getId(), size);
+			currLocker.save();
+		}
+	}
+
+	private static Building determineBuilding(String buildingName)
+	{
+		ArrayList<Building> existingBuildings = Building.getAll();
+		Building result = null;
+		
+		for(Building existingBuilding : existingBuildings)
+		{
+			if(buildingName.equals(existingBuilding.getName()))
+			{
+				result = existingBuilding;
+			}
+		}
+		
+		if(result == null)
+		{
+			result = new Building(buildingName);
+			result.save();
+		}
+		
+		return result;
+	}
 	
+	private static LockerSize determineLockerSize(String stringCellValue)
+	{
+		if(stringCellValue.equals("FULL"))
+		{
+			return LockerSize.FULL;
+		}
+		else
+		{
+			return LockerSize.HALF;
+		}
+	}
+
 	private static boolean isRowEmpty(Row row)
 	{
-				
 		for(Cell cell : row)
 		{
 			if(cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)

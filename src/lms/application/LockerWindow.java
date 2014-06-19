@@ -19,24 +19,27 @@ import lms.business.Rental;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SearchLockers;
 import lms.business.logic.LockerPrice;
+import lms.business.logic.RentLocker;
 
 import java.util.ArrayList;
 
 public class LockerWindow
 {
 	private Shell shell;
+	private Shell registerShell;
 	private Display display;
 	
 	private Combo drpBuilding;
 	private Combo drpLocker;
 	
-	private Student potentialRenter;
 	private ArrayList<Building> buildingsAL = Building.getAll();
 	private String buildings[] = new String[buildingsAL.size()];
 	private ArrayList<Locker> lockersAL;
 	private String lockers[];
-	private float price;
+	
 	private Locker selectedLocker;
+	private Student potentialRenter;
+	private float price;
 	
 	private Button btnBack;
 	private Button btnRent;
@@ -131,42 +134,33 @@ public class LockerWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				if(drpLocker.getSelectionIndex() != -1 && drpBuilding.getSelectionIndex() != -1)
+				if(drpLocker.getSelectionIndex() != -1 && drpBuilding.getSelectionIndex() != -1 && chkAgreement.getSelection())
 				{
-					//This could probably be moved into a RegisterRental.java business logic class
+					Rental newRental = RentLocker.rent(potentialRenter.getId(), selectedLocker.getId(), CurrentTermInfo.currentTerm.getId(), price);
 					
-					//Check if student already has a rental, otherwise rent
-					ArrayList<Rental> currentRentalTerm = Rental.getListByTerm(CurrentTermInfo.currentTerm.getId());
-					boolean isRenting = false;
-					
-					//Check current term if they're renting a locker
-					for(int i = 0; i < currentRentalTerm.size() && isRenting == false; i++)
+					if(newRental != null)
 					{
-						if(currentRentalTerm.get(i).getStudent() == potentialRenter.getId())
-						{
-							isRenting = true;
-						}
-					}
-					
-					if(isRenting == false && chkAgreement.getSelection()) 
-					{
-						Rental newRental = new Rental(CurrentTermInfo.currentTerm.getId(), potentialRenter.getId(), 
-								selectedLocker.getId(), price, true); //chkAgreement must be true to enter this if statement
-						newRental.save();
-						
 						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 						dlgSuccess.setText("Completed");
 						dlgSuccess.setMessage("Rented");
 						dlgSuccess.open();
 						shell.close();
+						registerShell.close();
 					}
 					else
 					{
-						MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
-						dlgBadNumber.setMessage("Student is already renting a locker this term or has not agreed");
-						dlgBadNumber.setText("Error");
-						dlgBadNumber.open();
-					}
+						MessageBox dlgError = new MessageBox(shell, SWT.OK);
+						dlgError.setMessage("The student is already renting a locker this term");
+						dlgError.setText("Error");
+						dlgError.open();
+					}					
+				}
+				else
+				{
+					MessageBox dlgError = new MessageBox(shell, SWT.OK);
+					dlgError.setMessage("Locker has not been selected or student has not agreed");
+					dlgError.setText("Error");
+					dlgError.open();
 				}
 			}
 		});
@@ -192,9 +186,10 @@ public class LockerWindow
 		}
 	}
 	
-	public LockerWindow(Student newStudent)
+	public LockerWindow(Shell previousShell, Student newStudent)
 	{
 		display = Display.getDefault();
+		registerShell = previousShell;
 		potentialRenter = newStudent;
 		runWindow();
 	}

@@ -93,7 +93,7 @@ public class SpreadsheetImporterTest extends TestCase
 		
 		Building expectedBuilding = Building.getById(lockers.get(5).getBuilding());
 		
-		assertEquals("Machray", expectedBuilding.getName());
+		assertEquals("Machray Hall", expectedBuilding.getName());
 		assertEquals(6, lockers.get(5).getNumber());
 		assertEquals(LockerSize.HALF, lockers.get(5).getSize());
 		assertEquals(15, lockers.size());

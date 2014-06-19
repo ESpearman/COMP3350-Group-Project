@@ -13,18 +13,17 @@ public class SearchStudentTest extends TestCase {
 	
 	protected void setUp() throws Exception
 	{
-		UUID id = UUID.randomUUID();
 		UUID term = UUID.randomUUID();
-		student1 = new Student(id, "morgan", "epp", "mrgnepp", 1234567, true, term);
+		student1 = new Student("morgan", "epp", "mrgnepp", 2345678, true, term);
 		student1.save();
 	}
 	
 	public void testValidInput()
 	{
-		morgan = SearchStudent.getByStudentNumber("1234567"); //Should return valid
-		assertTrue("getByStudentNumber() did not return proper first name", morgan.getFirstName() == "morgan");
-		assertTrue("getByStudentNumber() did not return proper first name", morgan.getLastName() == "epp");
-		assertTrue("getByStudentNumber() did not return proper first name", morgan.isScienceStudent());
+		morgan = SearchStudent.getByStudentNumber("2345678"); //Should return valid
+		assertTrue("getByStudentNumber() did not return proper first name\nexpected: Morgan\nactual:" + morgan.getFirstName(), morgan.getFirstName().equals("morgan"));
+		assertTrue("getByStudentNumber() did not return proper last name", morgan.getLastName().equals("epp"));
+		assertTrue("getByStudentNumber() did not return that they're a science student", morgan.isScienceStudent());
 	}
 	
 	public void testCharacterInput()

@@ -58,7 +58,7 @@ public class RegisterWindow
 		// ====== search text =========
 		txtStudentNumber = new Text(shell, SWT.BORDER);
 		txtStudentNumber.setBounds(127, 4, 111, 27);
-		txtStudentNumber.setTextLimit(7);
+		txtStudentNumber.setTextLimit(9); // Allows up to 9 digits (just to be safe)
 		txtStudentNumber.addListener(SWT.Verify, new Listener()
 		{
 			// allow only digits
@@ -123,12 +123,22 @@ public class RegisterWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				try
+				try // Only allow them to register if the fields are filled in properly
 				{
 					int studentNumber = Integer.parseInt(txtStudentNumber.getText());
-					Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
-							txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
-					new LockerWindow(newStudent);
+					if(studentNumber >= 1000000 && !txtEmail.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals(""))
+					{
+						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
+								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
+						new LockerWindow(shell, newStudent);
+					}
+					else
+					{
+						MessageBox dlgInfo = new MessageBox(shell, SWT.OK);
+						dlgInfo.setMessage("The student fields were not filled in properly");
+						dlgInfo.setText("Error");
+						dlgInfo.open();
+					}
 				}
 				catch(NumberFormatException e)
 				{
@@ -163,6 +173,13 @@ public class RegisterWindow
 					txtLastName.setText(searchedStudent.getLastName());
 					txtEmail.setText(searchedStudent.getEmail());
 					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+				}
+				else //Empty all the text-fields
+				{
+					txtFirstName.setText("");
+					txtLastName.setText("");
+					txtEmail.setText("");
+					btnScienceStudent.setSelection(false);
 				}
 			} 
 		});

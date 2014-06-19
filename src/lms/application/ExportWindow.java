@@ -31,9 +31,9 @@ public class ExportWindow
 		int x = bounds.x + (bounds.width - rect.width) / 2;
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
+		
 		shell.setLocation (x, y);
 		shell.setText("Export");
-		
 		
 		
 		// ========== export email button ===========
