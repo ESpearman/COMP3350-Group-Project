@@ -13,6 +13,7 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SearchLockers;
+import lms.stubdb.StubDB;
 
 public class SearchLockersTest extends TestCase
 {
@@ -74,6 +75,8 @@ public class SearchLockersTest extends TestCase
 		assertTrue(unusedLockers.size() == 0);
 	}
 	
-	
-
+	protected void tearDown() throws Exception {
+		//super.tearDown();
+		StubDB.resetDB();
+	}
 }

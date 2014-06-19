@@ -149,7 +149,6 @@ public class RegisterWindow
 					dlgBadNumber.setText("Error");
 					dlgBadNumber.open();
 				}
-				
 			}
 		});
 

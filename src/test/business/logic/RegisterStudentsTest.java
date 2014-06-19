@@ -3,6 +3,8 @@ package test.business.logic;
 import junit.framework.TestCase;
 import lms.business.Student;
 import lms.business.logic.RegisterStudent;
+import lms.stubdb.StubDB;
+
 import java.util.UUID;
 
 public class RegisterStudentsTest extends TestCase
@@ -20,16 +22,23 @@ public class RegisterStudentsTest extends TestCase
 		newStudent = new Student(id, "billal", "kohistani", "umkohisb", 1234567, true, term);
 		newStudent.save();
 	}
+	
 	public void testUpdateStudent()
 	{
 		testUpdate = RegisterStudent.upsertStudent(newStudent, "Morgan", "kohistani","umkohisb", 1234567, true, term);
 		assertTrue("updateStudent() did not update student number", newStudent.getFirstName().equals("Morgan"));
 	}
+	
 	public void testInsertStudent()
 	{
 		empty = null;
 		testInsert = RegisterStudent.upsertStudent(empty, "billal", "prat", "jbrco", 0000000 , false, term);
 		assertNotNull("insertStudent() did not add new student and is null", testInsert);	
+	}
+	
+	protected void tearDown() throws Exception {
+		//super.tearDown();
+		StubDB.resetDB();
 	}
 }
 	

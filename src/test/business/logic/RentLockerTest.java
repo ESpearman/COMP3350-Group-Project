@@ -1,15 +1,14 @@
 package test.business.logic;
 
 import junit.framework.TestCase;
-
 import lms.business.Rental;
 import lms.business.Student;
 import lms.business.Building;
 import lms.business.Locker;
 import lms.business.Term;
 import lms.business.LockerSize;
-
 import lms.business.logic.RentLocker;
+import lms.stubdb.StubDB;
 
 public class RentLockerTest extends TestCase
 {
@@ -50,7 +49,7 @@ public class RentLockerTest extends TestCase
 	public void testValid()
 	{
 		validRental = RentLocker.rent(validStudent.getId(), locker.getId(), term.getId(), price);
-		assertTrue("newRental is null", validRental != null);
+		assertNotNull("newRental is null", validRental);
 		assertEquals(validStudent.getId(), validRental.getStudent());
 	}
 	
@@ -63,6 +62,6 @@ public class RentLockerTest extends TestCase
 	
 	protected void tearDown() throws Exception {
 		//super.tearDown();
-		// Need to reset DB. can use StubDB.reset()?
+		StubDB.resetDB();
 	}
 }

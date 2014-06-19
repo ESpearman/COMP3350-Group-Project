@@ -3,6 +3,8 @@ package test.business.logic;
 import junit.framework.TestCase;
 import lms.business.Student;
 import lms.business.logic.SearchStudent;
+import lms.stubdb.StubDB;
+
 import java.util.UUID;
 
 public class SearchStudentTest extends TestCase {
@@ -14,13 +16,13 @@ public class SearchStudentTest extends TestCase {
 	protected void setUp() throws Exception
 	{
 		UUID term = UUID.randomUUID();
-		student1 = new Student("morgan", "epp", "mrgnepp", 2345678, true, term);
+		student1 = new Student("morgan", "epp", "mrgnepp", 1234567, true, term);
 		student1.save();
 	}
 	
 	public void testValidInput()
 	{
-		morgan = SearchStudent.getByStudentNumber("2345678"); //Should return valid
+		morgan = SearchStudent.getByStudentNumber("1234567"); //Should return valid
 		assertTrue("getByStudentNumber() did not return proper first name\nexpected: Morgan\nactual:" + morgan.getFirstName(), morgan.getFirstName().equals("morgan"));
 		assertTrue("getByStudentNumber() did not return proper last name", morgan.getLastName().equals("epp"));
 		assertTrue("getByStudentNumber() did not return that they're a science student", morgan.isScienceStudent());
@@ -36,7 +38,7 @@ public class SearchStudentTest extends TestCase {
 	
 	public void testDigitInput()
 	{
-		//Tests that should return null as they aren't in the DB
+		//Tests that should return null as they aren't in the stubDB
 		ghost = SearchStudent.getByStudentNumber("123456"); // less than 7 digits
 		assertNull("getByStudentNumber() did not return null on too little digit input", ghost);
 		ghost = SearchStudent.getByStudentNumber("12345678901"); //greater than 10 digits
@@ -46,5 +48,10 @@ public class SearchStudentTest extends TestCase {
 	{
 		ghost = SearchStudent.getByStudentNumber(""); //no student number entered
 		assertNull("getByStudentNumber() did not return null for no input", ghost);
+	}
+	
+	protected void tearDown() throws Exception {
+		//super.tearDown();
+		StubDB.resetDB();
 	}
 }
