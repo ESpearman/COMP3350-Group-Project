@@ -25,6 +25,8 @@ public class RegisterWindow
 	private Display display;
 	private Shell shell;
 	
+	private static final int TEXT_LIMIT = 30;
+	private static final int EMAIL_LIMIT = 50;
 	private Text txtStudentNumber;
 	private Text txtFirstName;
 	private Text txtLastName;
@@ -82,16 +84,17 @@ public class RegisterWindow
 		// ===== first name text ========
 		txtFirstName = new Text(shell, SWT.BORDER);
 		txtFirstName.setBounds(127, 59, 111, 27);
-		
+		txtFirstName.setTextLimit(TEXT_LIMIT);
 		
 		// ====== last name text ========
 		txtLastName = new Text(shell, SWT.BORDER);
 		txtLastName.setBounds(127, 92, 111, 27);
-		
+		txtLastName.setTextLimit(TEXT_LIMIT);
 		
 		// ====== email text =======
 		txtEmail = new Text(shell, SWT.BORDER);
 		txtEmail.setBounds(127, 125, 111, 27);
+		txtEmail.setTextLimit(EMAIL_LIMIT);
 		
 		
 		// ====== separate bar ======
