@@ -130,7 +130,7 @@ public class RegisterWindow
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
-						new LockerWindow(newStudent);
+						new LockerWindow(shell, newStudent);
 					}
 					else
 					{

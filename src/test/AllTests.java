@@ -1,6 +1,7 @@
 package test;
 
 import test.business.logic.RegisterStudentsTest;
+import test.business.logic.RentLockerTest;
 import test.business.logic.SearchStudentTest;
 import test.business.logic.SearchLockersTest;
 import test.business.logic.SpreadsheetImporterTest;
@@ -23,6 +24,7 @@ public class AllTests
     private static void testLogic()
     {
         suite.addTestSuite(RegisterStudentsTest.class);
+        suite.addTestSuite(RentLockerTest.class);
         suite.addTestSuite(SearchStudentTest.class);
         suite.addTestSuite(SearchLockersTest.class);
         suite.addTestSuite(SpreadsheetImporterTest.class);
