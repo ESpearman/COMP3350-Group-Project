@@ -33,7 +33,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(192, 256);
+		shell.setSize(163, 256);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -47,7 +47,7 @@ public class MainWindow
 
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(32, 181, 111, 27);
+		btnQuit.setBounds(19, 181, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -62,7 +62,7 @@ public class MainWindow
 		
 		// ==============register button ===========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(32, 21, 111, 27);
+		btnRegister.setBounds(19, 10, 111, 27);
 		btnRegister.setText("Register");
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -79,7 +79,7 @@ public class MainWindow
 		
 		// =============== import button ============
 		btnImport = new Button(shell, SWT.NONE);
-		btnImport.setBounds(32, 67, 111, 27);
+		btnImport.setBounds(19, 55, 111, 27);
 		btnImport.setText("Import");
 		btnImport.addSelectionListener(new SelectionAdapter()
 		{
@@ -94,7 +94,7 @@ public class MainWindow
 		
 		// =============== export button ==============
 		btnExport = new Button(shell, SWT.NONE);
-		btnExport.setBounds(32, 100, 111, 27);
+		btnExport.setBounds(19, 88, 111, 27);
 		btnExport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
