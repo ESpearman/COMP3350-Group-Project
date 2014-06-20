@@ -78,5 +78,6 @@ public class Student implements TermBased
 	{
 		return DBProxy.getStudentsListByTerm(term);
 	}
-	
+
+
 }

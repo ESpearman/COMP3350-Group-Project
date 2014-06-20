@@ -35,7 +35,7 @@ public class ImportWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(400, 160);
+		shell.setSize(384, 160);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -73,19 +73,19 @@ public class ImportWindow
 				
 			}
 		});
-		btnBrowse.setBounds(299, 37, 75, 25);
+		btnBrowse.setBounds(247, 10, 111, 27);
 		btnBrowse.setText("Browse");
 		
 		
 		// ====== file (path) text field =======
 		txtPath = new Text(shell, SWT.BORDER);
 		txtPath.setEditable(false);
-		txtPath.setBounds(75, 39, 218, 21);
+		txtPath.setBounds(67, 43, 291, 21);
 
 		
 		//======== back button ==========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 82, 111, 27);
+		btnBack.setBounds(10, 85, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -100,20 +100,19 @@ public class ImportWindow
 		
 		// ====== label 'filePath' ==========
 		lblFilePath = new Label(shell, SWT.NONE);
-		lblFilePath.setAlignment(SWT.RIGHT);
-		lblFilePath.setBounds(10, 42, 59, 21);
+		lblFilePath.setBounds(10, 46, 45, 16);
 		lblFilePath.setText("File Path");
 		
 		
 		// ========== locker radio button ============
 		btnLockers = new Button(shell, SWT.RADIO);
-		btnLockers.setBounds(75, 17, 90, 16);
+		btnLockers.setBounds(10, 15, 72, 16);
 		btnLockers.setText("Lockers");
 		
 		
 		// =========== students radio button ========
 		btnStudents = new Button(shell, SWT.RADIO);
-		btnStudents.setBounds(171, 17, 90, 16);
+		btnStudents.setBounds(88, 15, 90, 16);
 		btnStudents.setText("Students");
 		
 		
@@ -182,7 +181,7 @@ public class ImportWindow
 				}
 			}
 		});
-		btnImport.setBounds(263, 83, 111, 25);
+		btnImport.setBounds(247, 85, 111, 27);
 		btnImport.setText("Import");
 
 

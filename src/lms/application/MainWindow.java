@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow
 {
@@ -32,7 +33,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(171, 197);
+		shell.setSize(192, 256);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -44,9 +45,9 @@ public class MainWindow
 		shell.setText("LMS");
 		
 
-		// ============== exit button ================
+		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(10, 124, 135, 25);
+		btnQuit.setBounds(32, 181, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -61,7 +62,7 @@ public class MainWindow
 		
 		// ==============register button ===========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(10, 10, 135, 25);
+		btnRegister.setBounds(32, 21, 111, 27);
 		btnRegister.setText("Register");
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -78,7 +79,7 @@ public class MainWindow
 		
 		// =============== import button ============
 		btnImport = new Button(shell, SWT.NONE);
-		btnImport.setBounds(10, 41, 135, 25);
+		btnImport.setBounds(32, 67, 111, 27);
 		btnImport.setText("Import");
 		btnImport.addSelectionListener(new SelectionAdapter()
 		{
@@ -93,7 +94,7 @@ public class MainWindow
 		
 		// =============== export button ==============
 		btnExport = new Button(shell, SWT.NONE);
-		btnExport.setBounds(10, 72, 135, 25);
+		btnExport.setBounds(32, 100, 111, 27);
 		btnExport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override

@@ -44,7 +44,7 @@ public class RegisterWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(400, 362);
+		shell.setSize(384, 256);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -58,7 +58,7 @@ public class RegisterWindow
 		
 		// ====== search text =========
 		txtStudentNumber = new Text(shell, SWT.BORDER);
-		txtStudentNumber.setBounds(127, 4, 111, 27);
+		txtStudentNumber.setBounds(115, 13, 126, 24);
 		txtStudentNumber.setTextLimit(9); // Allows up to 9 digits (just to be safe)
 		txtStudentNumber.addListener(SWT.Verify, new Listener()
 		{
@@ -78,47 +78,64 @@ public class RegisterWindow
 				}
 			}
 		});
-
 		
-		// ===== first name text ========
-		txtFirstName = new Text(shell, SWT.BORDER);
-		txtFirstName.setBounds(127, 59, 111, 27);
-		txtFirstName.setTextLimit(TEXT_LIMIT);
+				
+		// ====== search button ========
+		btnSearch = new Button(shell, SWT.NONE);
+		btnSearch.setBounds(247, 10, 111, 27);
+		btnSearch.setText("Search");
 		
-		// ====== last name text ========
-		txtLastName = new Text(shell, SWT.BORDER);
-		txtLastName.setBounds(127, 92, 111, 27);
-		txtLastName.setTextLimit(TEXT_LIMIT);
-		
-		// ====== email text =======
-		txtEmail = new Text(shell, SWT.BORDER);
-		txtEmail.setBounds(127, 125, 111, 27);
-		txtEmail.setTextLimit(TEXT_LIMIT);
-		
-		
-		// ====== separate bar ======
-		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 37, 354, 16);
-		
-		
-		// ======== back button =========
-		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 287, 122, 27);
-		btnBack.setText("Back");
-		btnBack.addSelectionListener(new SelectionAdapter()
+		btnSearch.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// when back button is selected
-				shell.close();
-			}
+				searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
+				
+				//If the student exists in the database, auto-populate
+				if(searchedStudent != null)
+				{
+					txtFirstName.setText(searchedStudent.getFirstName());
+					txtLastName.setText(searchedStudent.getLastName());
+					txtEmail.setText(searchedStudent.getEmail());
+					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+				}
+				else //Empty all the text-fields
+				{
+					txtFirstName.setText("");
+					txtLastName.setText("");
+					txtEmail.setText("");
+					btnScienceStudent.setSelection(false);
+				}
+			} 
 		});
 
 		
+		// ===== first name text ========
+		txtFirstName = new Text(shell, SWT.BORDER);
+		txtFirstName.setBounds(115, 59, 126, 24);
+		txtFirstName.setTextLimit(TEXT_LIMIT);
+		
+		// ====== last name text ========
+		txtLastName = new Text(shell, SWT.BORDER);
+		txtLastName.setBounds(115, 89, 126, 24);
+		txtLastName.setTextLimit(TEXT_LIMIT);
+		
+		// ====== email text =======
+		txtEmail = new Text(shell, SWT.BORDER);
+		txtEmail.setBounds(115, 119, 126, 24);
+		txtEmail.setTextLimit(TEXT_LIMIT);
+		
+		
+		// ====== check button science student =======
+		btnScienceStudent = new Button(shell, SWT.CHECK);
+		btnScienceStudent.setBounds(130, 151, 111, 16);
+		btnScienceStudent.setText("Science Student");
+		
+		
 		// ====== register button =========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(263, 287, 111, 27);
+		btnRegister.setBounds(247, 181, 111, 27);
 		btnRegister.setText("Register");
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -153,63 +170,46 @@ public class RegisterWindow
 				}
 			}
 		});
-
 		
-		// ====== search button ========
-		btnSearch = new Button(shell, SWT.NONE);
-		btnSearch.setBounds(253, 4, 111, 27);
-		btnSearch.setText("Search");
 		
-		btnSearch.addSelectionListener(new SelectionAdapter()
+		// ====== separate bar ======
+		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
+		searchSeparate.setBounds(10, 40, 354, 16);
+		
+		
+		// ======== back button =========
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.setBounds(10, 181, 111, 27);
+		btnBack.setText("Back");
+		btnBack.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
-						
-				//If the student exists in the database, auto-populate
-				if(searchedStudent != null)
-				{
-					txtFirstName.setText(searchedStudent.getFirstName());
-					txtLastName.setText(searchedStudent.getLastName());
-					txtEmail.setText(searchedStudent.getEmail());
-					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
-				}
-				else //Empty all the text-fields
-				{
-					txtFirstName.setText("");
-					txtLastName.setText("");
-					txtEmail.setText("");
-					btnScienceStudent.setSelection(false);
-				}
-			} 
+				// when back button is selected
+				shell.close();
+			}
 		});
 		
 		Label lblFirstName = new Label(shell, SWT.NONE);
 		lblFirstName.setAlignment(SWT.RIGHT);
-		lblFirstName.setBounds(10, 59, 111, 21);
+		lblFirstName.setBounds(10, 62, 99, 21);
 		lblFirstName.setText("First Name");
 		
 		Label lblStudentNumber = new Label(shell, SWT.NONE);
 		lblStudentNumber.setAlignment(SWT.RIGHT);
-		lblStudentNumber.setBounds(10, 7, 111, 24);
+		lblStudentNumber.setBounds(10, 16, 99, 16);
 		lblStudentNumber.setText("Student Number");
 		
 		Label lblLastName = new Label(shell, SWT.NONE);
 		lblLastName.setText("Last Name");
 		lblLastName.setAlignment(SWT.RIGHT);
-		lblLastName.setBounds(10, 92, 111, 21);
+		lblLastName.setBounds(10, 92, 99, 21);
 		
 		Label lblEmailAddress = new Label(shell, SWT.NONE);
 		lblEmailAddress.setText("Email Address");
 		lblEmailAddress.setAlignment(SWT.RIGHT);
-		lblEmailAddress.setBounds(10, 125, 111, 21);
-		
-		
-		
-		btnScienceStudent = new Button(shell, SWT.CHECK);
-		btnScienceStudent.setBounds(127, 158, 111, 16);
-		btnScienceStudent.setText("Science Student");
+		lblEmailAddress.setBounds(10, 122, 99, 21);
 		
 
 		

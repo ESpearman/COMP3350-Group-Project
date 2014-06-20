@@ -51,7 +51,7 @@ public class LockerWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(400, 362);
+		shell.setSize(384, 192);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -65,7 +65,7 @@ public class LockerWindow
 		
 		// ===== locker combo ( dropdown list ) =======
 		drpLocker = new Combo(shell, SWT.NONE);
-		drpLocker.setBounds(127, 10, 114, 40);
+		drpLocker.setBounds(186, 31, 172, 23);
 		drpLocker.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
@@ -86,7 +86,7 @@ public class LockerWindow
 		}
 		drpBuilding.setItems(buildings);
 		
-		drpBuilding.setBounds(7, 10, 114, 40);
+		drpBuilding.setBounds(10, 31, 172, 23);
 		drpBuilding.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
@@ -108,13 +108,14 @@ public class LockerWindow
 
 		// ========= agree check button =========
 		chkAgreement = new Button(shell, SWT.CHECK);
-		chkAgreement.setBounds(7, 212, 114, 23);
+		chkAgreement.setAlignment(SWT.CENTER);
+		chkAgreement.setBounds(306, 88, 52, 23);
 		chkAgreement.setText("Agree");
 		
 		
 		// ========= back button ===========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(7, 287, 111, 27);
+		btnBack.setBounds(10, 117, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -164,14 +165,22 @@ public class LockerWindow
 				}
 			}
 		});
-		btnRent.setBounds(263, 287, 111, 27);
+		btnRent.setBounds(247, 117, 111, 27);
 		btnRent.setText("Rent");
 		
 		
 		
 		lblPrice = new Label(shell, SWT.NONE);
-		lblPrice.setBounds(7, 39, 234, 23);
+		lblPrice.setBounds(10, 68, 172, 23);
 		lblPrice.setText("Price: ");
+		
+		Label lblBuilding = new Label(shell, SWT.NONE);
+		lblBuilding.setBounds(10, 10, 55, 15);
+		lblBuilding.setText("Building");
+		
+		Label lblLocker = new Label(shell, SWT.NONE);
+		lblLocker.setBounds(186, 10, 55, 15);
+		lblLocker.setText("Locker");
 		
 
 		// ======shell open, close ========

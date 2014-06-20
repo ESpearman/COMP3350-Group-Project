@@ -23,7 +23,7 @@ public class ExportWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(400, 160);
+		shell.setSize(384, 160);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -75,7 +75,7 @@ public class ExportWindow
 				
 			}
 		});
-		btnExport.setBounds(265, 81, 109, 31);
+		btnExport.setBounds(247, 85, 111, 27);
 		btnExport.setText("Export Email");
 		
 		
@@ -91,7 +91,7 @@ public class ExportWindow
 				shell.close();
 			}
 		});
-		btnBack.setBounds(10, 87, 75, 25);
+		btnBack.setBounds(10, 85, 111, 27);
 		btnBack.setText("Back");
 		
 		
