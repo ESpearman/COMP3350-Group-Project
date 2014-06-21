@@ -70,7 +70,7 @@ public class MainWindow
 			{
 				// when register button is clicked
 				
-				new RegisterWindow("Register");
+				new StudentWindow("Register");
 				display.sleep();
 			}
 		});
