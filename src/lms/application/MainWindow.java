@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow
 {
@@ -71,7 +70,7 @@ public class MainWindow
 			{
 				// when register button is clicked
 				
-				new RegisterWindow();
+				new RegisterWindow("Register");
 				display.sleep();
 			}
 		});
@@ -106,11 +105,6 @@ public class MainWindow
 		});
 		btnExport.setText("Export");
 		
-		
-		
-		
-
-
 		
 		//======= shell open, close ======
 		shell.open();

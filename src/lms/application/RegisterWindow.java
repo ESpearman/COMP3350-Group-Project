@@ -24,6 +24,7 @@ public class RegisterWindow
 {
 	private Display display;
 	private Shell shell;
+	private String context;
 	
 	private static final int TEXT_LIMIT = 50;
 	private Text txtStudentNumber;
@@ -136,7 +137,7 @@ public class RegisterWindow
 		// ====== register button =========
 		btnRegister = new Button(shell, SWT.NONE);
 		btnRegister.setBounds(247, 181, 111, 27);
-		btnRegister.setText("Register");
+		btnRegister.setText(context);
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -149,7 +150,9 @@ public class RegisterWindow
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
-						new LockerWindow(shell, newStudent);
+						if(context.equals("Register")){
+							new LockerWindow(shell, newStudent);
+						}
 					}
 					else
 					{
@@ -225,9 +228,10 @@ public class RegisterWindow
 		}
 	}
 
-	public RegisterWindow()
+	public RegisterWindow(String context)
 	{
 		display = Display.getDefault();
+		this.context = context;
 		runWindow();
 	}
 }
