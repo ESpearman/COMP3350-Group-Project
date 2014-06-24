@@ -35,7 +35,7 @@ public class ImportWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(384, 160);
+		shell.setSize(384, 181);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -85,7 +85,7 @@ public class ImportWindow
 		
 		//======== back button ==========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 85, 111, 27);
+		btnBack.setBounds(10, 105, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -179,10 +179,16 @@ public class ImportWindow
 					dlgFail.open();
 					
 				}
+				
+				Label lblNewLabel = new Label(shell, SWT.NONE);
+				lblNewLabel.setBounds(77, 70, 55, 15);
+				lblNewLabel.setText(SpreadsheetImporter.getStatus());
 			}
 		});
-		btnImport.setBounds(247, 85, 111, 27);
+		btnImport.setBounds(247, 105, 111, 27);
 		btnImport.setText("Import");
+		
+		
 
 
 

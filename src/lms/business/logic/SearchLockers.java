@@ -12,7 +12,7 @@ public class SearchLockers
 	public static ArrayList<Locker> getUnusedLockers(UUID building, UUID term)
 	{
 		UUID currentTerm = CurrentTermInfo.currentTerm.getId();
-		ArrayList<Locker> currentLockers = Locker.getListByterm(currentTerm);
+		ArrayList<Locker> currentLockers = Locker.getListByTerm(currentTerm);
 		ArrayList<Rental> currentRentals = Rental.getListByTerm(currentTerm);
 		ArrayList<Locker> newLockers = new ArrayList<Locker>();
 		ArrayList<Locker> unusedLockers = new ArrayList<Locker>();

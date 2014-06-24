@@ -67,10 +67,17 @@ public class SpreadsheetImporterTest extends TestCase
 		assertEquals(7640001, students.get(0).getStudentNumber());
 	}
 	
+	public void testLongInputStudent()
+	{
+		SpreadsheetImporter.importStudents(getPath("\\src\\test\\testFiles\\Students4.xlsx"));
+		students = Student.getListByTerm(CurrentTermInfo.currentTerm.getId());
+		
+		assertTrue(SpreadsheetImporter.getStatus().startsWith("Warning"));
+	}
 	public void testBlankSheetLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers0.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.currentTerm.getId());
+		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
 		
 		assertEquals(0, lockers.size());
 	}
@@ -78,7 +85,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSXImportLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers1.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.currentTerm.getId());
+		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(0).getBuilding());
 		
@@ -91,7 +98,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testXLSImportLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers2.xls"));
-		lockers = Locker.getListByterm(CurrentTermInfo.currentTerm.getId());
+		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(5).getBuilding());
 		
@@ -104,7 +111,7 @@ public class SpreadsheetImporterTest extends TestCase
 	public void testBlankRowsLocker()
 	{
 		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers3.xlsx"));
-		lockers = Locker.getListByterm(CurrentTermInfo.currentTerm.getId());
+		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
 		
 		Building expectedBuilding = Building.getById(lockers.get(14).getBuilding());
 		
@@ -112,6 +119,14 @@ public class SpreadsheetImporterTest extends TestCase
 		assertEquals(15, lockers.get(14).getNumber());
 		assertEquals(LockerSize.FULL, lockers.get(14).getSize());
 		assertEquals(15, lockers.size());
+	}
+	
+	public void testLongInputLocker()
+	{
+		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers4.xlsx"));
+		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
+		
+		assertTrue(SpreadsheetImporter.getStatus().startsWith("Warning"));
 	}
 	
 	

@@ -8,17 +8,25 @@ import lms.business.Building;
 import lms.business.Locker;
 import lms.business.LockerSize;
 import lms.business.Student;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetImporter 
 {
+	@Getter
+	@Setter
+	private static String status;
+	private static int maxChars = 50;
+	
 	public static void importStudents(String path)
 	{
 		try 
 		{
 			Sheet studentSheet = getSheet(path);
+			status = "Import completed succesfully.";
 
 			for (Row row : studentSheet) 
 			{
@@ -43,6 +51,7 @@ public class SpreadsheetImporter
 		try 
 		{
 			Sheet lockerSheet = getSheet(path);
+			status = "Import completed successfully";
 
 			for (Row row : lockerSheet) 
 			{
@@ -79,7 +88,7 @@ public class SpreadsheetImporter
 		int studentNumber;
 		boolean isScienceStudent = true;
 		
-		if(!isRowEmpty(row))
+		if(isValidStudent(row))
 		{
 
 			firstName = row.getCell(0).getStringCellValue();
@@ -99,7 +108,7 @@ public class SpreadsheetImporter
 		int lockerNumber;
 		LockerSize size;
 
-		if(!isRowEmpty(row))
+		if(isValidLocker(row))
 		{
 			String buildingName = row.getCell(0).getStringCellValue();
 			building = determineBuilding(buildingName);
@@ -145,8 +154,101 @@ public class SpreadsheetImporter
 			return LockerSize.HALF;
 		}
 	}
-
-	private static boolean isRowEmpty(Row row)
+	
+	private static boolean isValidStudent(Row row)
+	{
+		boolean result = true;
+		int numStudentFields = 4;
+		int[] studentFieldTypes = {Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_STRING,
+				Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_NUMERIC};
+		
+		if(isEmptyRow(row))
+		{
+			result = false;
+		}
+		
+		else if(row.getLastCellNum() != numStudentFields)
+		{
+			result = false;
+		}
+		
+		else
+		{
+			for(int i = 0; i < numStudentFields; i++)
+			{
+				if (row.getCell(i).getCellType() != studentFieldTypes[i])
+				{
+					result = false;
+				}
+			}
+		}
+		
+		if(result == true)
+		{
+			for(Cell cell : row)
+			{
+				if(cell.getCellType() == Cell.CELL_TYPE_STRING 
+						&& cell.getStringCellValue().length() > 50)
+				{
+					result = false;
+					
+					status = "Warning: Some students may have not been imported correctly!"
+							+ "Please ensure spreadsheet has proper format: "
+							+ "first name, last name, email, student number. Max chars per field:" + maxChars;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	private static boolean isValidLocker(Row row)
+	{
+		boolean result = true;
+		int numLockerFields = 3;
+		int[] lockerFieldTypes = {Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_NUMERIC,
+				Cell.CELL_TYPE_STRING};
+		
+		if(isEmptyRow(row))
+		{
+			result = false;
+		}
+		
+		else if(row.getLastCellNum() != numLockerFields)
+		{
+			result = false;
+		}
+		
+		else
+		{
+			for(int i = 0; i < numLockerFields; i++)
+			{
+				if (row.getCell(i).getCellType() != lockerFieldTypes[i])
+				{
+					result = false;
+				}
+			}
+		}
+		
+		if(result == true)
+		{
+			for(Cell cell : row)
+			{
+				if(cell.getCellType() == Cell.CELL_TYPE_STRING 
+						&& cell.getStringCellValue().length() > 50)
+				{
+					result = false;
+					status = "Warning: Some lockers may have not been imported correctly!"
+							+ "Please ensure spreadsheet has proper format: "
+							+ "building name, locker number, locker size. Max chars per field:" + maxChars;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	private static boolean isEmptyRow(Row row)
 	{
 		for(Cell cell : row)
 		{
