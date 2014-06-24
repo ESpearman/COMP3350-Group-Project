@@ -26,7 +26,12 @@ public class HSQLDBImpl implements IDB
 		{
 			Statement statement = currentConnection.c.createStatement();
 			ResultSet results = statement.executeQuery("SELECT * FROM Term WHERE id='" + id.toString() + "';");
-			result = Term.parse(results);
+			if(results.next())
+			{
+				result = Term.parse(results);
+			}
+			results.close();
+			statement.close();
 		}
 		catch(SQLException e)
 		{
@@ -48,7 +53,12 @@ public class HSQLDBImpl implements IDB
 		{
 			Statement statement = currentConnection.c.createStatement();
 			ResultSet results = statement.executeQuery("SELECT * FROM Student WHERE id='" + id.toString() + "';");
-			result = Student.parse(results);
+			if(results.next())
+			{
+				result = Student.parse(results);
+			}
+			results.close();
+			statement.close();
 		}
 		catch(SQLException e)
 		{
@@ -85,8 +95,35 @@ public class HSQLDBImpl implements IDB
 	@Override
 	public void saveTerm(Term term, Connection... conn)
 	{
-		// TODO Auto-generated method stub
+		ConnectionData currentConnection = getConnection(conn);
 		
+		try
+		{
+			Statement statement = currentConnection.c.createStatement();
+			ResultSet results = statement.executeQuery("SELECT * FROM Term WHERE id='" + term.getId().toString() + "';");
+			
+			if(results.next())
+			{
+				Statement updateStatement = currentConnection.c.createStatement();
+				updateStatement.executeUpdate("UPDATE Term SET name='" + term.getName() + "' WHERE id=" + term.getId().toString() + "';");
+				updateStatement.close();
+			}
+			else
+			{
+				Statement insertStatement = currentConnection.c.createStatement();
+				insertStatement.executeUpdate("INSERT INTO Term VALUES ('" + term.getId().toString() + "', '" + term.getName() + "');");
+				insertStatement.close();
+			}
+			
+			results.close();
+			statement.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		releaseConnection(currentConnection);
 	}
 
 	@Override
@@ -120,8 +157,28 @@ public class HSQLDBImpl implements IDB
 	@Override
 	public ArrayList<Term> getAllTerms(Connection... conn)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		ConnectionData currentConnection = getConnection(conn);
+		ArrayList<Term> result = new ArrayList<Term>();
+		
+		try
+		{
+			Statement statement = currentConnection.c.createStatement();
+			ResultSet results = statement.executeQuery("SELECT * FROM Term;");
+			while(results.next())
+			{
+				result.add(Term.parse(results));
+			}
+			results.close();
+			statement.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		releaseConnection(currentConnection);
+		
+		return result;
 	}
 
 	@Override
