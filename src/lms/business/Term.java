@@ -1,10 +1,12 @@
 package lms.business;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import lms.db.DBProxy;
 import lombok.Getter;
+import lombok.val;
 
 public class Term implements BusinessObject
 {
@@ -47,5 +49,22 @@ public class Term implements BusinessObject
 		return DBProxy.getAllTerms();
 	}
 	
-	
+	public static Term parse(ResultSet result)
+	{
+		try
+		{
+			val id = result.getString("id");
+			val name = result.getString("name");
+			
+			val idUUID = UUID.fromString(id);
+			
+			return new Term(idUUID, name);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

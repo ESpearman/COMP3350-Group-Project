@@ -8,7 +8,7 @@ import lms.business.Locker;
 import lms.business.Rental;
 import lms.business.Student;
 import lms.business.Term;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 public class DBProxy
 {
@@ -17,96 +17,101 @@ public class DBProxy
 	
 	public static Term getTermById(UUID id)
 	{
-		return StubDB.getTermById(id);
+		return CurrentDB.currentDB.getTermById(id);
 	}
 	
 	public static Student getStudentById(UUID id)
 	{
-		return StubDB.getStudentById(id);
+		return CurrentDB.currentDB.getStudentById(id);
 	}
 	
 	public static Locker getLockerById(UUID id)
 	{
-		return StubDB.getLockerById(id);
+		return CurrentDB.currentDB.getLockerById(id);
 	}
 	
 	public static Building getBuildingById(UUID id)
 	{
-		return StubDB.getBuildingById(id);
+		return CurrentDB.currentDB.getBuildingById(id);
 	}
 	
 	public static Rental getRentalById(UUID id)
 	{
-		return StubDB.getRentalById(id);
+		return CurrentDB.currentDB.getRentalById(id);
 	}
 	
 	public static void saveTerm(Term term)
 	{
-		StubDB.saveTerm(term);
+		CurrentDB.currentDB.saveTerm(term);
 	}
 	
 	public static void saveStudent(Student student)
 	{
-		StubDB.saveStudent(student);
+		CurrentDB.currentDB.saveStudent(student);
 	}
 	
 	public static void saveLocker(Locker locker)
 	{
-		StubDB.saveLocker(locker);
+		CurrentDB.currentDB.saveLocker(locker);
 	}
 	
 	public static void saveBuilding(Building building)
 	{
-		StubDB.saveBuilding(building);
+		CurrentDB.currentDB.saveBuilding(building);
 	}
 	
 	public static void saveRental(Rental rental)
 	{
-		StubDB.saveRental(rental);
+		CurrentDB.currentDB.saveRental(rental);
 	}
 	
 	public static ArrayList<Term> getAllTerms()
 	{
-		return StubDB.getAllTerms();
+		return CurrentDB.currentDB.getAllTerms();
 	}
 	
 	public static ArrayList<Building> getAllBuildings()
 	{
-		return StubDB.getAllBuildings();
+		return CurrentDB.currentDB.getAllBuildings();
 	}
 	
 	public static ArrayList<Student> getStudentsListByTerm(UUID term)
 	{
-		return StubDB.getStudentsListByTerm(term);
+		return CurrentDB.currentDB.getStudentsListByTerm(term);
 	}
 	
 	public static ArrayList<Locker> getLockersListByTerm(UUID term)
 	{
-		return StubDB.getLockersListByTerm(term);
+		return CurrentDB.currentDB.getLockersListByTerm(term);
 	}
 	
 	public static ArrayList<Rental> getRentalsListByTerm(UUID term)
 	{
-		return StubDB.getRentalsListByTerm(term);
+		return CurrentDB.currentDB.getRentalsListByTerm(term);
 	}
 	
-	public static Student getStudentByNumber(int number)
+	public static Student getStudentByNumberAndTerm(int number, UUID term)
 	{
-		return StubDB.getStudentByNumber(number);
+		return CurrentDB.currentDB.getStudentByNumberAndTerm(number, term);
 	}
 	
-	public static Locker getLockerByNumber(int number)
+	public static Locker getLockerByNumberBuildingAndTerm(int number, UUID building, UUID term)
 	{
-		return StubDB.getLockerByNumber(number);
+		return CurrentDB.currentDB.getLockerByNumberBuildingAndTerm(number, building, term);
 	}
 	
 	public static Rental getRentalByLocker(UUID locker)
 	{
-		return StubDB.getRentalByLocker(locker);
+		return CurrentDB.currentDB.getRentalByLocker(locker);
 	}
 	
 	public static Rental getRentalByStudent(UUID student)
 	{
-		return StubDB.getRentalByStudent(student);
+		return CurrentDB.currentDB.getRentalByStudent(student);
+	}
+	
+	public static ArrayList<Locker> getFreeLockersForBuildingAndTerm(UUID building, UUID term)
+	{
+		return CurrentDB.currentDB.getFreeLockersForBuildingAndTerm(building, term);
 	}
 }

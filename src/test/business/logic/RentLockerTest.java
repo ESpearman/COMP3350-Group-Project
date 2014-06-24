@@ -8,7 +8,7 @@ import lms.business.Locker;
 import lms.business.Term;
 import lms.business.LockerSize;
 import lms.business.logic.RentLocker;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 public class RentLockerTest extends TestCase
 {
@@ -25,6 +25,7 @@ public class RentLockerTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
+		CurrentDB.init(true);
 		price = 20;
 		term = new Term("Test Term");
 		building = new Building("Test Building");
@@ -58,10 +59,5 @@ public class RentLockerTest extends TestCase
 		validRental = RentLocker.rent(rentingStudent.getId(), rentedLocker.getId(), term.getId(), price);
 		failedToRent = RentLocker.rent(rentingStudent.getId(), secondLocker.getId(), term.getId(), price);
 		assertNull("failedToRent did not return null after trying to rent a second locker in the same term", failedToRent);
-	}
-	
-	protected void tearDown() throws Exception {
-		//super.tearDown();
-		StubDB.resetDB();
 	}
 }

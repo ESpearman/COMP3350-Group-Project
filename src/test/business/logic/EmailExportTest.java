@@ -5,7 +5,7 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.EmailExport;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 public class EmailExportTest extends TestCase
 {
@@ -14,15 +14,10 @@ public class EmailExportTest extends TestCase
 	
 	protected void setUp()
 	{
+		CurrentDB.init(true);
 		Term currentTerm = new Term("Summer 2014");
 		currentTerm.save();
 		CurrentTermInfo.currentTerm = currentTerm;
-		
-	}
-	
-	protected void tearDown()
-	{
-		StubDB.resetDB();
 	}
 	
 	public void testEmptyStudents()

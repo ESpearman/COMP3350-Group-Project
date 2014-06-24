@@ -1,10 +1,12 @@
 package lms.business;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import lms.db.DBProxy;
 import lombok.Getter;
+import lombok.val;
 
 public class Rental implements TermBased
 {
@@ -73,5 +75,29 @@ public class Rental implements TermBased
 		return new Rental(id, term, student, locker, pricePaid, signedAgreement);
 	}
 	
-	
+	public static Rental parse(ResultSet result)
+	{
+		try
+		{
+			val id = result.getString("id");
+			val term = result.getString("term");
+			val student = result.getString("student");
+			val locker = result.getString("locker");
+			val price = result.getFloat("price_paid");
+			val agreement = result.getBoolean("signed_agreement");
+			
+			val idUUID = UUID.fromString(id);
+			val termUUID = UUID.fromString(term);
+			val studentUUID = UUID.fromString(student);
+			val lockerUUID = UUID.fromString(locker);
+			
+			return new Rental(idUUID, termUUID, studentUUID, lockerUUID, price, agreement);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

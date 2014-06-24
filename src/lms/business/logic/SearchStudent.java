@@ -14,7 +14,7 @@ public class SearchStudent
 			try //try to convert string to int
 			{
 				studentNumber = Integer.parseInt(studentID);
-				return Student.getByStudentNumber(studentNumber);
+				return Student.getByStudentNumber(studentNumber, CurrentTermInfo.currentTerm.getId());
 			}
 			catch(NumberFormatException e) //characters were input
 			{

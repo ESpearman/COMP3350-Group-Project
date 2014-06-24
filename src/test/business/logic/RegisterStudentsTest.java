@@ -3,7 +3,7 @@ package test.business.logic;
 import junit.framework.TestCase;
 import lms.business.Student;
 import lms.business.logic.RegisterStudent;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 import java.util.UUID;
 
@@ -19,6 +19,7 @@ public class RegisterStudentsTest extends TestCase
 
 	public void setUp() throws Exception 
 	{
+		CurrentDB.init(true);
 		newStudent = new Student(id, "billal", "kohistani", "umkohisb", 1234567, true, term);
 		newStudent.save();
 	}
@@ -36,9 +37,5 @@ public class RegisterStudentsTest extends TestCase
 		assertNotNull("insertStudent() did not add new student and is null", testInsert);	
 	}
 	
-	protected void tearDown() throws Exception {
-		//super.tearDown();
-		StubDB.resetDB();
-	}
 }
 	

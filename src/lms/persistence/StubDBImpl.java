@@ -1,5 +1,6 @@
-package lms.stubdb;
+package lms.persistence;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -11,17 +12,16 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.TermBased;
 
-public class StubDB
+public class StubDBImpl implements IDB
 {
-	//Do not call the methods in this class - database queries should be made using the methods in the business objects
 	
-	private static ArrayList<BusinessObject> terms;
-	private static ArrayList<BusinessObject> students;
-	private static ArrayList<BusinessObject> lockers;
-	private static ArrayList<BusinessObject> buildings;
-	private static ArrayList<BusinessObject> rentals;
+	private ArrayList<BusinessObject> terms;
+	private ArrayList<BusinessObject> students;
+	private ArrayList<BusinessObject> lockers;
+	private ArrayList<BusinessObject> buildings;
+	private ArrayList<BusinessObject> rentals;
 	
-	static
+	public StubDBImpl()
 	{
 		terms = new ArrayList<BusinessObject>();
 		students = new ArrayList<BusinessObject>();
@@ -30,7 +30,7 @@ public class StubDB
 		rentals = new ArrayList<BusinessObject>();
 	}
 	
-	public static void resetDB()
+	public void resetDB()
 	{
 		terms.clear();
 		students.clear();
@@ -39,7 +39,8 @@ public class StubDB
 		rentals.clear();
 	}
 	
-	public static Term getTermById(UUID id)
+	@Override
+	public Term getTermById(UUID id, Connection ... conn)
 	{
 		BusinessObject obj = getById(terms, id);
 		if(obj != null && obj instanceof Term)
@@ -50,7 +51,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static Student getStudentById(UUID id)
+	@Override
+	public Student getStudentById(UUID id, Connection ... conn)
 	{
 		BusinessObject obj = getById(students, id);
 		if(obj != null && obj instanceof Student)
@@ -61,7 +63,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static Locker getLockerById(UUID id)
+	@Override
+	public Locker getLockerById(UUID id, Connection ... conn)
 	{
 		BusinessObject obj = getById(lockers, id);
 		if(obj != null && obj instanceof Locker)
@@ -72,7 +75,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static Building getBuildingById(UUID id)
+	@Override
+	public Building getBuildingById(UUID id, Connection ... conn)
 	{
 		BusinessObject obj = getById(buildings, id);
 		if(obj != null && obj instanceof Building)
@@ -83,7 +87,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static Rental getRentalById(UUID id)
+	@Override
+	public Rental getRentalById(UUID id, Connection ... conn)
 	{
 		BusinessObject obj = getById(rentals, id);
 		if(obj != null && obj instanceof Rental)
@@ -94,32 +99,38 @@ public class StubDB
 		return null;
 	}
 	
-	public static void saveTerm(Term term)
+	@Override
+	public void saveTerm(Term term, Connection ... conn)
 	{
 		save(terms, term);
 	}
 	
-	public static void saveStudent(Student student)
+	@Override
+	public void saveStudent(Student student, Connection ... conn)
 	{
 		save(students, student);
 	}
 	
-	public static void saveLocker(Locker locker)
+	@Override
+	public void saveLocker(Locker locker, Connection ... conn)
 	{
 		save(lockers, locker);
 	}
 	
-	public static void saveBuilding(Building building)
+	@Override
+	public void saveBuilding(Building building, Connection ... conn)
 	{
 		save(buildings, building);
 	}
 	
-	public static void saveRental(Rental rental)
+	@Override
+	public void saveRental(Rental rental, Connection ... conn)
 	{
 		save(rentals, rental);
 	}
 	
-	public static ArrayList<Student> getStudentsListByTerm(UUID term)
+	@Override
+	public ArrayList<Student> getStudentsListByTerm(UUID term, Connection ... conn)
 	{
 		ArrayList<TermBased> genericList = getListByTerm(students, term);
 		ArrayList<Student> cast = new ArrayList<Student>();
@@ -134,7 +145,8 @@ public class StubDB
 		return cast;
 	}
 	
-	public static ArrayList<Locker> getLockersListByTerm(UUID term)
+	@Override
+	public ArrayList<Locker> getLockersListByTerm(UUID term, Connection ... conn)
 	{
 		ArrayList<TermBased> genericList = getListByTerm(lockers, term);
 		ArrayList<Locker> cast = new ArrayList<Locker>();
@@ -149,7 +161,8 @@ public class StubDB
 		return cast;
 	}
 	
-	public static ArrayList<Rental> getRentalsListByTerm(UUID term)
+	@Override
+	public ArrayList<Rental> getRentalsListByTerm(UUID term, Connection ... conn)
 	{
 		ArrayList<TermBased> genericList = getListByTerm(rentals, term);
 		ArrayList<Rental> cast = new ArrayList<Rental>();
@@ -164,8 +177,10 @@ public class StubDB
 		return cast;
 	}
 	
-	public static Student getStudentByNumber(int number)
+	@Override
+	public Student getStudentByNumberAndTerm(int number, UUID term, Connection ... conn)
 	{
+		//TODO add term filter
 		for(BusinessObject obj: students)
 		{
 			if(obj instanceof Student)
@@ -180,9 +195,11 @@ public class StubDB
 		
 		return null;
 	}
-	
-	public static Locker getLockerByNumber(int number)
+
+	@Override
+	public Locker getLockerByNumberBuildingAndTerm(int number, UUID building, UUID term, Connection ... conn)
 	{
+		//TODO add building and term filters
 		for(BusinessObject obj: lockers)
 		{
 			if(obj instanceof Locker)
@@ -197,8 +214,16 @@ public class StubDB
 		
 		return null;
 	}
+
+	@Override
+	public ArrayList<Locker> getFreeLockersForBuildingAndTerm(UUID building, UUID term, Connection ... conn)
+	{
+		//TODO implement
+		return null;
+	}
 	
-	public static Rental getRentalByLocker(UUID locker)
+	@Override
+	public Rental getRentalByLocker(UUID locker, Connection ... conn)
 	{
 		for(BusinessObject obj: rentals)
 		{
@@ -215,7 +240,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static Rental getRentalByStudent(UUID student)
+	@Override
+	public Rental getRentalByStudent(UUID student, Connection ... conn)
 	{
 		for(BusinessObject obj: rentals)
 		{
@@ -232,7 +258,8 @@ public class StubDB
 		return null;
 	}
 	
-	public static ArrayList<Term> getAllTerms()
+	@Override
+	public ArrayList<Term> getAllTerms(Connection ... conn)
 	{
 		ArrayList<Term> to = new ArrayList<Term>();
 		
@@ -248,7 +275,8 @@ public class StubDB
 		return to;
 	}
 	
-	public static ArrayList<Building> getAllBuildings()
+	@Override
+	public ArrayList<Building> getAllBuildings(Connection ... conn)
 	{
 		ArrayList<Building> to = new ArrayList<Building>();
 		
@@ -264,7 +292,7 @@ public class StubDB
 		return to;
 	}
 	
-	private static BusinessObject getById(ArrayList<BusinessObject> from, UUID id)
+	private BusinessObject getById(ArrayList<BusinessObject> from, UUID id)
 	{
 		for(BusinessObject obj : from)
 		{
@@ -277,7 +305,7 @@ public class StubDB
 		return null;
 	}
 	
-	private static ArrayList<TermBased> getListByTerm(ArrayList<BusinessObject> from, UUID term)
+	private ArrayList<TermBased> getListByTerm(ArrayList<BusinessObject> from, UUID term)
 	{
 		ArrayList<TermBased> result = new ArrayList<TermBased>();
 		for(BusinessObject obj : from)
@@ -296,7 +324,7 @@ public class StubDB
 		return result;
 	}
 	
-	private static void save(ArrayList<BusinessObject> to, BusinessObject unsaved)
+	private void save(ArrayList<BusinessObject> to, BusinessObject unsaved)
 	{
 		for(int i = 0; i < to.size(); i++)
 		{

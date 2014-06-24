@@ -3,7 +3,7 @@ package test.business.logic;
 import junit.framework.TestCase;
 import lms.business.Student;
 import lms.business.logic.SearchStudent;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 import java.util.UUID;
 
@@ -15,6 +15,7 @@ public class SearchStudentTest extends TestCase {
 	
 	protected void setUp() throws Exception
 	{
+		CurrentDB.init(true);
 		UUID term = UUID.randomUUID();
 		student1 = new Student("morgan", "epp", "mrgnepp", 1234567, true, term);
 		student1.save();
@@ -48,10 +49,5 @@ public class SearchStudentTest extends TestCase {
 	{
 		ghost = SearchStudent.getByStudentNumber(""); //no student number entered
 		assertNull("getByStudentNumber() did not return null for no input", ghost);
-	}
-	
-	protected void tearDown() throws Exception {
-		//super.tearDown();
-		StubDB.resetDB();
 	}
 }

@@ -10,7 +10,7 @@ import lms.business.Term;
 import lms.business.Student;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SpreadsheetImporter;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 public class SpreadsheetImporterTest extends TestCase 
 {
@@ -19,6 +19,7 @@ public class SpreadsheetImporterTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
+		CurrentDB.init(true);
 		Term currentTerm = new Term("Summer 2014");
 		currentTerm.save();
 		
@@ -117,11 +118,6 @@ public class SpreadsheetImporterTest extends TestCase
 	public String getPath(String localPath)
 	{
 		return System.getProperty("user.dir") + localPath;
-	}
-	
-	protected void tearDown()
-	{
-		StubDB.resetDB();
 	}
 
 }

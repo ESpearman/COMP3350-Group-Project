@@ -4,6 +4,9 @@ package lms.application;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.DemoDataGenerator;
+import lms.config.ConfigData;
+import lms.persistence.ConnectionPool;
+import lms.persistence.CurrentDB;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
@@ -128,6 +131,12 @@ public class MainWindow
 	
 	public static void main(String[] args)
 	{
+		CurrentDB.init(false);
+		
+		//ConfigData must be initialized BEFORE ConnectionPool
+		ConfigData.init();
+		ConnectionPool.init(4);
+		
 		//Hard code a term to be used for iteration 1 only
 		Term term = new Term("Demo Term");
 		CurrentTermInfo.currentTerm = term;

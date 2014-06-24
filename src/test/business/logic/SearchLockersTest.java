@@ -13,7 +13,7 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SearchLockers;
-import lms.stubdb.StubDB;
+import lms.persistence.CurrentDB;
 
 public class SearchLockersTest extends TestCase
 {
@@ -33,6 +33,7 @@ public class SearchLockersTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
+		CurrentDB.init(true);
 		lockerUUID = UUID.randomUUID();
 		buildingUUID = UUID.randomUUID();
 		rentalUUID = UUID.randomUUID();
@@ -73,10 +74,5 @@ public class SearchLockersTest extends TestCase
 		
 		unusedLockers = SearchLockers.getUnusedLockers(building.getId(), currTerm.getId());
 		assertTrue(unusedLockers.size() == 0);
-	}
-	
-	protected void tearDown() throws Exception {
-		//super.tearDown();
-		StubDB.resetDB();
 	}
 }

@@ -1,11 +1,13 @@
 package lms.business;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import lms.db.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.val;
 
 public class Student implements TermBased
 {
@@ -69,15 +71,40 @@ public class Student implements TermBased
 		return DBProxy.getStudentById(id);
 	}
 	
-	public static Student getByStudentNumber(int number)
+	public static Student getByStudentNumber(int number, UUID term)
 	{
-		return DBProxy.getStudentByNumber(number);
+		return DBProxy.getStudentByNumberAndTerm(number, term);
 	}
 	
 	public static ArrayList<Student> getListByTerm(UUID term)
 	{
 		return DBProxy.getStudentsListByTerm(term);
 	}
-
+	
+	public static Student parse(ResultSet result)
+	{
+		try
+		{
+			val id = result.getString("id");
+			val firstName = result.getString("first_name");
+			val lastName = result.getString("last_name");
+			val email = result.getString("email");
+			val studentNumber = result.getInt("student_number");
+			val scienceStudent = result.getBoolean("science_student");
+			val term = result.getString("term");
+			
+			val idUUID = UUID.fromString(id);
+			val termUUID = UUID.fromString(term);
+			
+			return new Student(idUUID, firstName, lastName, email, studentNumber, scienceStudent, termUUID);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 
 }
