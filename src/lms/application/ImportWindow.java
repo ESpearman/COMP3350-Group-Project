@@ -56,11 +56,11 @@ public class ImportWindow
 			{
 				// file browser dialog open
 				FileDialog dlgOpen = new FileDialog(shell, SWT.OPEN);
-			    dlgOpen.setFilterNames(new String[] {"Excel Workbook(.xlsx, .xls)"});
-			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx"});
+			    dlgOpen.setFilterNames(new String[] {"Excel Workbook (.xlsx)", "Excel 97-2004 (.xls)"});
+			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx","*.xls", "*.*"});
 			    dlgOpen.setFilterPath("c:\\");
 			    dlgOpen.open();
-			    if (dlgOpen.getFileName().compareTo("")==0)
+			    if (dlgOpen.getFileName().compareTo("") == 0)
 			    {
 			    	// file not selected on dialog
 			    	txtPath.setText("");
@@ -68,7 +68,7 @@ public class ImportWindow
 			    else
 			    {
 			    	// file selected
-			    	txtPath.setText(dlgOpen.getFilterPath()+"\\"+dlgOpen.getFileName());
+			    	txtPath.setText(dlgOpen.getFilterPath() + "\\" + dlgOpen.getFileName());
 			    }
 				
 			}

@@ -1,7 +1,5 @@
 package lms.application;
 
-import java.util.UUID;
-
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -17,6 +15,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 import lms.business.Student;
+import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.RegisterStudent;
 import lms.business.logic.SearchStudent;
 
@@ -149,7 +148,7 @@ public class StudentWindow
 					if(studentNumber >= 1000000 && !txtEmail.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals(""))
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
-								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), UUID.randomUUID());
+								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());
 						shell.close();
 						if(context.equals("Register")){
 							new LockerWindow(shell, newStudent);

@@ -1,7 +1,13 @@
 package lms.application;
 
+import java.io.*;
+
+import lms.business.logic.EmailExport;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
@@ -43,34 +49,55 @@ public class ExportWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// export email button is selected
-				
-				
-				/*
-				 * we need exporter
-				FileDialog dlgSave = new FileDialog(shell, SWT.SAVE);
-			    dlgSave.setFilterNames(new String[] {"Excel Workbook", "Excel 97-2004 (.xls)"});
-			    dlgSave.setFilterExtensions(new String[] { "*.xlsx","*.xls", "*.*" });
-			    dlgSave.setFilterPath("c:\\");
-			    dlgSave.setFileName("Student Email.xlsx");	// default file name
-			    dlgSave.open();
-				*/
-				
-				/*
-				if( exported ? )
+				String emails = EmailExport.exportStudentEmails();
+				if(!emails.equals("No students currently registered"))
 				{
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Completed");
-					dlgSuccess.setMessage("Exporting completed");
-					dlgSuccess.open();
+					FileDialog dlgSave = new FileDialog(shell, SWT.SAVE);
+				    dlgSave.setFilterNames(new String[] {"Text File (*.txt)"});
+				    dlgSave.setFilterExtensions(new String[] { "*.txt" });
+				    dlgSave.setFilterPath("c:\\");
+				    dlgSave.setFileName("Student Email.txt");	// default file name
+				    dlgSave.open();
+	
+					if(dlgSave.getFileName().compareTo("") != 0)
+					{
+						try 
+						{
+							String filePath = dlgSave.getFilterPath() + "\\" + dlgSave.getFileName();
+							File textFile = new File(filePath);
+							BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
+							writer.write(emails);
+							writer.close();
+								
+							MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+							dlgSuccess.setText("Completed");
+							dlgSuccess.setMessage("Exporting completed to: " + filePath);
+							dlgSuccess.open();
+						} 
+						catch(IOException e) //couldn't write to file
+						{
+							MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+							dlgFail.setText("Failed");
+							dlgFail.setMessage("Exporting failed : Could not write to file: " + dlgSave.getFileName());
+							dlgFail.open();
+						}
+					}
+					else //no file selected
+					{
+						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+						dlgFail.setText("Failed");
+						dlgFail.setMessage("Exporting failed : Cannot find email source");
+						dlgFail.open();
+					}
 				}
-				else
+				else //no students
 				{
 					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 					dlgFail.setText("Failed");
-					dlgFail.setMessage("Exporting failed : Cannot find email source");
+					dlgFail.setMessage(emails);//"Exporting failed : Could not find any student emails");
 					dlgFail.open();
 				}
-				*/
+				
 				
 			}
 		});
