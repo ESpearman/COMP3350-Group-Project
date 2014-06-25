@@ -1,6 +1,9 @@
 package test.business.logic;
 
+import java.util.UUID;
+
 import junit.framework.TestCase;
+import lms.business.Rental;
 import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
@@ -10,6 +13,7 @@ import lms.persistence.CurrentDB;
 public class EmailExportTest extends TestCase
 {
 	Student student;
+	Rental rental;
 	String result;
 	
 	protected void setUp()
@@ -29,8 +33,14 @@ public class EmailExportTest extends TestCase
 	
 	public void testOneStudent()
 	{
-		student = new Student("Al", "Adams", "aaa@hotmail.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
+		UUID studentUUID = UUID.randomUUID();
+		UUID filler = UUID.randomUUID();
+		
+		student = new Student(studentUUID, "Al", "Adams", "aaa@hotmail.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
 		student.save();
+		
+		rental = new Rental(CurrentTermInfo.currentTerm.getId(), studentUUID, filler, 1.0f, true);
+		rental.save();
 		
 		result = EmailExport.exportStudentEmails();
 		
@@ -39,12 +49,27 @@ public class EmailExportTest extends TestCase
 	
 	public void testMultipleStudents()
 	{
-		student = new Student("Al", "Adams", "aaa@hotmail.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
+		UUID studentUUID = UUID.randomUUID();
+		UUID filler = UUID.randomUUID();
+		
+		student = new Student(studentUUID, "Al", "Adams", "aaa@hotmail.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
 		student.save();
-		student = new Student("Billy", "Bob", "bbb@umanitoba.com", 7640002, true, CurrentTermInfo.currentTerm.getId());
+		rental = new Rental(CurrentTermInfo.currentTerm.getId(), studentUUID, filler, 1.0f, true);
+		rental.save();
+		
+		studentUUID = UUID.randomUUID();
+		
+		student = new Student(studentUUID, "Billy", "Bob", "bbb@umanitoba.com", 7640002, true, CurrentTermInfo.currentTerm.getId());
 		student.save();
-		student = new Student("Clark", "C", "ccc@cc.umanitoba.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
+		rental = new Rental(CurrentTermInfo.currentTerm.getId(), studentUUID, filler, 1.0f, true);
+		rental.save();
+		
+		studentUUID = UUID.randomUUID();
+		
+		student = new Student(studentUUID, "Clark", "C", "ccc@cc.umanitoba.com", 7640001, true, CurrentTermInfo.currentTerm.getId());
 		student.save();
+		rental = new Rental(CurrentTermInfo.currentTerm.getId(), studentUUID, filler, 1.0f, true);
+		rental.save();
 		
 		String result = EmailExport.exportStudentEmails();
 		
@@ -54,8 +79,14 @@ public class EmailExportTest extends TestCase
 	
 	public void testSymbols()
 	{
-		student = new Student("Al", "Adams", "!04.32.7\".g;;;$&&\"@cc.umanitoba.ca", 7640001, true, CurrentTermInfo.currentTerm.getId());
+		UUID studentUUID = UUID.randomUUID();
+		UUID filler = UUID.randomUUID();
+		
+		student = new Student(studentUUID, "Al", "Adams", "!04.32.7\".g;;;$&&\"@cc.umanitoba.ca", 7640001, true, CurrentTermInfo.currentTerm.getId());
 		student.save();
+		
+		rental = new Rental(CurrentTermInfo.currentTerm.getId(), studentUUID, filler, 1.0f, true);
+		rental.save();
 		
 		String result = EmailExport.exportStudentEmails();
 		
