@@ -56,8 +56,8 @@ public class ImportWindow
 			{
 				// file browser dialog open
 				FileDialog dlgOpen = new FileDialog(shell, SWT.OPEN);
-			    dlgOpen.setFilterNames(new String[] {"Excel Workbook(.xlsx, .xls)"});
-			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx"});
+			    dlgOpen.setFilterNames(new String[] {"Excel Workbook(.xlsx)", "Excel Workbook(.xls)"});
+			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx", "*.xls"});
 			    dlgOpen.setFilterPath("c:\\");
 			    dlgOpen.open();
 			    if (dlgOpen.getFileName().compareTo("")==0)
