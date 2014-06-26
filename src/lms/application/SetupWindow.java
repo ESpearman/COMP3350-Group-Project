@@ -70,7 +70,6 @@ public class SetupWindow
 		});
 		
 		
-		
 		// ========= button add building ============
 		btnAddBuilding = new Button(shell, SWT.NONE);
 		btnAddBuilding.setText("Add Building");

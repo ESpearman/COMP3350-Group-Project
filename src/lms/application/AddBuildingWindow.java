@@ -86,7 +86,6 @@ public class AddBuildingWindow
 
 		
 	
-	
 		// ======shell open, close ========
 		shell.open();
 		

@@ -128,7 +128,6 @@ public class MainWindow
 		runWindow();
 	}
 	
-	
 	public static void main(String[] args)
 	{
 		CurrentDB.init(false);

@@ -215,7 +215,6 @@ public class StudentWindow
 		lblEmailAddress.setBounds(10, 122, 99, 21);
 		
 
-		
 		// ====== shell open, close =====
 		shell.open();
 		
