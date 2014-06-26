@@ -1,29 +1,36 @@
 package lms.application;
 
+import java.util.ArrayList;
 
+import lms.business.Building;
+
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.SWT;
 
-public class AddBuildingWindow
+public class AddLockerWindow
 {
-
-	private Display display;
-	private Shell shell;
 	
+	private Shell shell;
+	private Display display;
+	
+
 	private Button btnBack;
 	private Button btnAdd;
 	private Text txtInput;
 	
-	private Label lblBuilding;
+	private Label lblLocker;
+	private Combo drpBuilding;
 	
+
 	
 	public void runWindow()
 	{
@@ -37,9 +44,8 @@ public class AddBuildingWindow
 		int x = bounds.x + (bounds.width - rect.width) / 2;
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
-		shell.setText("Add building");
+		shell.setText("Add locker");
 		shell.setLocation (x, y);
-		
 		
 		// ======= button back ======
 		btnBack = new Button(shell, SWT.NONE);
@@ -61,10 +67,16 @@ public class AddBuildingWindow
 		
 		
 		// ======= label 'building' ======
-		lblBuilding = new Label(shell, SWT.NONE);
-		lblBuilding.setAlignment(SWT.RIGHT);
-		lblBuilding.setBounds(10, 42, 82, 15);
-		lblBuilding.setText("Building");
+		lblLocker = new Label(shell, SWT.NONE);
+		lblLocker.setAlignment(SWT.RIGHT);
+		lblLocker.setBounds(10, 42, 82, 15);
+		lblLocker.setText("Locker");
+		
+
+		// ========= combo(dropdown list) building =======
+		drpBuilding = new Combo(shell, SWT.NONE);
+		drpBuilding.setBounds(98, 8, 160, 23);
+		drpBuilding.setText("Select a building");
 		
 		
 		
@@ -75,17 +87,15 @@ public class AddBuildingWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// add building here with txtInput
+				// add locker here with txtInput
 				
 			}
 		});
 		btnAdd.setText("Add");
 		btnAdd.setBounds(147, 80, 111, 27);
 		
-		
 
 		
-	
 		// ======shell open, close ========
 		shell.open();
 		
@@ -98,8 +108,7 @@ public class AddBuildingWindow
 		}
 	}
 	
-	
-	public AddBuildingWindow()
+	public AddLockerWindow()
 	{
 		display = Display.getDefault();
 		runWindow();

@@ -65,7 +65,7 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				//new AddLockerWindow();
+				new AddLockerWindow();
 			}
 		});
 		
