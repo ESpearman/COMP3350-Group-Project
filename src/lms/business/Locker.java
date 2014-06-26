@@ -97,5 +97,17 @@ public class Locker implements TermBased
 		
 		return null;
 	}
+	
+	public String getSizeString()
+	{
+		if(size == LockerSize.FULL)
+		{
+			return "FULL";
+		}
+		else
+		{
+			return "HALF";
+		}
+	}
 
 }
