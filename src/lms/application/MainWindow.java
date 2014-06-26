@@ -141,7 +141,7 @@ public class MainWindow
 		CurrentTermInfo.currentTerm = term;
 		term.save();
 		
-		DemoDataGenerator.generate();
+		//DemoDataGenerator.generate();
 		
 		new MainWindow();
 	}
