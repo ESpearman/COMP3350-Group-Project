@@ -150,7 +150,8 @@ public class StudentWindow
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());
 						shell.close();
-						if(context.equals("Register")){
+						if(context.equals("Register"))
+						{
 							new LockerWindow(shell, newStudent);
 						}
 					}
@@ -164,7 +165,6 @@ public class StudentWindow
 				}
 				catch(NumberFormatException e)
 				{
-					// not sure if this check still needed
 					
 					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
 					dlgBadNumber.setMessage("Invalid Student Number");
