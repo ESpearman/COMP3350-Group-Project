@@ -22,7 +22,7 @@ public class MainWindow
 	private Display display;
 	private Shell shell;
 	private Button btnRegister;
-	private Button btnImport;
+	private Button btnSetup;
 	private Button btnQuit;
 	private Button btnExport;
 	
@@ -80,16 +80,16 @@ public class MainWindow
 
 		
 		// =============== import button ============
-		btnImport = new Button(shell, SWT.NONE);
-		btnImport.setBounds(19, 55, 111, 27);
-		btnImport.setText("Import");
-		btnImport.addSelectionListener(new SelectionAdapter()
+		btnSetup = new Button(shell, SWT.NONE);
+		btnSetup.setBounds(19, 55, 111, 27);
+		btnSetup.setText("Setup");
+		btnSetup.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// import button is selected
-				new ImportWindow();
+				new SetupWindow();
 			}
 		});
 		
