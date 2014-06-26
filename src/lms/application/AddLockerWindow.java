@@ -76,7 +76,12 @@ public class AddLockerWindow
 		drpBuilding.setText("Select a building");
 		
 		
+		// build building list here
+
+		//drpBuilding.setItems(StringArray);
 		
+		
+
 		// ======== button add =========
 		btnAdd = new Button(shell, SWT.NONE);
 		btnAdd.addSelectionListener(new SelectionAdapter()

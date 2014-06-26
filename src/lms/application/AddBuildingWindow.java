@@ -98,7 +98,6 @@ public class AddBuildingWindow
 		btnAdd.setBounds(147, 80, 111, 27);
 		
 		
-
 		
 	
 		// ======shell open, close ========
