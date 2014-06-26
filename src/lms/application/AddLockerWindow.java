@@ -6,6 +6,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
@@ -84,7 +85,22 @@ public class AddLockerWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// add locker here with txtInput
-				
+				/*
+				if(added?)
+				{
+					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+					dlgSuccess.setText("Added");
+					dlgSuccess.setMessage(txtInput.getText()+" Locker added");
+					dlgSuccess.open();
+				}
+				else
+				{
+					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+					dlgFail.setText("Failed");
+					dlgFail.setMessage("Error : "+txtInput.getText() + " Locker not added!");
+					dlgFail.open();
+				}
+				*/
 			}
 		});
 		btnAdd.setText("Add");

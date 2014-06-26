@@ -76,7 +76,22 @@ public class AddBuildingWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// add building here with txtInput
-				
+				/*
+				if(added?)
+				{
+					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+					dlgSuccess.setText("Added");
+					dlgSuccess.setMessage(txtInput.getText()+" Building added");
+					dlgSuccess.open();
+				}
+				else
+				{
+					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+					dlgFail.setText("Failed");
+					dlgFail.setMessage("Error : "+txtInput.getText() + " Building not added!");
+					dlgFail.open();
+				}
+				*/
 			}
 		});
 		btnAdd.setText("Add");
