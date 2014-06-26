@@ -22,12 +22,12 @@ public class ImportWindow
 	private Display display;
 	private Shell shell;
 	
-	private String context;
-	private String importOption;
-	
 	private Text txtPath;
 	private Button btnBack;
 	private Button btnBrowse;
+	
+	private Button btnStudent;
+	private Button btnLocker;
 	
 	private Label lblFilePath;
 	private Button btnImport;
@@ -44,7 +44,7 @@ public class ImportWindow
 		int y = bounds.y + (bounds.height - rect.height) / 2;
 		
 		shell.setLocation (x, y);
-		shell.setText(context);
+		shell.setText("Import File");
 		
 		
 		// ========= browse button ========
@@ -80,7 +80,7 @@ public class ImportWindow
 		// ====== file (path) text field =======
 		txtPath = new Text(shell, SWT.BORDER);
 		txtPath.setEditable(false);
-		txtPath.setBounds(10, 43, 348, 21);
+		txtPath.setBounds(61, 43, 297, 21);
 
 		
 		//======== back button ==========
@@ -100,8 +100,21 @@ public class ImportWindow
 		
 		// ====== label 'filePath' ==========
 		lblFilePath = new Label(shell, SWT.NONE);
-		lblFilePath.setBounds(10, 16, 45, 16);
+		lblFilePath.setBounds(10, 46, 45, 16);
 		lblFilePath.setText("File Path");
+		
+		
+		// ==== radio button 'student' ========
+		btnStudent = new Button(shell, SWT.RADIO);
+		btnStudent.setBounds(10, 16, 90, 16);
+		btnStudent.setText("Student");
+		
+		
+		
+		// ====== radio button 'locker' ========
+		btnLocker = new Button(shell, SWT.RADIO);
+		btnLocker.setBounds(121, 16, 90, 16);
+		btnLocker.setText("Locker");
 		
 		
 		// =========== import button =================
@@ -111,7 +124,7 @@ public class ImportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				if(importOption.equals("locker"))
+				if(btnLocker.getSelection())
 				{
 					// locker importing
 					
@@ -134,7 +147,7 @@ public class ImportWindow
 						dlgFail.open();
 					}
 				}
-				else if(importOption.equals("student"))
+				else if(btnStudent.getSelection())
 				{
 					// student importing
 					
@@ -157,18 +170,13 @@ public class ImportWindow
 						dlgFail.open();
 					}
 				}
-				else if(importOption.equals("term"))
-				{
-					// term importing
-					
-				}
 				else
 				{
 					// no radio button is selected (error)
 					
 					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 					dlgFail.setText("Failed");
-					dlgFail.setMessage("Importing failed : Not valid Import Option");
+					dlgFail.setMessage("Importing failed : Not selected Import Option (Locker or Student)");
 					dlgFail.open();
 					
 				}
@@ -180,6 +188,10 @@ public class ImportWindow
 		});
 		btnImport.setBounds(247, 105, 111, 27);
 		btnImport.setText("Import");
+		
+		
+		
+
 		
 		
 
@@ -197,11 +209,10 @@ public class ImportWindow
 		}
 	}
 	
-	public ImportWindow(String context, String importOption)
+	public ImportWindow()
 	{
 		display = Display.getDefault();
-		this.context = context;
-		this.importOption = importOption;
+
 		runWindow();
 	}
 }

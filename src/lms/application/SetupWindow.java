@@ -15,18 +15,19 @@ public class SetupWindow
 	private Display display;
 	private Shell shell;
 	
-	private Button btnAddTerm;
+	//private Button btnAddTerm;
 	private Button btnAddLocker;
-	private Button btnAddStudent;
+	private Button btnAddBuilding;
 	private Button btnEditStudent;
 	private Button btnBack;
+	private Button btnImport;
 	
 	
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(269, 168);
+		shell.setSize(269, 177);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -38,7 +39,7 @@ public class SetupWindow
 		shell.setText("Setup");
 		
 		
-		
+		/*
 		// ==== button add term =======
 		btnAddTerm = new Button(shell, SWT.NONE);
 		btnAddTerm.setText("Add Term");
@@ -48,38 +49,38 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new ImportWindow(btnAddTerm.getText(), "term");
+				new AddWindow(btnAddTerm.getText(), "term");
 			}
 		});
 		
-		
+		*/
 		
 		
 		// ========= button add locker ==========
 		btnAddLocker = new Button(shell, SWT.NONE);
 		btnAddLocker.setText("Add Locker");
-		btnAddLocker.setBounds(132, 10, 111, 27);
+		btnAddLocker.setBounds(132, 43, 111, 27);
 		btnAddLocker.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new ImportWindow(btnAddLocker.getText(), "locker");
+				//new AddLockerWindow();
 			}
 		});
 		
 		
 		
-		// ========= button add student ============
-		btnAddStudent = new Button(shell, SWT.NONE);
-		btnAddStudent.setText("Add Student");
-		btnAddStudent.setBounds(10, 43, 111, 27);
-		btnAddStudent.addSelectionListener(new SelectionAdapter()
+		// ========= button add building ============
+		btnAddBuilding = new Button(shell, SWT.NONE);
+		btnAddBuilding.setText("Add Building");
+		btnAddBuilding.setBounds(10, 43, 111, 27);
+		btnAddBuilding.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new ImportWindow(btnAddStudent.getText(), "student");
+				new AddBuildingWindow();
 			}
 		});
 		
@@ -89,7 +90,7 @@ public class SetupWindow
 		// ========= button edit student ===========
 		btnEditStudent = new Button(shell, SWT.NONE);
 		btnEditStudent.setText("Edit Student");
-		btnEditStudent.setBounds(132, 43, 111, 27);
+		btnEditStudent.setBounds(132, 10, 111, 27);
 		btnEditStudent.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -105,7 +106,7 @@ public class SetupWindow
 		// ========= button back ==========
 		btnBack = new Button(shell, SWT.NONE);
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 93, 111, 27);
+		btnBack.setBounds(10, 102, 111, 27);
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -115,6 +116,23 @@ public class SetupWindow
 			}
 		});
 		
+		
+		
+		// ========== button import =========
+		btnImport = new Button(shell, SWT.NONE);
+		btnImport.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				new ImportWindow();
+			}
+		});
+		btnImport.setText("Import");
+		btnImport.setBounds(10, 10, 111, 27);
+		
+		
+
 		
 		
 		
