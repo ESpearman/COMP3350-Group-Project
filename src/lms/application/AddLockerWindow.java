@@ -36,7 +36,7 @@ public class AddLockerWindow
 	private Label lblLocker;
 	private Combo drpBuilding;
 	
-	LockerSize size; 
+	LockerSize size;
 	
 	private ArrayList<Building> allBuildings = Building.getAll();
 	private String[] buildings = new String[allBuildings.size()];
@@ -97,32 +97,68 @@ public class AddLockerWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				
-				Building selectedBuilding = allBuildings.get(drpBuilding.getSelectionIndex());
-				
-				if(btnFull.getSelection())
+
+				if(allBuildings.size()>0)
 				{
-					size = LockerSize.FULL;
-				}
-				else if(btnHalf.getSelection())
-				{
-					size = LockerSize.HALF;
-				}
-				if(txtInput != null)
-				{
-					AddLocker.insert(CurrentTermInfo.currentTerm.getId(), txtInput.getText(), selectedBuilding.getId(), size);
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Added");
-					dlgSuccess.setMessage(txtInput.getText()+" Locker added");
-					dlgSuccess.open();
+					if(drpBuilding.getSelectionIndex()>-1)
+					{
+						Building selectedBuilding = allBuildings.get(drpBuilding.getSelectionIndex());
+						
+						if(btnFull.getSelection()||btnHalf.getSelection())
+						{
+							if(btnFull.getSelection())
+							{
+								size = LockerSize.FULL;
+							}
+							else if(btnHalf.getSelection())
+							{
+								size = LockerSize.HALF;
+							}
+							
+							if(txtInput.getText() != "")
+							{
+								AddLocker.insert(CurrentTermInfo.currentTerm.getId(), txtInput.getText(), selectedBuilding.getId(), size);
+								MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
+								dlgSuccess.setText("Added");
+								dlgSuccess.setMessage(txtInput.getText()+" Locker added");
+								dlgSuccess.open();
+							}
+							else
+							{
+								MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+								dlgFail.setText("Failed");
+								dlgFail.setMessage("Error : Need Locker Number !");
+								dlgFail.open();
+							}
+						}
+						else
+						{
+							MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+							dlgFail.setText("Failed");
+							dlgFail.setMessage("Error : Need to select size of the locker !");
+							dlgFail.open();
+						}
+					}
+					else
+					{
+						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
+						dlgFail.setText("Failed");
+						dlgFail.setMessage("Error : Need to select building !");
+						dlgFail.open();
+					}
+					
 				}
 				else
 				{
 					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 					dlgFail.setText("Failed");
-					dlgFail.setMessage("Error : "+txtInput.getText() + " Locker not added!");
+					dlgFail.setMessage("Error : There is no building to assign to !");
 					dlgFail.open();
 				}
+				
+				
+
+				
 			}
 		});
 		btnAdd.setText("Add");

@@ -57,7 +57,7 @@ public class AddBuildingWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 
-				if(txtInput.getText() != null)
+				if(txtInput.getText() != "")
 				{
 					AddBuilding.insert(txtInput.getText());
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
@@ -69,7 +69,7 @@ public class AddBuildingWindow
 				{
 					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 					dlgFail.setText("Failed");
-					dlgFail.setMessage("Error : "+txtInput.getText() + " Building not added!");
+					dlgFail.setMessage("Error : Need building name !");
 					dlgFail.open();
 				}
 			}
