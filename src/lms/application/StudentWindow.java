@@ -82,7 +82,7 @@ public class StudentWindow
 				
 		// ====== search button ========
 		btnSearch = new Button(shell, SWT.NONE);
-		btnSearch.setBounds(247, 10, 111, 27);
+		btnSearch.setBounds(247, 11, 111, 27);
 		btnSearch.setText("Search");
 		
 		btnSearch.addSelectionListener(new SelectionAdapter()

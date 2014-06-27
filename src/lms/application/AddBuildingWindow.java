@@ -29,7 +29,7 @@ public class AddBuildingWindow
 	{
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(284, 155);
+		shell.setSize(284, 135);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -52,18 +52,18 @@ public class AddBuildingWindow
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 80, 111, 27);
+		btnBack.setBounds(10, 60, 111, 27);
 		
 		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(98, 37, 160, 27);
+		txtInput.setBounds(98, 17, 160, 27);
 		
 		
 		// ======= label 'building' ======
 		lblBuilding = new Label(shell, SWT.NONE);
 		lblBuilding.setAlignment(SWT.RIGHT);
-		lblBuilding.setBounds(10, 42, 82, 15);
+		lblBuilding.setBounds(10, 20, 82, 15);
 		lblBuilding.setText("Building");
 		
 		
@@ -95,7 +95,7 @@ public class AddBuildingWindow
 			}
 		});
 		btnAdd.setText("Add");
-		btnAdd.setBounds(147, 80, 111, 27);
+		btnAdd.setBounds(147, 60, 111, 27);
 		
 		
 		
