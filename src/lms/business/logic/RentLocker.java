@@ -8,7 +8,7 @@ import lms.business.Rental;
 public class RentLocker
 {
 	// selectedLocker is guaranteed to not be rented. As we do not allow rented lockers to be selected
-	public static Rental rent(UUID potentialRenterUUID, UUID selectedLockerUUID, UUID termUUID, float price)
+	public static Rental rent(UUID potentialRenterUUID, UUID selectedLockerUUID, UUID termUUID, double price)
 	{
 		ArrayList<Rental> rentalTerm = Rental.getListByTerm(termUUID);
 		boolean isRenting = false;

@@ -37,7 +37,7 @@ public class LockerWindow
 	
 	private Locker selectedLocker;
 	private Student potentialRenter;
-	private float price;
+	private double price;
 	
 	private Button btnBack;
 	private Button btnRent;

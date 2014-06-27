@@ -1,15 +1,17 @@
 package lms.application;
 
 import java.util.ArrayList;
-
+import lms.business.LockerSize;
 import lms.business.Building;
-
+import lms.business.logic.AddLocker;
+import lms.business.logic.CurrentTermInfo;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
@@ -33,6 +35,8 @@ public class AddLockerWindow
 	
 	private Label lblLocker;
 	private Combo drpBuilding;
+	
+	LockerSize size; 
 	
 	private ArrayList<Building> allBuildings = Building.getAll();
 	private String[] buildings = new String[allBuildings.size()];
@@ -93,22 +97,20 @@ public class AddLockerWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// add locker here with txtInput
 				
-				// Building selectedbuilding = allBuildings.get(drpBuilding.getSelectionIndex());
+				Building selectedBuilding = allBuildings.get(drpBuilding.getSelectionIndex());
 				
-				/*
 				if(btnFull.getSelection())
 				{
-					
+					size = LockerSize.FULL;
 				}
 				else if(btnHalf.getSelection())
 				{
-					
+					size = LockerSize.HALF;
 				}
-				
-				if(added?)
+				if(txtInput != null)
 				{
+					AddLocker.insert(CurrentTermInfo.currentTerm.getId(), txtInput.getText(), selectedBuilding.getId(), size);
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Added");
 					dlgSuccess.setMessage(txtInput.getText()+" Locker added");
@@ -121,7 +123,6 @@ public class AddLockerWindow
 					dlgFail.setMessage("Error : "+txtInput.getText() + " Locker not added!");
 					dlgFail.open();
 				}
-				*/
 			}
 		});
 		btnAdd.setText("Add");

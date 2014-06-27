@@ -29,7 +29,7 @@ public class AddLockerTest extends TestCase
 	}
 	public void testInsert()
 	{
-		testInsert = AddLocker.insert(term, 001, building, size);
+		testInsert = AddLocker.insert(term, "001", building, size);
 		assertNotNull("insertLocker() did not add new locker, locker is null", testInsert);
 	}
 

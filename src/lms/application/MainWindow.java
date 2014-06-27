@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
+import lms.business.logic.LockerPrice;
 import lms.config.ConfigData;
 import lms.persistence.ConnectionPool;
 import lms.persistence.DBInjector;
@@ -27,6 +28,8 @@ public class MainWindow
 	private Button btnSetup;
 	private Button btnQuit;
 	private Button btnExport;
+	
+	 
 	
 	/**
 	 * Launch the application.
@@ -138,6 +141,12 @@ public class MainWindow
 		//ConfigData must be initialized BEFORE ConnectionPool
 		ConfigData.init();
 		ConnectionPool.init(4);
+		
+		LockerPrice.scienceFull = ConfigData.fullScience;
+		LockerPrice.scienceHalf = ConfigData.halfScience;
+		
+		LockerPrice.nonScienceFull = ConfigData.fullNonScience;
+		LockerPrice.nonScienceHalf = ConfigData.halfNonScience;
 		
 		//Hard code a term to be used for iteration 1 only
 		Term term = new Term(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),"Demo Term");

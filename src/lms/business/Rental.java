@@ -23,24 +23,24 @@ public class Rental implements TermBased
 	private UUID locker;
 	
 	@Getter
-	private float pricePaid;
+	private double pricePaid;
 	
 	@Getter
 	private boolean signedAgreement;
 	
-	public Rental(UUID id, UUID term, UUID student, UUID locker, float pricePaid, boolean signedAgreement)
+	public Rental(UUID id, UUID term, UUID student, UUID locker, double price, boolean signedAgreement)
 	{
 		this.id = id;
 		this.term = term;
 		this.student = student;
 		this.locker = locker;
-		this.pricePaid = pricePaid;
+		this.pricePaid = price;
 		this.signedAgreement = signedAgreement;
 	}
 	
-	public Rental(UUID term, UUID student, UUID locker, float pricePaid, boolean signedAgreement)
+	public Rental(UUID term, UUID student, UUID locker, double price, boolean signedAgreement)
 	{
-		this(UUID.randomUUID(), term, student, locker, pricePaid, signedAgreement);
+		this(UUID.randomUUID(), term, student, locker, price, signedAgreement);
 	}
 
 	@Override
