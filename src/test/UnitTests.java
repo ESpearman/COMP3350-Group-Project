@@ -1,23 +1,20 @@
 package test;
 
-import test.businesslogic.RegisterStudentsTest;
-import test.businesslogic.RentLockerTest;
-import test.integration.excel.SpreadsheetImporterImplTest;
-import test.persistence.HSQLDBImplTest;
-import test.persistence.StubDBImplTest;
+import test.businesslogic.*;
+import test.persistence.*;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class AllTests
+public class UnitTests
 {
 	public static TestSuite suite;
 
     public static Test suite()
     {
-        suite = new TestSuite("All tests");
+        suite = new TestSuite("Unit tests");
         testLogic();
         testStubDB();
-        integration();
         return suite;
     }
 
@@ -30,11 +27,5 @@ public class AllTests
     private static void testStubDB()
     {
         suite.addTestSuite(StubDBImplTest.class);
-    }
-    
-    private static void integration()
-    {
-    	suite.addTestSuite(HSQLDBImplTest.class);
-    	suite.addTestSuite(SpreadsheetImporterTest.class);
     }
 }

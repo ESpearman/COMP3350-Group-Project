@@ -30,6 +30,23 @@ public class ConnectionPool
 		}
 	}
 	
+	public static void clearConnections()
+	{
+		for(Connection conn: connections)
+		{
+			try
+			{
+				conn.close();
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		connections.clear();
+		locks.clear();
+	}
+	
 	public static Connection getConnection()
 	{
 		for(int i = 0; i < connections.size(); i++)

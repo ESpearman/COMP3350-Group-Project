@@ -1,17 +1,19 @@
-package test.integration.excel;
+package test.businesslogic;
 
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.LockerSize;
-import lms.business.Term;
-import lms.business.Student;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.SpreadsheetImporter;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.SpreadsheetImporter;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
+import lms.domainobjects.Term;
+import lms.domainobjects.Student;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
+
+//This is an integration test for testing excel spreadsheet importing
 
 public class SpreadsheetImporterTest extends TestCase 
 {

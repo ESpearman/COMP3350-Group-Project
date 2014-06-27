@@ -253,6 +253,8 @@ public class HSQLDBImplTest extends TestCase
 	public void tearDown()
 	{
 		DBProxy.instance.resetDB();
+		
+		ConnectionPool.clearConnections();
 	}
 	
 }
