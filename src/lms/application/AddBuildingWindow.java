@@ -41,30 +41,9 @@ public class AddBuildingWindow
 		shell.setLocation (x, y);
 		
 		
-		// ======= button back ======
-		btnBack = new Button(shell, SWT.NONE);
-		btnBack.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				shell.close();
-			}
-		});
-		btnBack.setText("Back");
-		btnBack.setBounds(10, 60, 111, 27);
-		
-		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(98, 17, 160, 27);
-		
-		
-		// ======= label 'building' ======
-		lblBuilding = new Label(shell, SWT.NONE);
-		lblBuilding.setAlignment(SWT.RIGHT);
-		lblBuilding.setBounds(10, 20, 82, 15);
-		lblBuilding.setText("Building");
 		
 		
 		
@@ -96,6 +75,27 @@ public class AddBuildingWindow
 		});
 		btnAdd.setText("Add");
 		btnAdd.setBounds(147, 60, 111, 27);
+		
+		
+		// ======= button back ======
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				shell.close();
+			}
+		});
+		btnBack.setText("Back");
+		btnBack.setBounds(10, 60, 111, 27);
+		
+		
+		// ======= label 'building' ======
+		lblBuilding = new Label(shell, SWT.NONE);
+		lblBuilding.setAlignment(SWT.RIGHT);
+		lblBuilding.setBounds(10, 20, 82, 15);
+		lblBuilding.setText("Building");
 		
 		
 		

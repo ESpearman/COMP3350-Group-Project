@@ -43,36 +43,16 @@ public class AddLockerWindow
 		shell.setText("Add locker");
 		shell.setLocation (x, y);
 		
-		// ======= button back ======
-		btnBack = new Button(shell, SWT.NONE);
-		btnBack.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				shell.close();
-			}
-		});
-		btnBack.setText("Back");
-		btnBack.setBounds(10, 80, 111, 27);
-		
-		
-		// ======== text 'input' ==========
-		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(98, 37, 160, 27);
-		
-		
-		// ======= label 'building' ======
-		lblLocker = new Label(shell, SWT.NONE);
-		lblLocker.setAlignment(SWT.RIGHT);
-		lblLocker.setBounds(10, 42, 82, 15);
-		lblLocker.setText("Locker");
-		
 
 		// ========= combo(dropdown list) building =======
 		drpBuilding = new Combo(shell, SWT.NONE);
 		drpBuilding.setBounds(98, 8, 160, 23);
 		drpBuilding.setText("Select a building");
+		
+		
+		// ======== text 'input' ==========
+		txtInput = new Text(shell, SWT.BORDER);
+		txtInput.setBounds(98, 37, 160, 27);
 		
 		
 		// build building list here
@@ -109,6 +89,26 @@ public class AddLockerWindow
 		});
 		btnAdd.setText("Add");
 		btnAdd.setBounds(147, 80, 111, 27);
+		
+		// ======= button back ======
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				shell.close();
+			}
+		});
+		btnBack.setText("Back");
+		btnBack.setBounds(10, 80, 111, 27);
+		
+		
+		// ======= label 'building' ======
+		lblLocker = new Label(shell, SWT.NONE);
+		lblLocker.setAlignment(SWT.RIGHT);
+		lblLocker.setBounds(10, 42, 82, 15);
+		lblLocker.setText("Locker");
 		
 
 		
