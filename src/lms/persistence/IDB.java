@@ -12,6 +12,8 @@ import lms.business.Term;
 
 public interface IDB
 {
+	void resetDB(Connection... conn);
+	
 	Term getTermById(UUID id, Connection ... conn);
 	Student getStudentById(UUID id, Connection ... conn);
 	Locker getLockerById(UUID id, Connection ... conn);

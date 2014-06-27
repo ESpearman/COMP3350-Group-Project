@@ -15,7 +15,28 @@ import lms.business.Term;
 
 public class HSQLDBImpl implements IDB
 {
-
+	@Override
+	public void resetDB(Connection ... conn)
+	{
+		ConnectionData currentConnection = getConnection(conn);
+		try
+		{
+			Statement statement = currentConnection.c.createStatement();
+			statement.executeUpdate("TRUNCATE TABLE Rental;");
+			statement.executeUpdate("TRUNCATE TABLE Locker;");
+			statement.executeUpdate("TRUNCATE TABLE Student;");
+			statement.executeUpdate("TRUNCATE TABLE Building;");
+			statement.executeUpdate("TRUNCATE TABLE Term;");
+			statement.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		releaseConnection(currentConnection);
+	}
+	
 	@Override
 	public Term getTermById(UUID id, Connection... conn)
 	{

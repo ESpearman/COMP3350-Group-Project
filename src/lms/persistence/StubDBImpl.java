@@ -30,7 +30,7 @@ public class StubDBImpl implements IDB
 		rentals = new ArrayList<BusinessObject>();
 	}
 	
-	public void resetDB()
+	public void resetDB(Connection ... conn)
 	{
 		terms.clear();
 		students.clear();

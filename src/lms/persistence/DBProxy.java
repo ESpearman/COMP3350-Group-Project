@@ -23,6 +23,11 @@ public class DBProxy implements DBInjectable
 	@Setter
 	private IDB currentDB;
 	
+	public void resetDB()
+	{
+		currentDB.resetDB();
+	}
+	
 	public Term getTermById(UUID id)
 	{
 		return currentDB.getTermById(id);
