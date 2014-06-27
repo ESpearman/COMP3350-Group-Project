@@ -195,7 +195,7 @@ public class HSQLDBImpl implements IDB
 						+ "SET first_name='" + student.getFirstName() + "', last_name='" + student.getLastName()
 							+ "', email='" + student.getEmail() + "', student_number=" + student.getStudentNumber()
 							+ ", science_student=" + student.isScienceStudent() + ", term='" + student.getTerm().toString()
-						+ "' WHERE id=" + student.getId().toString() + "';");
+						+ "' WHERE id='" + student.getId().toString() + "';");
 				updateStatement.close();
 			}
 			else
