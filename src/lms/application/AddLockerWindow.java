@@ -61,9 +61,6 @@ public class AddLockerWindow
 		
 		
 		// build building list here
-		allBuildings = Building.getAll();
-		buildings = new String[allBuildings.size()];
-
 		for ( int i = 0 ; i < allBuildings.size() ; i ++)
 		{
 			buildings[i] = allBuildings.get(i).getName();
@@ -80,6 +77,9 @@ public class AddLockerWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// add locker here with txtInput
+				
+				// Building selectedbuilding = allBuildings.get(drpBuilding.getSelectionIndex());
+				
 				/*
 				if(added?)
 				{
