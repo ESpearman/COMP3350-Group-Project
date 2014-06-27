@@ -35,6 +35,7 @@ public class AddLockerWindow
 	
 	private ArrayList<Building> allBuildings = Building.getAll();
 	private String[] buildings = new String[allBuildings.size()];
+	private Label lblBuilding;
 	
 	public void runWindow()
 	{
@@ -140,11 +141,18 @@ public class AddLockerWindow
 		btnBack.setBounds(10, 122, 111, 27);
 		
 		
-		// ======= label 'building' ======
+		// ======= label 'locker' ======
 		lblLocker = new Label(shell, SWT.NONE);
 		lblLocker.setAlignment(SWT.RIGHT);
 		lblLocker.setBounds(45, 50, 50, 16);
 		lblLocker.setText("Locker");
+		
+		
+		// =======  label 'building' ========
+		lblBuilding = new Label(shell, SWT.NONE);
+		lblBuilding.setAlignment(SWT.RIGHT);
+		lblBuilding.setBounds(40, 19, 55, 15);
+		lblBuilding.setText("Building");
 		
 		
 
