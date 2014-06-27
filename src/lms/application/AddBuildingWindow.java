@@ -1,8 +1,11 @@
 package lms.application;
 
+import lms.business.logic.AddBuilding;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
@@ -53,10 +56,10 @@ public class AddBuildingWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// add building here with txtInput
-				/*
-				if(added?)
+
+				if(txtInput.getText() != null)
 				{
+					AddBuilding.insert(txtInput.getText());
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 					dlgSuccess.setText("Added");
 					dlgSuccess.setMessage(txtInput.getText()+" Building added");
@@ -69,7 +72,6 @@ public class AddBuildingWindow
 					dlgFail.setMessage("Error : "+txtInput.getText() + " Building not added!");
 					dlgFail.open();
 				}
-				*/
 			}
 		});
 		btnAdd.setText("Add");
