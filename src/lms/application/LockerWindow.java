@@ -12,13 +12,13 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.Student;
-import lms.business.Rental;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.LockerPrice;
-import lms.business.logic.RentLocker;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.LockerPrice;
+import lms.businesslogic.RentLocker;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
 
 import java.util.ArrayList;
 

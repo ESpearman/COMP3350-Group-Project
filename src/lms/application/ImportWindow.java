@@ -2,7 +2,7 @@ package lms.application;
 
 import java.io.File;
 
-import lms.business.logic.SpreadsheetImporter;
+import lms.businesslogic.SpreadsheetImporter;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;

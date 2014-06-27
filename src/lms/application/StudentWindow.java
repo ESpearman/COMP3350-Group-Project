@@ -14,9 +14,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-import lms.business.Student;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.RegisterStudent;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.RegisterStudent;
+import lms.domainobjects.Student;
 
 
 public class StudentWindow

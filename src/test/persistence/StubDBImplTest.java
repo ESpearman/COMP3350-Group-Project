@@ -1,18 +1,18 @@
-package test.stubdb;
+package test.persistence;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 import junit.framework.TestCase;
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.LockerSize;
-import lms.business.Rental;
-import lms.business.Student;
-import lms.business.Term;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
+import lms.domainobjects.Term;
 import lms.persistence.StubDBImpl;
 
-public class StubDBTest extends TestCase
+public class StubDBImplTest extends TestCase
 {
 	private Term term;
 	private Student student;

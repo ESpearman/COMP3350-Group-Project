@@ -2,10 +2,10 @@ package lms.reset;
 
 import java.util.UUID;
 
-import lms.business.Term;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.SpreadsheetImporter;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.SpreadsheetImporter;
 import lms.config.ConfigData;
+import lms.domainobjects.Term;
 import lms.persistence.ConnectionPool;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;

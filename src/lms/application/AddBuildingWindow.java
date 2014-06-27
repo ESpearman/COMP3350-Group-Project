@@ -1,6 +1,6 @@
 package lms.application;
 
-import lms.business.logic.AddBuilding;
+import lms.businesslogic.AddBuilding;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;

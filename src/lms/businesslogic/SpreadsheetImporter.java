@@ -1,13 +1,13 @@
-package lms.business.logic;
+package lms.businesslogic;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.LockerSize;
-import lms.business.Student;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
+import lms.domainobjects.Student;
 import lombok.Getter;
 import lombok.Setter;
 

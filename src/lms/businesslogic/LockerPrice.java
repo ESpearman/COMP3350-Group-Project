@@ -1,8 +1,8 @@
-package lms.business.logic;
+package lms.businesslogic;
 
-import lms.business.Locker;
-import lms.business.LockerSize;
-import lms.business.Student;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
+import lms.domainobjects.Student;
 
 public class LockerPrice
 {

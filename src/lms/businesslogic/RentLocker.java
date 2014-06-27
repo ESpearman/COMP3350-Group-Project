@@ -1,9 +1,9 @@
-package lms.business.logic;
+package lms.businesslogic;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.business.Rental;
+import lms.domainobjects.Rental;
 
 public class RentLocker
 {

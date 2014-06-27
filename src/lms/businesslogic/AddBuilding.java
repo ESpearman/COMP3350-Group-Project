@@ -1,5 +1,5 @@
-package lms.business.logic;
-import lms.business.Building;
+package lms.businesslogic;
+import lms.domainobjects.Building;
 
 public class AddBuilding 
 {

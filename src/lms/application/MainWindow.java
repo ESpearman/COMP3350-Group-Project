@@ -3,10 +3,10 @@ package lms.application;
 
 import java.util.UUID;
 
-import lms.business.Term;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.LockerPrice;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.LockerPrice;
 import lms.config.ConfigData;
+import lms.domainobjects.Term;
 import lms.persistence.ConnectionPool;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;

@@ -1,9 +1,9 @@
-package lms.business.logic;
+package lms.businesslogic;
 
 import java.util.UUID;
 
-import lms.business.Locker;
-import lms.business.LockerSize;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
 
 public class AddLocker 
 {

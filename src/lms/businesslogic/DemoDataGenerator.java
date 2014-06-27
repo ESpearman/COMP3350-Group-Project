@@ -1,8 +1,8 @@
-package lms.business.logic;
+package lms.businesslogic;
 
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.LockerSize;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
 
 public class DemoDataGenerator
 {

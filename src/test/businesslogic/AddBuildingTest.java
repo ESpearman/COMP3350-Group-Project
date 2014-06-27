@@ -1,12 +1,12 @@
-package test.business.logic;
+package test.businesslogic;
 
 import java.util.UUID;
 
 import junit.framework.TestCase;
-import lms.business.Building;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
-import lms.business.logic.AddBuilding;
+import lms.businesslogic.AddBuilding;
+import lms.domainobjects.Building;
 
 public class AddBuildingTest extends TestCase
 {

@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.business.Building;
-import lms.business.BusinessObject;
-import lms.business.Locker;
-import lms.business.Rental;
-import lms.business.Student;
-import lms.business.Term;
-import lms.business.TermBased;
+import lms.domainobjects.Building;
+import lms.domainobjects.BusinessObject;
+import lms.domainobjects.Locker;
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
+import lms.domainobjects.Term;
+import lms.domainobjects.TermBased;
 
 public class StubDBImpl implements IDB
 {

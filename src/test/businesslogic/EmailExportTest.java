@@ -1,13 +1,13 @@
-package test.business.logic;
+package test.businesslogic;
 
 import java.util.UUID;
 
 import junit.framework.TestCase;
-import lms.business.Rental;
-import lms.business.Student;
-import lms.business.Term;
-import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.EmailExport;
+import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.EmailExport;
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
+import lms.domainobjects.Term;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 

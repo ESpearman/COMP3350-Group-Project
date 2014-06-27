@@ -1,13 +1,13 @@
-package test.business.logic;
+package test.businesslogic;
 
 import java.util.UUID;
 
 import junit.framework.TestCase;
-import lms.business.Locker;
-import lms.business.LockerSize;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
-import lms.business.logic.AddLocker;
+import lms.businesslogic.AddLocker;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
 
 public class AddLockerTest extends TestCase
 {

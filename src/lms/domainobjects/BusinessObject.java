@@ -1,4 +1,4 @@
-package lms.business;
+package lms.domainobjects;
 
 import java.util.UUID;
 

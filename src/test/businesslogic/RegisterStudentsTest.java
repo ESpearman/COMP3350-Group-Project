@@ -1,8 +1,8 @@
-package test.business.logic;
+package test.businesslogic;
 
 import junit.framework.TestCase;
-import lms.business.Student;
-import lms.business.logic.RegisterStudent;
+import lms.businesslogic.RegisterStudent;
+import lms.domainobjects.Student;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 

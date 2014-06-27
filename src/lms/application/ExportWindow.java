@@ -2,7 +2,7 @@ package lms.application;
 
 import java.io.*;
 
-import lms.business.logic.EmailExport;
+import lms.businesslogic.EmailExport;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;

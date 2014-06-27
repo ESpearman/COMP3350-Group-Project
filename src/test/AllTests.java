@@ -1,10 +1,10 @@
 package test;
 
-import test.business.logic.RegisterStudentsTest;
-import test.business.logic.RentLockerTest;
+import test.businesslogic.RegisterStudentsTest;
+import test.businesslogic.RentLockerTest;
 import test.integration.excel.SpreadsheetImporterImplTest;
-import test.integration.hsqldb.HSQLDBImplTest;
-import test.stubdb.StubDBTest;
+import test.persistence.HSQLDBImplTest;
+import test.persistence.StubDBImplTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -29,7 +29,7 @@ public class AllTests
 
     private static void testStubDB()
     {
-        suite.addTestSuite(StubDBTest.class);
+        suite.addTestSuite(StubDBImplTest.class);
     }
     
     private static void integration()

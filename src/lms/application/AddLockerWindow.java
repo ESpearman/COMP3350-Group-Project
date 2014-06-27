@@ -1,10 +1,12 @@
 package lms.application;
 
 import java.util.ArrayList;
-import lms.business.LockerSize;
-import lms.business.Building;
-import lms.business.logic.AddLocker;
-import lms.business.logic.CurrentTermInfo;
+
+import lms.businesslogic.AddLocker;
+import lms.businesslogic.CurrentTermInfo;
+import lms.domainobjects.Building;
+import lms.domainobjects.LockerSize;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;

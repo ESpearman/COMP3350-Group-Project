@@ -1,8 +1,9 @@
-package lms.business.logic;
+package lms.businesslogic;
 
 import java.util.ArrayList;
-import lms.business.Rental;
-import lms.business.Student;
+
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
 
 public class EmailExport
 {	

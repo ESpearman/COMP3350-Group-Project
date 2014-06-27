@@ -1,13 +1,13 @@
-package test.business.logic;
+package test.businesslogic;
 
 import junit.framework.TestCase;
-import lms.business.Rental;
-import lms.business.Student;
-import lms.business.Building;
-import lms.business.Locker;
-import lms.business.Term;
-import lms.business.LockerSize;
-import lms.business.logic.RentLocker;
+import lms.businesslogic.RentLocker;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.LockerSize;
+import lms.domainobjects.Rental;
+import lms.domainobjects.Student;
+import lms.domainobjects.Term;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 

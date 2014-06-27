@@ -1,4 +1,4 @@
-package lms.business;
+package lms.domainobjects;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.val;
 
-public class Term implements BusinessObject
+public class Building implements BusinessObject
 {
 	@Getter
 	private UUID id;
@@ -16,40 +16,40 @@ public class Term implements BusinessObject
 	@Getter
 	private String name;
 	
-	public Term(UUID id, String name)
+	public Building(UUID id, String name)
 	{
 		this.id = id;
 		this.name = name;
 	}
 	
-	public Term(String name)
+	public Building(String name)
 	{
 		this(UUID.randomUUID(), name);
+	}
+
+	@Override
+	public void save()
+	{
+		DBProxy.instance.saveBuilding(this);
 	}
 	
 	@Override
 	public BusinessObject clone()
 	{
-		return (BusinessObject)(new Term(id, name));
+		return new Building(id, name);
 	}
 	
-	@Override
-	public void save()
+	public static Building getById(UUID id)
 	{
-		DBProxy.instance.saveTerm(this);
+		return DBProxy.instance.getBuildingById(id);
 	}
 	
-	public static Term getById(UUID id)
+	public static ArrayList<Building> getAll()
 	{
-		return DBProxy.instance.getTermById(id);
+		return DBProxy.instance.getAllBuildings();
 	}
 	
-	public static ArrayList<Term> getAll()
-	{
-		return DBProxy.instance.getAllTerms();
-	}
-	
-	public static Term parse(ResultSet result)
+	public static Building parse(ResultSet result)
 	{
 		try
 		{
@@ -58,7 +58,7 @@ public class Term implements BusinessObject
 			
 			val idUUID = UUID.fromString(id);
 			
-			return new Term(idUUID, name);
+			return new Building(idUUID, name);
 		}
 		catch(Exception e)
 		{
