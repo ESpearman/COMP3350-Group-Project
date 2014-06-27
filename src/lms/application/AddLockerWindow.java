@@ -86,7 +86,6 @@ public class AddLockerWindow
 		
 		
 		
-		
 		// ======== button add =========
 		btnAdd = new Button(shell, SWT.NONE);
 		btnAdd.addSelectionListener(new SelectionAdapter()
