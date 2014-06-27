@@ -90,7 +90,6 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent e)
 			{
 				Building building = buildingsAL.get(drpBuilding.getSelectionIndex());
-				//lockersAL = SearchLockers.getUnusedLockers(building.getId(), CurrentTermInfo.currentTerm.getId());
 				lockersAL = Locker.getFreeByBuildingAndTerm(building.getId(), CurrentTermInfo.currentTerm.getId());
 				lockers = new String[lockersAL.size()];
 				
