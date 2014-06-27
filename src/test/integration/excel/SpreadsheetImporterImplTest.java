@@ -1,4 +1,4 @@
-package test.business.logic;
+package test.integration.excel;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import lms.business.logic.SpreadsheetImporter;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 
-public class SpreadsheetImporterTest extends TestCase 
+public class SpreadsheetImporterImplTest extends TestCase 
 {
 	ArrayList<Student> students;
 	ArrayList<Locker> lockers;

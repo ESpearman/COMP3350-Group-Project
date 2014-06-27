@@ -19,7 +19,7 @@ public class SpreadsheetImporter
 	@Getter
 	@Setter
 	private static String status;
-	private static int maxChars = 50;
+	private static int maxChars = 100;
 	
 	public static void importStudents(String path)
 	{
