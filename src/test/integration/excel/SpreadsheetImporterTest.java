@@ -13,7 +13,7 @@ import lms.business.logic.SpreadsheetImporter;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 
-public class SpreadsheetImporterImplTest extends TestCase 
+public class SpreadsheetImporterTest extends TestCase 
 {
 	ArrayList<Student> students;
 	ArrayList<Locker> lockers;

@@ -35,6 +35,6 @@ public class AllTests
     private static void integration()
     {
     	suite.addTestSuite(HSQLDBImplTest.class);
-    	suite.addTestSuite(SpreadsheetImporterImplTest.class);
+    	suite.addTestSuite(SpreadsheetImporterTest.class);
     }
 }
