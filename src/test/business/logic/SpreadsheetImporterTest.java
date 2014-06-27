@@ -10,7 +10,8 @@ import lms.business.Term;
 import lms.business.Student;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SpreadsheetImporter;
-import lms.persistence.CurrentDB;
+import lms.persistence.DBInjector;
+import lms.persistence.DBProxy;
 
 public class SpreadsheetImporterTest extends TestCase 
 {
@@ -19,7 +20,8 @@ public class SpreadsheetImporterTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
-		CurrentDB.init(true);
+		DBProxy.instance = new DBProxy();
+		DBInjector.injectInto(DBProxy.instance, true);
 		Term currentTerm = new Term("Summer 2014");
 		currentTerm.save();
 		

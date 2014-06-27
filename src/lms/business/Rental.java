@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
+import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.val;
 
@@ -46,27 +46,27 @@ public class Rental implements TermBased
 	@Override
 	public void save()
 	{
-		DBProxy.saveRental(this);
+		DBProxy.instance.saveRental(this);
 	}
 	
 	public static Rental getById(UUID id)
 	{
-		return DBProxy.getRentalById(id);
+		return DBProxy.instance.getRentalById(id);
 	}
 	
 	public static ArrayList<Rental> getListByTerm(UUID term)
 	{
-		return DBProxy.getRentalsListByTerm(term);
+		return DBProxy.instance.getRentalsListByTerm(term);
 	}
 	
 	public static Rental getByLocker(UUID locker)
 	{
-		return DBProxy.getRentalByLocker(locker);
+		return DBProxy.instance.getRentalByLocker(locker);
 	}
 	
 	public static Rental getByStudent(UUID student)
 	{
-		return DBProxy.getRentalByStudent(student);
+		return DBProxy.instance.getRentalByStudent(student);
 	}
 	
 	@Override

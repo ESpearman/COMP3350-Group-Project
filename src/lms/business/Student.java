@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
+import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
@@ -63,22 +63,22 @@ public class Student implements TermBased
 	@Override
 	public void save()
 	{
-		DBProxy.saveStudent(this);
+		DBProxy.instance.saveStudent(this);
 	}
 	
 	public static Student getById(UUID id)
 	{
-		return DBProxy.getStudentById(id);
+		return DBProxy.instance.getStudentById(id);
 	}
 	
 	public static Student getByStudentNumber(int number, UUID term)
 	{
-		return DBProxy.getStudentByNumberAndTerm(number, term);
+		return DBProxy.instance.getStudentByNumberAndTerm(number, term);
 	}
 	
 	public static ArrayList<Student> getListByTerm(UUID term)
 	{
-		return DBProxy.getStudentsListByTerm(term);
+		return DBProxy.instance.getStudentsListByTerm(term);
 	}
 	
 	public static Student parse(ResultSet result)

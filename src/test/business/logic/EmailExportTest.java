@@ -8,7 +8,8 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.EmailExport;
-import lms.persistence.CurrentDB;
+import lms.persistence.DBInjector;
+import lms.persistence.DBProxy;
 
 public class EmailExportTest extends TestCase
 {
@@ -18,7 +19,8 @@ public class EmailExportTest extends TestCase
 	
 	protected void setUp()
 	{
-		CurrentDB.init(true);
+		DBProxy.instance = new DBProxy();
+		DBInjector.injectInto(DBProxy.instance, true);
 		Term currentTerm = new Term("Summer 2014");
 		currentTerm.save();
 		CurrentTermInfo.currentTerm = currentTerm;

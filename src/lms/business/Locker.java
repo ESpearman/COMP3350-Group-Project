@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
+import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
@@ -44,27 +44,27 @@ public class Locker implements TermBased
 	@Override
 	public void save()
 	{
-		DBProxy.saveLocker(this);
+		DBProxy.instance.saveLocker(this);
 	}
 
 	public static Locker getById(UUID id)
 	{
-		return DBProxy.getLockerById(id);
+		return DBProxy.instance.getLockerById(id);
 	}
 	
 	public static ArrayList<Locker> getListByTerm(UUID term)
 	{
-		return DBProxy.getLockersListByTerm(term);
+		return DBProxy.instance.getLockersListByTerm(term);
 	}
 	
 	public static Locker getByNumberBuildingAndTerm(int number, UUID building, UUID term)
 	{
-		return DBProxy.getLockerByNumberBuildingAndTerm(number, building, term);
+		return DBProxy.instance.getLockerByNumberBuildingAndTerm(number, building, term);
 	}
 	
 	public static ArrayList<Locker> getFreeByBuildingAndTerm(UUID building, UUID term)
 	{
-		return DBProxy.getFreeLockersForBuildingAndTerm(building, term);
+		return DBProxy.instance.getFreeLockersForBuildingAndTerm(building, term);
 	}
 	
 	@Override

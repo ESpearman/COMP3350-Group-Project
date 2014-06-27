@@ -1,15 +1,13 @@
 package lms.persistence;
 
 
-public class CurrentDB
-{
-	public static IDB currentDB;
-	
-	public static void init(boolean testing)
+public class DBInjector
+{	
+	public static void injectInto(DBInjectable toInject, boolean testing)
 	{
 		if(testing)
 		{
-			currentDB = new StubDBImpl();
+			toInject.setCurrentDB(new StubDBImpl());
 		}
 		else
 		{
@@ -21,7 +19,7 @@ public class CurrentDB
 		        return;
 		    }
 			
-			currentDB = new HSQLDBImpl();
+			toInject.setCurrentDB(new HSQLDBImpl());
 		}
 	}
 }

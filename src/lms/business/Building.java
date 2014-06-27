@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
+import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.val;
 
@@ -30,7 +30,7 @@ public class Building implements BusinessObject
 	@Override
 	public void save()
 	{
-		DBProxy.saveBuilding(this);
+		DBProxy.instance.saveBuilding(this);
 	}
 	
 	@Override
@@ -41,12 +41,12 @@ public class Building implements BusinessObject
 	
 	public static Building getById(UUID id)
 	{
-		return DBProxy.getBuildingById(id);
+		return DBProxy.instance.getBuildingById(id);
 	}
 	
 	public static ArrayList<Building> getAll()
 	{
-		return DBProxy.getAllBuildings();
+		return DBProxy.instance.getAllBuildings();
 	}
 	
 	public static Building parse(ResultSet result)

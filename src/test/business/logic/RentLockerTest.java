@@ -8,7 +8,8 @@ import lms.business.Locker;
 import lms.business.Term;
 import lms.business.LockerSize;
 import lms.business.logic.RentLocker;
-import lms.persistence.CurrentDB;
+import lms.persistence.DBInjector;
+import lms.persistence.DBProxy;
 
 public class RentLockerTest extends TestCase
 {
@@ -25,7 +26,8 @@ public class RentLockerTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
-		CurrentDB.init(true);
+		DBProxy.instance = new DBProxy();
+		DBInjector.injectInto(DBProxy.instance, true);
 		price = 20;
 		term = new Term("Test Term");
 		building = new Building("Test Building");

@@ -3,7 +3,8 @@ package test.business.logic;
 import junit.framework.TestCase;
 import lms.business.Student;
 import lms.business.logic.RegisterStudent;
-import lms.persistence.CurrentDB;
+import lms.persistence.DBInjector;
+import lms.persistence.DBProxy;
 
 import java.util.UUID;
 
@@ -19,7 +20,8 @@ public class RegisterStudentsTest extends TestCase
 
 	public void setUp() throws Exception 
 	{
-		CurrentDB.init(true);
+		DBProxy.instance = new DBProxy();
+		DBInjector.injectInto(DBProxy.instance, true);
 		newStudent = new Student(id, "billal", "kohistani", "umkohisb", 1234567, true, term);
 		newStudent.save();
 	}

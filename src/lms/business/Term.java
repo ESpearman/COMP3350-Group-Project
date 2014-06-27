@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import lms.db.DBProxy;
+import lms.persistence.DBProxy;
 import lombok.Getter;
 import lombok.val;
 
@@ -36,17 +36,17 @@ public class Term implements BusinessObject
 	@Override
 	public void save()
 	{
-		DBProxy.saveTerm(this);
+		DBProxy.instance.saveTerm(this);
 	}
 	
 	public static Term getById(UUID id)
 	{
-		return DBProxy.getTermById(id);
+		return DBProxy.instance.getTermById(id);
 	}
 	
 	public static ArrayList<Term> getAll()
 	{
-		return DBProxy.getAllTerms();
+		return DBProxy.instance.getAllTerms();
 	}
 	
 	public static Term parse(ResultSet result)

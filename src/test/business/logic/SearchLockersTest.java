@@ -13,7 +13,8 @@ import lms.business.Student;
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.SearchLockers;
-import lms.persistence.CurrentDB;
+import lms.persistence.DBInjector;
+import lms.persistence.DBProxy;
 
 public class SearchLockersTest extends TestCase
 {
@@ -33,7 +34,8 @@ public class SearchLockersTest extends TestCase
 	
 	protected void setUp() throws Exception
 	{
-		CurrentDB.init(true);
+		DBProxy.instance = new DBProxy();
+		DBInjector.injectInto(DBProxy.instance, true);
 		lockerUUID = UUID.randomUUID();
 		buildingUUID = UUID.randomUUID();
 		rentalUUID = UUID.randomUUID();

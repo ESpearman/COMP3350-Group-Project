@@ -233,7 +233,7 @@ public class HSQLDBImpl implements IDB
 			{
 				Statement updateStatement = currentConnection.c.createStatement();
 				updateStatement.executeUpdate("UPDATE Locker " + "SET term='" + locker.getTerm().toString() + "', num=" + locker.getNumber()
-						+ ", building='" + locker.getBuilding().toString() + "', locker_size='" + locker.getSizeString()
+						+ ", building='" + locker.getBuilding().toString() + "', locker_size='" + locker.getSize().name()
 						+ "' WHERE id=" + locker.getId().toString() + "';");
 				updateStatement.close();
 			}
@@ -241,7 +241,7 @@ public class HSQLDBImpl implements IDB
 			{
 				Statement insertStatement = currentConnection.c.createStatement();
 				insertStatement.executeUpdate("INSERT INTO Locker VALUES ('" + locker.getId().toString() + "', '" + locker.getTerm() + "', " 
-						+ locker.getNumber() + ", '" + locker.getBuilding().toString() + "', '" + locker.getSizeString() + "');");
+						+ locker.getNumber() + ", '" + locker.getBuilding().toString() + "', '" + locker.getSize().name() + "');");
 				insertStatement.close();
 			}
 			
