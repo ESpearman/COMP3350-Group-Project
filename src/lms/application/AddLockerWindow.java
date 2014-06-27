@@ -77,11 +77,11 @@ public class AddLockerWindow
 		
 		// ======== radio button ( size ) ========
 		btnFull = new Button(shell, SWT.RADIO);
-		btnFull.setBounds(82, 90, 90, 16);
+		btnFull.setBounds(82, 90, 55, 16);
 		btnFull.setText("Full");
 		
 		btnHalf = new Button(shell, SWT.RADIO);
-		btnHalf.setBounds(168, 90, 90, 16);
+		btnHalf.setBounds(168, 90, 55, 16);
 		btnHalf.setText("Half");
 		
 		
