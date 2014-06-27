@@ -1,6 +1,5 @@
 package lms.application;
 
-
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;

@@ -606,7 +606,7 @@ public class HSQLDBImpl implements IDB
 		try
 		{
 			Statement statement = currentConnection.c.createStatement();
-			ResultSet results = statement.executeQuery("SELECT * FROM Locker WHERE term='" + term + "', building='" + building
+			ResultSet results = statement.executeQuery("SELECT * FROM Locker WHERE term='" + term + "'AND building='" + building
 					+ "' AND Locker.id NOT IN (SELECT locker FROM Rental);");
 			while(results.next())
 				{

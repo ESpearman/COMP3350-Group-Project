@@ -1,5 +1,9 @@
 package lms.application;
 
+import java.util.ArrayList;
+
+import lms.business.Building;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
@@ -26,7 +30,8 @@ public class AddLockerWindow
 	private Label lblLocker;
 	private Combo drpBuilding;
 	
-
+	private ArrayList<Building> allBuildings = Building.getAll();
+	private String[] buildings = new String[allBuildings.size()];
 	
 	public void runWindow()
 	{
@@ -48,7 +53,7 @@ public class AddLockerWindow
 		drpBuilding = new Combo(shell, SWT.NONE);
 		drpBuilding.setBounds(98, 8, 160, 23);
 		drpBuilding.setText("Select a building");
-		
+
 		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
@@ -56,11 +61,13 @@ public class AddLockerWindow
 		
 		
 		// build building list here
-
-		//drpBuilding.setItems(StringArray);
+		for ( int i = 0 ; i < allBuildings.size() ; i ++)
+		{
+			buildings[i] = allBuildings.get(i).getName();
+		}
+		drpBuilding.setItems(buildings);
 		
 		
-
 		// ======== button add =========
 		btnAdd = new Button(shell, SWT.NONE);
 		btnAdd.addSelectionListener(new SelectionAdapter()
@@ -69,6 +76,9 @@ public class AddLockerWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// add locker here with txtInput
+				
+				// Building selectedbuilding = allBuildings.get(drpBuilding.getSelectionIndex());
+				
 				/*
 				if(added?)
 				{

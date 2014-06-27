@@ -17,7 +17,6 @@ import lms.business.Locker;
 import lms.business.Student;
 import lms.business.Rental;
 import lms.business.logic.CurrentTermInfo;
-import lms.business.logic.SearchLockers;
 import lms.business.logic.LockerPrice;
 import lms.business.logic.RentLocker;
 
@@ -91,7 +90,7 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent e)
 			{
 				Building building = buildingsAL.get(drpBuilding.getSelectionIndex());
-				lockersAL = SearchLockers.getUnusedLockers(building.getId(), CurrentTermInfo.currentTerm.getId());
+				lockersAL = Locker.getFreeByBuildingAndTerm(building.getId(), CurrentTermInfo.currentTerm.getId());
 				lockers = new String[lockersAL.size()];
 				
 				//build up lockers to select from
