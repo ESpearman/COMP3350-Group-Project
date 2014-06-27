@@ -17,7 +17,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import lms.business.Student;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.RegisterStudent;
-import lms.business.logic.SearchStudent;
+
 
 public class StudentWindow
 {
@@ -90,7 +90,7 @@ public class StudentWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				searchedStudent = SearchStudent.getByStudentNumber(txtStudentNumber.getText());
+				searchedStudent = Student.getByStudentNumber(Integer.parseInt(txtStudentNumber.getText()), CurrentTermInfo.currentTerm.getId());
 				
 				//If the student exists in the database, auto-populate
 				if(searchedStudent != null)

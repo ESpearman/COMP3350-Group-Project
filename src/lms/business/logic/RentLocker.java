@@ -16,7 +16,7 @@ public class RentLocker
 		// Check current term if they're already renting a locker this term
 		for(int i = 0; i < rentalTerm.size() && isRenting == false; i++)
 		{
-			if(rentalTerm.get(i).getStudent() == potentialRenterUUID)
+			if(rentalTerm.get(i).getStudent().equals(potentialRenterUUID))
 			{
 				isRenting = true;
 			}
