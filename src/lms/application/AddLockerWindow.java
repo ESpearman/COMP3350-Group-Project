@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
 
+
 public class AddLockerWindow
 {
 	
@@ -27,17 +28,21 @@ public class AddLockerWindow
 	private Button btnAdd;
 	private Text txtInput;
 	
+	private Button btnFull;
+	private Button btnHalf;
+	
 	private Label lblLocker;
 	private Combo drpBuilding;
 	
 	private ArrayList<Building> allBuildings = Building.getAll();
 	private String[] buildings = new String[allBuildings.size()];
+	private Label lblBuilding;
 	
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(284, 155);
+		shell.setSize(284, 197);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -51,13 +56,13 @@ public class AddLockerWindow
 
 		// ========= combo(dropdown list) building =======
 		drpBuilding = new Combo(shell, SWT.NONE);
-		drpBuilding.setBounds(98, 8, 160, 23);
+		drpBuilding.setBounds(101, 15, 157, 23);
 		drpBuilding.setText("Select a building");
 
 		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(98, 37, 160, 27);
+		txtInput.setBounds(101, 44, 157, 27);
 		
 		
 		// build building list here
@@ -66,6 +71,20 @@ public class AddLockerWindow
 			buildings[i] = allBuildings.get(i).getName();
 		}
 		drpBuilding.setItems(buildings);
+		
+		
+		
+		
+		// ======== radio button ( size ) ========
+		btnFull = new Button(shell, SWT.RADIO);
+		btnFull.setBounds(82, 90, 90, 16);
+		btnFull.setText("Full");
+		
+		btnHalf = new Button(shell, SWT.RADIO);
+		btnHalf.setBounds(168, 90, 90, 16);
+		btnHalf.setText("Half");
+		
+		
 		
 		
 		// ======== button add =========
@@ -80,6 +99,15 @@ public class AddLockerWindow
 				// Building selectedbuilding = allBuildings.get(drpBuilding.getSelectionIndex());
 				
 				/*
+				if(btnFull.getSelection())
+				{
+					
+				}
+				else if(btnHalf.getSelection())
+				{
+					
+				}
+				
 				if(added?)
 				{
 					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
@@ -98,7 +126,7 @@ public class AddLockerWindow
 			}
 		});
 		btnAdd.setText("Add");
-		btnAdd.setBounds(147, 80, 111, 27);
+		btnAdd.setBounds(147, 122, 111, 27);
 		
 		// ======= button back ======
 		btnBack = new Button(shell, SWT.NONE);
@@ -111,14 +139,22 @@ public class AddLockerWindow
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 80, 111, 27);
+		btnBack.setBounds(10, 122, 111, 27);
 		
 		
-		// ======= label 'building' ======
+		// ======= label 'locker' ======
 		lblLocker = new Label(shell, SWT.NONE);
 		lblLocker.setAlignment(SWT.RIGHT);
-		lblLocker.setBounds(10, 42, 82, 15);
+		lblLocker.setBounds(45, 50, 50, 16);
 		lblLocker.setText("Locker");
+		
+		
+		// =======  label 'building' ========
+		lblBuilding = new Label(shell, SWT.NONE);
+		lblBuilding.setAlignment(SWT.RIGHT);
+		lblBuilding.setBounds(40, 19, 55, 15);
+		lblBuilding.setText("Building");
+		
 		
 
 		
