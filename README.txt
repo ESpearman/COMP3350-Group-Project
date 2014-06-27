@@ -3,17 +3,14 @@ COMP3350-Group-Project
 
 Version control system location :
 https://github.com/ESpearman/COMP3350-Group-Project
-Iteration 1 files can be found in the iteration 1 branch
+Iteration 2 files can be found in the iteration 2 branch
 
     When our JUnit tests were run in eclipse during development, all of them ran and passed, and continue to do so,
 however, when we tried running them via our RunUnitTest.bat script, several of our tests began failing
-while still passing when run through eclipse. We discovered this within an hour of the submission deadline
-and we were unable to resolve the issue in time.
+while still passing when run through eclipse.
 
-Importing
-	An excel file of student or locker information can be imported opening the import window (click import button),
-	typing in the absolute path the file and clicking the button to select which type of information to import.
-	Some example Excel files are located in src/test/testFiles/.
+To import student data from a spreadsheet, 
+	
 	
 Student Registration
 	Clicking the register button from the main menu will bring up the student reigstration window.
