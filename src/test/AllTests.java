@@ -2,7 +2,7 @@ package test;
 
 import test.business.logic.RegisterStudentsTest;
 import test.business.logic.RentLockerTest;
-import test.integration.excel.SpreadsheetImporterImplTest;
+import test.integration.excel.SpreadsheetImporterTest;
 import test.integration.hsqldb.HSQLDBImplTest;
 import test.stubdb.StubDBTest;
 import junit.framework.Test;
@@ -35,6 +35,6 @@ public class AllTests
     private static void integration()
     {
     	suite.addTestSuite(HSQLDBImplTest.class);
-    	suite.addTestSuite(SpreadsheetImporterImplTest.class);
+    	suite.addTestSuite(SpreadsheetImporterTest.class);
     }
 }
