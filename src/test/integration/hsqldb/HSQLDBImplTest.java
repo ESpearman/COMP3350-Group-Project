@@ -10,6 +10,8 @@ import lms.business.LockerSize;
 import lms.business.Rental;
 import lms.business.Student;
 import lms.business.Term;
+import lms.config.ConfigData;
+import lms.persistence.ConnectionPool;
 import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 
@@ -27,6 +29,11 @@ public class HSQLDBImplTest extends TestCase
 	{
 		DBProxy.instance = new DBProxy();
 		DBInjector.injectInto(DBProxy.instance, false);
+		
+		ConfigData.init();
+		ConnectionPool.init(4);
+		
+		DBProxy.instance.resetDB();
 		
 		term = new Term("Summer 2014");
 		student = new Student("First", "Last", "test@example.com", 123456, true, term.getId());
@@ -143,6 +150,46 @@ public class HSQLDBImplTest extends TestCase
 		assertEquals("Found rentals associated with fake term", testResult, true);
 	}
 	
+	public void testSaveTerm()
+	{
+		Term newTerm = new Term("Test Term");
+		newTerm.save();
+		UUID termId = newTerm.getId();
+		assertNotNull("Could not find saved term", Term.getById(termId));
+	}
+	
+	public void testSaveStudent()
+	{
+		Student newStudent = new Student("Test", "Student", "email", 1234567, true, term.getId());
+		newStudent.save();
+		UUID studentId = newStudent.getId();
+		assertNotNull("Could not find saved student", Student.getById(studentId));
+	}
+	
+	public void testSaveBuilding()
+	{
+		Building newBuilding = new Building("new Building");
+		newBuilding.save();
+		UUID buildingId = newBuilding.getId();
+		assertNotNull("Could not find saved building", Building.getById(buildingId));
+	}
+	
+	public void testSaveLocker()
+	{
+		Locker newLocker = new Locker(term.getId(), 1, building.getId(), LockerSize.FULL);
+		newLocker.save();
+		UUID lockerId = newLocker.getId();
+		assertNotNull("Could not find saved locker", Locker.getById(lockerId));
+	}
+	
+	public void testSaveRental()
+	{
+		Rental newRental = new Rental(term.getId(), student.getId(), locker.getId(), 1f, true);
+		newRental.save();
+		UUID rentalId = newRental.getId();
+		assertNotNull("Could not find saved rental", Rental.getById(rentalId));
+	}
+	
 	public void testGetStudentByNumber()
 	{
 		Student clone = Student.getByStudentNumber(student.getStudentNumber(), term.getId());
@@ -203,5 +250,9 @@ public class HSQLDBImplTest extends TestCase
 		assertEquals("Wrong number of buildings returned", buildings.size(), 1);
 	}
 	
+	public void tearDown()
+	{
+		DBProxy.instance.resetDB();
+	}
 	
 }

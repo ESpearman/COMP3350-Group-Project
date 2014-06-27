@@ -3,6 +3,7 @@ package test;
 import test.business.logic.RegisterStudentsTest;
 import test.business.logic.RentLockerTest;
 import test.business.logic.SpreadsheetImporterTest;
+import test.integration.hsqldb.HSQLDBImplTest;
 import test.stubdb.StubDBTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -16,6 +17,7 @@ public class AllTests
         suite = new TestSuite("All tests");
         testLogic();
         testStubDB();
+        integration();
         return suite;
     }
 
@@ -29,5 +31,10 @@ public class AllTests
     private static void testStubDB()
     {
         suite.addTestSuite(StubDBTest.class);
+    }
+    
+    private static void integration()
+    {
+    	suite.addTestSuite(HSQLDBImplTest.class);
     }
 }
