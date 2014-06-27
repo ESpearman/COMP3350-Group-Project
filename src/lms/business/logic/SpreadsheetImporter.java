@@ -26,7 +26,7 @@ public class SpreadsheetImporter
 		try 
 		{
 			Sheet studentSheet = getSheet(path);
-			status = "Import completed succesfully.";
+			status = "Student import completed succesfully.";
 
 			for (Row row : studentSheet) 
 			{
@@ -51,7 +51,7 @@ public class SpreadsheetImporter
 		try 
 		{
 			Sheet lockerSheet = getSheet(path);
-			status = "Import completed successfully";
+			status = "Locker import completed successfully";
 
 			for (Row row : lockerSheet) 
 			{
@@ -192,9 +192,9 @@ public class SpreadsheetImporter
 				{
 					result = false;
 					
-					status = "Warning: Some students may have not been imported correctly!"
+					status = "Warning: Some students may have not been imported correctly!\n"
 							+ "Please ensure spreadsheet has proper format: "
-							+ "first name, last name, email, student number. Max chars per field:" + maxChars;
+							+ "first name, last name, email, student number. \nMax chars per field: " + maxChars;
 				}
 			}
 		}

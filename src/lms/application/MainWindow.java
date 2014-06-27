@@ -1,6 +1,8 @@
 package lms.application;
 
 
+import java.util.UUID;
+
 import lms.business.Term;
 import lms.business.logic.CurrentTermInfo;
 import lms.business.logic.DemoDataGenerator;
@@ -137,11 +139,9 @@ public class MainWindow
 		ConnectionPool.init(4);
 		
 		//Hard code a term to be used for iteration 1 only
-		Term term = new Term("Demo Term");
+		Term term = new Term(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),"Demo Term");
 		CurrentTermInfo.currentTerm = term;
 		term.save();
-		
-		//DemoDataGenerator.generate();
 		
 		new MainWindow();
 	}

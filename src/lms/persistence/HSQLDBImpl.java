@@ -156,7 +156,7 @@ public class HSQLDBImpl implements IDB
 			if(results.next())
 			{
 				Statement updateStatement = currentConnection.c.createStatement();
-				updateStatement.executeUpdate("UPDATE Term SET name='" + term.getName()+ "' WHERE id=" + term.getId().toString() + "';");
+				updateStatement.executeUpdate("UPDATE Term SET name='" + term.getName()+ "' WHERE id='" + term.getId().toString() + "';");
 				updateStatement.close();
 			}
 			else
@@ -313,8 +313,8 @@ public class HSQLDBImpl implements IDB
 			{
 				Statement insertStatement = currentConnection.c.createStatement();
 				insertStatement.executeUpdate("INSERT INTO Rental VALUES ('" + rental.getId().toString() + "', '" + rental.getTerm().toString() 
-						+ "', student='" + rental.getStudent().toString() + "', locker='" + rental.getLocker().toString()
-						+ "', price_paid=" + rental.getPricePaid() + ", signed_agreement=" + rental.isSignedAgreement() + ");");
+						+ "', '" + rental.getStudent().toString() + "', '" + rental.getLocker().toString()
+						+ "', '" + rental.getPricePaid() + "', '" + rental.isSignedAgreement() + "');");
 				insertStatement.close();
 			}
 			

@@ -136,14 +136,14 @@ public class ImportWindow
 						
 						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 						dlgSuccess.setText("Completed");
-						dlgSuccess.setMessage("Lockers Importing completed");
+						dlgSuccess.setMessage(SpreadsheetImporter.getStatus());
 						dlgSuccess.open();
 					}
 					else
 					{
 						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 						dlgFail.setText("Failed");
-						dlgFail.setMessage("Importing failed : File does not exist");
+						dlgFail.setMessage(SpreadsheetImporter.getStatus());
 						dlgFail.open();
 					}
 				}
@@ -159,14 +159,14 @@ public class ImportWindow
 						
 						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
 						dlgSuccess.setText("Completed");
-						dlgSuccess.setMessage("Students Importing completed");
+						dlgSuccess.setMessage(SpreadsheetImporter.getStatus());
 						dlgSuccess.open();
 					}
 					else
 					{
 						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
 						dlgFail.setText("Failed");
-						dlgFail.setMessage("Importing failed : File does not exist");
+						dlgFail.setMessage(SpreadsheetImporter.getStatus());
 						dlgFail.open();
 					}
 				}
@@ -180,10 +180,7 @@ public class ImportWindow
 					dlgFail.open();
 					
 				}
-				
-				Label lblNewLabel = new Label(shell, SWT.NONE);
-				lblNewLabel.setBounds(77, 70, 55, 15);
-				lblNewLabel.setText(SpreadsheetImporter.getStatus());
+
 			}
 		});
 		btnImport.setBounds(247, 105, 111, 27);

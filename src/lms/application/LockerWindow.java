@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class LockerWindow
 {
 	private Shell shell;
-	private Shell registerShell;
 	private Display display;
 	
 	private Combo drpBuilding;
@@ -146,7 +145,6 @@ public class LockerWindow
 						dlgSuccess.setMessage("Rented");
 						dlgSuccess.open();
 						shell.close();
-						registerShell.close();
 					}
 					else
 					{
@@ -198,7 +196,6 @@ public class LockerWindow
 	public LockerWindow(Shell previousShell, Student newStudent)
 	{
 		display = Display.getDefault();
-		registerShell = previousShell;
 		potentialRenter = newStudent;
 		runWindow();
 	}
