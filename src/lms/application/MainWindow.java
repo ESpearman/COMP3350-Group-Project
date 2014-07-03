@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Combo;
 
 public class MainWindow
 {
@@ -29,7 +30,8 @@ public class MainWindow
 	private Button btnQuit;
 	private Button btnExport;
 	
-	 
+	private Combo drpTerm;
+	private Button btnAboutUs;
 	
 	/**
 	 * Launch the application.
@@ -40,7 +42,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(163, 256);
+		shell.setSize(291, 234);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -54,7 +56,7 @@ public class MainWindow
 
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(19, 181, 111, 27);
+		btnQuit.setBounds(81, 159, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -69,7 +71,7 @@ public class MainWindow
 		
 		// ==============register button ===========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(19, 10, 111, 27);
+		btnRegister.setBounds(140, 17, 111, 27);
 		btnRegister.setText("Register");
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -86,7 +88,7 @@ public class MainWindow
 		
 		// =============== import button ============
 		btnSetup = new Button(shell, SWT.NONE);
-		btnSetup.setBounds(19, 55, 111, 27);
+		btnSetup.setBounds(23, 64, 111, 27);
 		btnSetup.setText("Setup");
 		btnSetup.addSelectionListener(new SelectionAdapter()
 		{
@@ -101,7 +103,7 @@ public class MainWindow
 		
 		// =============== export button ==============
 		btnExport = new Button(shell, SWT.NONE);
-		btnExport.setBounds(19, 88, 111, 27);
+		btnExport.setBounds(140, 64, 111, 27);
 		btnExport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -112,6 +114,29 @@ public class MainWindow
 			}
 		});
 		btnExport.setText("Export");
+		
+		
+		
+		
+		// ======= dropdown term =======
+		drpTerm = new Combo(shell, SWT.NONE);
+		drpTerm.setBounds(23, 20, 111, 27);
+		drpTerm.setText("Select Term");
+		
+		
+		
+		// ======= button about us ========
+		btnAboutUs = new Button(shell, SWT.NONE);
+		btnAboutUs.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				new AboutUsWindow();
+			}
+		});
+		btnAboutUs.setText("About us");
+		btnAboutUs.setBounds(81, 126, 111, 27);
 		
 		
 		//======= shell open, close ======
