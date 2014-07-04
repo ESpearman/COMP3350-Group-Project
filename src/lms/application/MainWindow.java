@@ -42,7 +42,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(291, 234);
+		shell.setSize(266, 234);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -56,7 +56,7 @@ public class MainWindow
 
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(81, 159, 111, 27);
+		btnQuit.setBounds(70, 159, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -71,7 +71,7 @@ public class MainWindow
 		
 		// ==============register button ===========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(140, 17, 111, 27);
+		btnRegister.setBounds(127, 17, 111, 27);
 		btnRegister.setText("Register");
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -88,7 +88,7 @@ public class MainWindow
 		
 		// =============== import button ============
 		btnSetup = new Button(shell, SWT.NONE);
-		btnSetup.setBounds(23, 64, 111, 27);
+		btnSetup.setBounds(10, 64, 111, 27);
 		btnSetup.setText("Setup");
 		btnSetup.addSelectionListener(new SelectionAdapter()
 		{
@@ -103,7 +103,7 @@ public class MainWindow
 		
 		// =============== export button ==============
 		btnExport = new Button(shell, SWT.NONE);
-		btnExport.setBounds(140, 64, 111, 27);
+		btnExport.setBounds(127, 64, 111, 27);
 		btnExport.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -120,7 +120,7 @@ public class MainWindow
 		
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
-		drpTerm.setBounds(23, 20, 111, 27);
+		drpTerm.setBounds(10, 20, 111, 27);
 		drpTerm.setText("Select Term");
 		
 		
@@ -132,11 +132,11 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AboutUsWindow();
+				new AboutWindow();
 			}
 		});
-		btnAboutUs.setText("About us");
-		btnAboutUs.setBounds(81, 126, 111, 27);
+		btnAboutUs.setText("About");
+		btnAboutUs.setBounds(70, 126, 111, 27);
 		
 		
 		//======= shell open, close ======
