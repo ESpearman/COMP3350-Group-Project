@@ -5,7 +5,6 @@ import lms.businesslogic.AddBuilding;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
@@ -60,17 +59,12 @@ public class AddBuildingWindow
 				if(txtInput.getText() != "")
 				{
 					AddBuilding.insert(txtInput.getText());
-					MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-					dlgSuccess.setText("Added");
-					dlgSuccess.setMessage(txtInput.getText()+" Building added");
-					dlgSuccess.open();
+					new PopupWindow("Added",txtInput.getText()+ "Building added");
 				}
 				else
 				{
-					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-					dlgFail.setText("Failed");
-					dlgFail.setMessage("Error : Need building name !");
-					dlgFail.open();
+
+					new PopupWindow("Failed","Error : Need building name !");
 				}
 			}
 		});

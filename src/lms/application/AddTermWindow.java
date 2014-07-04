@@ -48,8 +48,19 @@ public class AddTermWindow {
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// add term here
-				
+
+				/*
+				if(txtInput.getText() != "")
+				{
+					// add term here
+					new PopupWindow("Added",txtInput.getText()+ "Term added");
+				}
+				else
+				{
+
+					new PopupWindow("Failed","Error : Need Term name !");
+				}
+				*/
 			}
 		});
 		btnAdd.setText("Add");

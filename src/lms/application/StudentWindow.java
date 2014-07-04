@@ -4,7 +4,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -157,19 +156,12 @@ public class StudentWindow
 					}
 					else
 					{
-						MessageBox dlgInfo = new MessageBox(shell, SWT.OK);
-						dlgInfo.setMessage("The student fields were not filled in properly");
-						dlgInfo.setText("Error");
-						dlgInfo.open();
+						new PopupWindow("Error","The student fields were not filled in properly");
 					}
 				}
 				catch(NumberFormatException e)
 				{
-					
-					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
-					dlgBadNumber.setMessage("Invalid Student Number");
-					dlgBadNumber.setText("Error");
-					dlgBadNumber.open();
+					new PopupWindow("Error","Invalid Student Number");
 				}
 			}
 		});

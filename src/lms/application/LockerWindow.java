@@ -2,7 +2,6 @@ package lms.application;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
@@ -139,26 +138,18 @@ public class LockerWindow
 					
 					if(newRental != null)
 					{
-						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-						dlgSuccess.setText("Completed");
-						dlgSuccess.setMessage("Rented");
-						dlgSuccess.open();
+						new PopupWindow("Completed","Rented");
+						
 						shell.close();
 					}
 					else
 					{
-						MessageBox dlgError = new MessageBox(shell, SWT.OK);
-						dlgError.setMessage("The student is already renting a locker this term");
-						dlgError.setText("Error");
-						dlgError.open();
+						new PopupWindow("Error","The student is already renting a locker this term");
 					}					
 				}
 				else
 				{
-					MessageBox dlgError = new MessageBox(shell, SWT.OK);
-					dlgError.setMessage("Locker has not been selected or student has not agreed");
-					dlgError.setText("Error");
-					dlgError.open();
+					new PopupWindow("Error","Locker has not been selected or student has not agreed");
 				}
 			}
 		});

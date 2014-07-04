@@ -7,7 +7,6 @@ import lms.businesslogic.SpreadsheetImporter;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
@@ -134,17 +133,11 @@ public class ImportWindow
 					{
 						SpreadsheetImporter.importLockers(filePath);
 						
-						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-						dlgSuccess.setText("Completed");
-						dlgSuccess.setMessage(SpreadsheetImporter.getStatus());
-						dlgSuccess.open();
+						new PopupWindow("Completed",SpreadsheetImporter.getStatus());
 					}
 					else
 					{
-						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-						dlgFail.setText("Failed");
-						dlgFail.setMessage(SpreadsheetImporter.getStatus());
-						dlgFail.open();
+						new PopupWindow("Failed",SpreadsheetImporter.getStatus());
 					}
 				}
 				else if(btnStudent.getSelection())
@@ -157,28 +150,17 @@ public class ImportWindow
 					{
 						SpreadsheetImporter.importStudents(filePath);
 						
-						MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-						dlgSuccess.setText("Completed");
-						dlgSuccess.setMessage(SpreadsheetImporter.getStatus());
-						dlgSuccess.open();
+						new PopupWindow("Completed",SpreadsheetImporter.getStatus());
 					}
 					else
 					{
-						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-						dlgFail.setText("Failed");
-						dlgFail.setMessage(SpreadsheetImporter.getStatus());
-						dlgFail.open();
+						new PopupWindow("Failed",SpreadsheetImporter.getStatus());
 					}
 				}
 				else
 				{
 					// no radio button is selected (error)
-					
-					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-					dlgFail.setText("Failed");
-					dlgFail.setMessage("Importing failed : Not selected Import Option (Locker or Student)");
-					dlgFail.open();
-					
+					new PopupWindow("Failed","Importing failed : Not selected Import Option (Locker or Student)");
 				}
 
 			}
