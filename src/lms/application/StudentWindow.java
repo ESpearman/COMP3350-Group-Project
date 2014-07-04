@@ -22,6 +22,8 @@ public class StudentWindow
 {
 	private Display display;
 	private Shell shell;
+	
+	// "Edit" or "Register"
 	private String context;
 	
 	private static final int TEXT_LIMIT = 50;
@@ -89,22 +91,29 @@ public class StudentWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				searchedStudent = Student.getByStudentNumber(Integer.parseInt(txtStudentNumber.getText()), CurrentTermInfo.currentTerm.getId());
-				
-				//If the student exists in the database, auto-populate
-				if(searchedStudent != null)
+				if(txtStudentNumber.getText()!="")
 				{
-					txtFirstName.setText(searchedStudent.getFirstName());
-					txtLastName.setText(searchedStudent.getLastName());
-					txtEmail.setText(searchedStudent.getEmail());
-					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+					searchedStudent = Student.getByStudentNumber(Integer.parseInt(txtStudentNumber.getText()), CurrentTermInfo.currentTerm.getId());
+					
+					//If the student exists in the database, auto-populate
+					if(searchedStudent != null)
+					{
+						txtFirstName.setText(searchedStudent.getFirstName());
+						txtLastName.setText(searchedStudent.getLastName());
+						txtEmail.setText(searchedStudent.getEmail());
+						btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+					}
+					else //Empty all the text-fields
+					{
+						txtFirstName.setText("");
+						txtLastName.setText("");
+						txtEmail.setText("");
+						btnScienceStudent.setSelection(false);
+					}
 				}
-				else //Empty all the text-fields
+				else
 				{
-					txtFirstName.setText("");
-					txtLastName.setText("");
-					txtEmail.setText("");
-					btnScienceStudent.setSelection(false);
+					new PopupWindow("Error","Enter student number (0~9 digit only)");
 				}
 			} 
 		});
@@ -152,6 +161,10 @@ public class StudentWindow
 						if(context.equals("Register"))
 						{
 							new LockerWindow(shell, newStudent);
+						}
+						else if(context.equals("Edit"))
+						{
+							new PopupWindow("Updated","Student information has been updated");
 						}
 					}
 					else

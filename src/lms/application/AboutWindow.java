@@ -122,6 +122,7 @@ public class AboutWindow
 	
 	public AboutWindow()
 	{
+
 		display = Display.getDefault();
 		runWindow();
 	}
