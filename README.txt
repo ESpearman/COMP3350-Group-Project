@@ -1,5 +1,7 @@
 COMP3350-Group-Project
 ======================
+Presentation Doc Link:
+https://docs.google.com/presentation/d/155N_fykk91gH2sMwz0tzDvL2ZqYcR3Yei6G4jFNkItE/edit#slide=id.p
 
 Version control system location :
 https://github.com/ESpearman/COMP3350-Group-Project
