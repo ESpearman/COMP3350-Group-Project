@@ -4,3 +4,4 @@ bin
 db
 .settings
 db/db.tmp
+*.txp

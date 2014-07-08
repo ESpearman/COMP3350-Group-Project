@@ -155,7 +155,7 @@ public class StudentWindow
 				try // Only allow them to register if the fields are filled in properly
 				{
 					int studentNumber = Integer.parseInt(txtStudentNumber.getText());
-					if(studentNumber >= 1000000 && !txtEmail.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals(""))
+					if(studentNumber >= 1 && !txtEmail.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals(""))
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());

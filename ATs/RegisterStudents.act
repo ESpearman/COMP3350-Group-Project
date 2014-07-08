@@ -1,0 +1,17 @@
+Package			lms.application
+InvokeMethod	lms.application.MainWindow		startUp
+Click			MainWindow						btnRegister
+Set				StudentWindow					txtStudentNumber		0987654
+Click 			StudentWindow					btnSearch
+Set				StudentWindow					txtFirstName			Some
+Set				StudentWindow					txtLastName				Dude
+Set				StudentWindow					txtEmail				duds@myumanitoba.ca
+Click			StudentWindow					btnScienceStudent
+Click			StudentWindow					btnRegister
+Click			LockerWindow					btnBack
+Click			MainWindow						btnRegister
+Set				StudentWindow					txtStudentNumber		0987654
+Click 			StudentWindow					btnSearch
+Test			StudentWindow					txtFirstName			Some
+Test			StudentWindow					txtLastName				Dude
+Test			StudentWindow					txtEmail				duds@myumanitoba.ca

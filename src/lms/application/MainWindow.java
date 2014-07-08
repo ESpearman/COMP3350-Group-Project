@@ -161,13 +161,6 @@ public class MainWindow
 	
 	public MainWindow()
 	{
-		Register.newWindow(this);
-		display = Display.getDefault();
-		runWindow();
-	}
-	
-	public static void main(String[] args)
-	{
 		DBProxy.instance = new DBProxy();
 		DBInjector.injectInto(DBProxy.instance, false);
 		
@@ -186,6 +179,18 @@ public class MainWindow
 		CurrentTermInfo.currentTerm = term;
 		term.save();
 		
+		Register.newWindow(this);
+		display = Display.getDefault();
+		runWindow();
+	}
+	
+	public static void startUp()
+	{
+		new MainWindow();
+	}
+	
+	public static void main(String[] args)
+	{
 		new MainWindow();
 	}
 }
