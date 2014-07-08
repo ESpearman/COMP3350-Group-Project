@@ -16,6 +16,9 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 
+import acceptanceTests.EventLoop;
+import acceptanceTests.Register;
+
 public class ImportWindow
 {
 	private Display display;
@@ -178,17 +181,22 @@ public class ImportWindow
 		// ======shell open, close ========
 		shell.open();
 		
-		while (!shell.isDisposed())
+		if(EventLoop.isEnabled())
 		{
-			if (!display.readAndDispatch())
+			while (!shell.isDisposed())
 			{
-				display.sleep();
+				if (!display.readAndDispatch())
+				{
+					display.sleep();
+				}
 			}
 		}
+		
 	}
 	
 	public ImportWindow()
 	{
+		Register.newWindow(this);
 		display = Display.getDefault();
 
 		runWindow();

@@ -19,6 +19,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
 
+import acceptanceTests.EventLoop;
+import acceptanceTests.Register;
+
 
 public class AddLockerWindow
 {
@@ -182,17 +185,22 @@ public class AddLockerWindow
 		// ======shell open, close ========
 		shell.open();
 		
-		while (!shell.isDisposed())
+		if(EventLoop.isEnabled())
 		{
-			if (!display.readAndDispatch())
+			while (!shell.isDisposed())
 			{
-				display.sleep();
+				if (!display.readAndDispatch())
+				{
+					display.sleep();
+				}
 			}
 		}
+		
 	}
 	
 	public AddLockerWindow()
 	{
+		Register.newWindow(this);
 		display = Display.getDefault();
 		runWindow();
 	}

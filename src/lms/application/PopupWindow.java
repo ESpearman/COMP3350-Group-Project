@@ -10,6 +10,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import acceptanceTests.EventLoop;
+import acceptanceTests.Register;
+
 public class PopupWindow
 {
 	private Shell shell;
@@ -63,17 +66,22 @@ public class PopupWindow
 		//======= shell open, close ======
 		shell.open();
 		
-		while (!shell.isDisposed())
+		if(EventLoop.isEnabled())
 		{
-			if (!display.readAndDispatch())
+			while (!shell.isDisposed())
 			{
-				display.sleep();
+				if (!display.readAndDispatch())
+				{
+					display.sleep();
+				}
 			}
 		}
+		
 	}
 	
 	public PopupWindow(String title, String message)
 	{
+		Register.newWindow(this);
 		this.title = title;
 		this.message = message;
 		display = Display.getDefault();

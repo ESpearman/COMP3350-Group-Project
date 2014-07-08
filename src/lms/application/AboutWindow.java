@@ -15,6 +15,9 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.custom.StyledText;
 
+import acceptanceTests.Register;
+import acceptanceTests.EventLoop;
+
 public class AboutWindow
 {
 	private Shell shell;
@@ -110,19 +113,22 @@ public class AboutWindow
 		
 		// ======shell open, close ========
 		shell.open();
-		
-		while (!shell.isDisposed())
+		if(EventLoop.isEnabled())
 		{
-			if (!display.readAndDispatch())
+			while (!shell.isDisposed())
 			{
-				display.sleep();
+				if (!display.readAndDispatch())
+				{
+					display.sleep();
+				}
 			}
 		}
+		
 	}
 	
 	public AboutWindow()
 	{
-
+		Register.newWindow(this);
 		display = Display.getDefault();
 		runWindow();
 	}

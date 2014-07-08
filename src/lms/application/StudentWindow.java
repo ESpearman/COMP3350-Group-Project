@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import acceptanceTests.EventLoop;
+import acceptanceTests.Register;
 import lms.businesslogic.CurrentTermInfo;
 import lms.businesslogic.RegisterStudent;
 import lms.domainobjects.Student;
@@ -223,17 +225,21 @@ public class StudentWindow
 		// ====== shell open, close =====
 		shell.open();
 		
-		while (!shell.isDisposed())
+		if(EventLoop.isEnabled())
 		{
-			if (!display.readAndDispatch())
+			while (!shell.isDisposed())
 			{
-				display.sleep();
+				if (!display.readAndDispatch())
+				{
+					display.sleep();
+				}
 			}
 		}
 	}
 
 	public StudentWindow(String context)
 	{
+		Register.newWindow(this);
 		display = Display.getDefault();
 		this.context = context;
 		runWindow();
