@@ -7,7 +7,6 @@ import lms.businesslogic.EmailExport;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
@@ -81,42 +80,27 @@ public class ExportWindow
 								BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
 								writer.write(emails);
 								writer.close();
-									
-								MessageBox dlgSuccess = new MessageBox(shell, SWT.OK);
-								dlgSuccess.setText("Completed");
-								dlgSuccess.setMessage("Exporting completed to: " + filePath);
-								dlgSuccess.open();
+
+								new PopupWindow("Completed","Exporting completed to: " + filePath);
 							} 
 							catch(IOException e) //couldn't write to file
 							{
-								MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-								dlgFail.setText("Failed");
-								dlgFail.setMessage("Exporting failed : Could not write to file: " + dlgSave.getFileName());
-								dlgFail.open();
+								new PopupWindow("Failed","Exporting failed : Could not write to file: " + dlgSave.getFileName());
 							}
 						}
 						else //no file selected
 						{
-							MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-							dlgFail.setText("Failed");
-							dlgFail.setMessage("Exporting failed : Cannot find email source");
-							dlgFail.open();
+							new PopupWindow("Failed","Exporting failed : Cannot find email source");
 						}
 					}
 					else //no students
 					{
-						MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-						dlgFail.setText("Failed");
-						dlgFail.setMessage(emails);//"Exporting failed : Could not find any student emails");
-						dlgFail.open();
+						new PopupWindow("Failed","Exporting failed : Could not find any student emails");
 					}
 				}
 				else // if no option is selected
 				{
-					MessageBox dlgFail = new MessageBox(shell, SWT.OK);
-					dlgFail.setText("Failed");
-					dlgFail.setMessage("Exporting failed : Option not selected (Email)");
-					dlgFail.open();
+					new PopupWindow("Failed","Exporting failed : Option not selected (Email)");
 				}
 							
 			}

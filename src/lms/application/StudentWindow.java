@@ -4,7 +4,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -23,6 +22,8 @@ public class StudentWindow
 {
 	private Display display;
 	private Shell shell;
+	
+	// "Edit" or "Register"
 	private String context;
 	
 	private static final int TEXT_LIMIT = 50;
@@ -90,22 +91,29 @@ public class StudentWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				searchedStudent = Student.getByStudentNumber(Integer.parseInt(txtStudentNumber.getText()), CurrentTermInfo.currentTerm.getId());
-				
-				//If the student exists in the database, auto-populate
-				if(searchedStudent != null)
+				if(txtStudentNumber.getText()!="")
 				{
-					txtFirstName.setText(searchedStudent.getFirstName());
-					txtLastName.setText(searchedStudent.getLastName());
-					txtEmail.setText(searchedStudent.getEmail());
-					btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+					searchedStudent = Student.getByStudentNumber(Integer.parseInt(txtStudentNumber.getText()), CurrentTermInfo.currentTerm.getId());
+					
+					//If the student exists in the database, auto-populate
+					if(searchedStudent != null)
+					{
+						txtFirstName.setText(searchedStudent.getFirstName());
+						txtLastName.setText(searchedStudent.getLastName());
+						txtEmail.setText(searchedStudent.getEmail());
+						btnScienceStudent.setSelection(searchedStudent.isScienceStudent());
+					}
+					else //Empty all the text-fields
+					{
+						txtFirstName.setText("");
+						txtLastName.setText("");
+						txtEmail.setText("");
+						btnScienceStudent.setSelection(false);
+					}
 				}
-				else //Empty all the text-fields
+				else
 				{
-					txtFirstName.setText("");
-					txtLastName.setText("");
-					txtEmail.setText("");
-					btnScienceStudent.setSelection(false);
+					new PopupWindow("Error","Enter student number (0~9 digit only)");
 				}
 			} 
 		});
@@ -154,22 +162,19 @@ public class StudentWindow
 						{
 							new LockerWindow(shell, newStudent);
 						}
+						else if(context.equals("Edit"))
+						{
+							new PopupWindow("Updated","Student information has been updated");
+						}
 					}
 					else
 					{
-						MessageBox dlgInfo = new MessageBox(shell, SWT.OK);
-						dlgInfo.setMessage("The student fields were not filled in properly");
-						dlgInfo.setText("Error");
-						dlgInfo.open();
+						new PopupWindow("Error","The student fields were not filled in properly");
 					}
 				}
 				catch(NumberFormatException e)
 				{
-					
-					MessageBox dlgBadNumber = new MessageBox(shell, SWT.OK);
-					dlgBadNumber.setMessage("Invalid Student Number");
-					dlgBadNumber.setText("Error");
-					dlgBadNumber.open();
+					new PopupWindow("Error","Invalid Student Number");
 				}
 			}
 		});
