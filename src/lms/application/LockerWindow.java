@@ -71,9 +71,11 @@ public class LockerWindow
 			{
 				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
 				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
-				lblPrice.setText("Price: " + price);
+				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent selected locker "+
+									drpLocker.getText() +" in "+drpBuilding.getText()+" building \nPrice: " + price);
 			}
 		});
+		
 		
 		// ======= building combo ( dropdown list ) =======
 		drpBuilding = new Combo(shell, SWT.NONE);
@@ -161,7 +163,7 @@ public class LockerWindow
 		
 		
 		lblPrice = new Label(shell, SWT.NONE);
-		lblPrice.setBounds(10, 68, 172, 23);
+		lblPrice.setBounds(10, 68, 277, 43);
 		lblPrice.setText("Price: ");
 		
 		Label lblBuilding = new Label(shell, SWT.NONE);
