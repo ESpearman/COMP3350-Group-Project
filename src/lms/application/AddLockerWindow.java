@@ -13,6 +13,8 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
@@ -71,7 +73,24 @@ public class AddLockerWindow
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(101, 44, 157, 27);
-		
+		txtInput.addListener(SWT.Verify, new Listener()
+		{
+			// allow only digits
+			public void handleEvent(Event e)
+			{
+				String string = e.text;
+				char[] chars = new char[string.length()];
+				string.getChars(0, chars.length, chars, 0);
+				for (int i = 0; i < chars.length; i++)
+				{
+					if (!('0' <= chars[i] && chars[i] <= '9'))
+					{
+						e.doit = false;
+						return;
+					}
+				}
+			}
+		});
 		
 		// build building list here
 		for ( int i = 0 ; i < allBuildings.size() ; i ++)
