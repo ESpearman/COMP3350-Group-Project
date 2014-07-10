@@ -1,7 +1,6 @@
 package lms.businesslogic;
 
 import java.util.UUID;
-
 import lms.domainobjects.Student;
 
 public class RegisterStudent

@@ -11,6 +11,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 
+import lms.businesslogic.AddTerm;
+
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
@@ -50,20 +52,18 @@ public class AddTermWindow {
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
-			{
-
-				/*
-				if(txtInput.getText() != "")
+			{				
+				if(!txtInput.getText().equals(""))
 				{
 					// add term here
-					new PopupWindow("Added",txtInput.getText()+ "Term added");
+					AddTerm.addTerm(txtInput.getText());
+					new PopupWindow("Added", txtInput.getText() + "Term added");
 				}
 				else
 				{
 
-					new PopupWindow("Failed","Error : Need Term name !");
+					new PopupWindow("Failed", "Error : Need Term name !");
 				}
-				*/
 			}
 		});
 		btnAdd.setText("Add");

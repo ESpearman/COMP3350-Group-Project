@@ -1,7 +1,6 @@
 package lms.application;
 
-
-import java.util.UUID;
+import java.util.ArrayList;
 
 import lms.businesslogic.CurrentTermInfo;
 import lms.businesslogic.LockerPrice;
@@ -28,13 +27,16 @@ public class MainWindow
 {
 	private Display display;
 	private Shell shell;
+	
 	private Button btnRegister;
 	private Button btnSetup;
 	private Button btnQuit;
 	private Button btnExport;
-	
-	private Combo drpTerm;
 	private Button btnAboutUs;
+	private Combo drpTerm;
+	private Term selectedTerm;
+	private ArrayList<Term> termsAL;
+	private String terms[];
 	
 	/**
 	 * Launch the application.
@@ -124,8 +126,24 @@ public class MainWindow
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
 		drpTerm.setBounds(10, 20, 111, 27);
-		drpTerm.setText("Select Term");
 		
+		// Build up terms to select from
+		for(int i = 0; i < termsAL.size(); i++)
+		{
+			terms[i] = termsAL.get(i).getName();
+		}
+		drpTerm.setItems(terms);
+		drpTerm.setText("Select a Term");
+		drpTerm.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
+				CurrentTermInfo.currentTerm = selectedTerm;
+				// Let user click every other button once term is decided
+			}
+		});
 		
 		
 		// ======= button about us ========
@@ -168,16 +186,13 @@ public class MainWindow
 		ConfigData.init();
 		ConnectionPool.init(4);
 		
+		termsAL = Term.getAll();
+		terms = new String[termsAL.size()];
+		
 		LockerPrice.scienceFull = ConfigData.fullScience;
 		LockerPrice.scienceHalf = ConfigData.halfScience;
-		
 		LockerPrice.nonScienceFull = ConfigData.fullNonScience;
 		LockerPrice.nonScienceHalf = ConfigData.halfNonScience;
-		
-		//Hard code a term to be used for iteration 1 only
-		Term term = new Term(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),"Demo Term");
-		CurrentTermInfo.currentTerm = term;
-		term.save();
 		
 		Register.newWindow(this);
 		display = Display.getDefault();
@@ -191,6 +206,6 @@ public class MainWindow
 	
 	public static void main(String[] args)
 	{
-		new MainWindow();
+		startUp();
 	}
 }

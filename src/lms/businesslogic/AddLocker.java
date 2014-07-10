@@ -14,5 +14,4 @@ public class AddLocker
 		newLocker.save();
 		return newLocker;
 	}
-
 }
