@@ -32,7 +32,8 @@ public class MainWindow
 	private Button btnSetup;
 	private Button btnQuit;
 	private Button btnExport;
-	private Button btnAboutUs;
+	private Button btnAbout;
+	
 	private Combo drpTerm;
 	private Term selectedTerm;
 	private ArrayList<Term> termsAL;
@@ -58,7 +59,32 @@ public class MainWindow
 		shell.setLocation (x, y);
 		shell.setText("LMS");
 		
-
+		
+		
+		
+		// Build up terms to select from
+		for(int i = 0; i < termsAL.size(); i++)
+		{
+			terms[i] = termsAL.get(i).getName();
+		}
+		// ======= dropdown term =======
+		drpTerm = new Combo(shell, SWT.NONE);
+		drpTerm.setBounds(10, 20, 111, 23);
+		drpTerm.setItems(terms);
+		drpTerm.setText("Select a Term");
+		drpTerm.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
+				CurrentTermInfo.currentTerm = selectedTerm;
+				// Let user click every other button once term is decided
+				buttonControl(true);
+			}
+		});
+		
+		
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
 		btnQuit.setBounds(70, 159, 111, 27);
@@ -121,34 +147,9 @@ public class MainWindow
 		btnExport.setText("Export");
 		
 		
-		
-		
-		// ======= dropdown term =======
-		drpTerm = new Combo(shell, SWT.NONE);
-		drpTerm.setBounds(10, 20, 111, 27);
-		
-		// Build up terms to select from
-		for(int i = 0; i < termsAL.size(); i++)
-		{
-			terms[i] = termsAL.get(i).getName();
-		}
-		drpTerm.setItems(terms);
-		drpTerm.setText("Select a Term");
-		drpTerm.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
-				CurrentTermInfo.currentTerm = selectedTerm;
-				// Let user click every other button once term is decided
-			}
-		});
-		
-		
 		// ======= button about us ========
-		btnAboutUs = new Button(shell, SWT.NONE);
-		btnAboutUs.addSelectionListener(new SelectionAdapter()
+		btnAbout = new Button(shell, SWT.NONE);
+		btnAbout.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -156,8 +157,11 @@ public class MainWindow
 				new AboutWindow();
 			}
 		});
-		btnAboutUs.setText("About");
-		btnAboutUs.setBounds(70, 126, 111, 27);
+		btnAbout.setText("About");
+		btnAbout.setBounds(70, 126, 111, 27);
+		
+		
+		buttonControl(false);
 		
 		
 		//======= shell open, close ======
@@ -176,6 +180,12 @@ public class MainWindow
 		
 	}
 	
+	private void buttonControl(boolean bool)
+	{
+		btnRegister.setEnabled(bool);
+		btnSetup.setEnabled(bool);
+		btnExport.setEnabled(bool);
+	}
 	
 	public MainWindow()
 	{
