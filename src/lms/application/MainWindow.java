@@ -67,6 +67,7 @@ public class MainWindow
 		{
 			terms[i] = termsAL.get(i).getName();
 		}
+		
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
 		drpTerm.setBounds(10, 20, 111, 23);
@@ -160,7 +161,7 @@ public class MainWindow
 		btnAbout.setText("About");
 		btnAbout.setBounds(70, 126, 111, 27);
 		
-		
+
 		buttonControl(false);
 		
 		

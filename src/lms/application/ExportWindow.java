@@ -25,7 +25,12 @@ public class ExportWindow
 	
 	private Button btnExport;
 	private Button btnBack;
+	
+	// export options (radio btn)
 	private Button btnEmail;
+	private Button btnLocker;
+	private Button btnTerm;
+
 	
 	public void runWindow()
 	{
@@ -48,8 +53,20 @@ public class ExportWindow
 		
 		// ======= radio button 'email' ========
 		btnEmail = new Button(shell, SWT.RADIO);
-		btnEmail.setBounds(10, 10, 90, 16);
+		btnEmail.setBounds(19, 18, 62, 16);
 		btnEmail.setText("Email");
+		
+		
+		// ======= radio button 'Locker' =======
+		btnLocker = new Button(shell, SWT.RADIO);
+		btnLocker.setText("Locker");
+		btnLocker.setBounds(87, 18, 62, 16);
+		
+		
+		// ======= raido button 'Term' =========
+		btnTerm = new Button(shell, SWT.RADIO);
+		btnTerm.setText("Term");
+		btnTerm.setBounds(155, 18, 62, 16);
 		
 		
 		
@@ -60,8 +77,7 @@ public class ExportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// export button is selected
-				
+				// probably we need to refactor this. getting really longer.
 				if(btnEmail.getSelection())
 				{
 					String emails = EmailExport.exportStudentEmails();
@@ -100,7 +116,15 @@ public class ExportWindow
 					{
 						new PopupWindow("Failed","Exporting failed : Could not find any student emails");
 					}
+				}/*
+				else if(btnLocker.getSelection())
+				{
+					
 				}
+				else if(btnTerm.getSelection())
+				{
+					
+				}*/
 				else // if no option is selected
 				{
 					new PopupWindow("Failed","Exporting failed : Option not selected (Email)");
@@ -127,6 +151,7 @@ public class ExportWindow
 		btnBack.setBounds(10, 46, 111, 27);
 		btnBack.setText("Back");
 		
+
 		
 		
 		

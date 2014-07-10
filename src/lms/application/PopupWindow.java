@@ -76,7 +76,6 @@ public class PopupWindow
 				}
 			}
 		}
-		
 	}
 	
 	public PopupWindow(String title, String message)
