@@ -1,5 +1,7 @@
 package lms.application;
 
+import lms.businesslogic.CurrentTermInfo;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
@@ -133,8 +135,13 @@ public class SetupWindow
 		btnImport.setBounds(10, 10, 111, 27);
 		
 		
-
-		
+		// Only allow to add new term if there is no current term
+		if(CurrentTermInfo.currentTerm == null)
+		{
+			btnImport.setEnabled(false);
+			btnEditStudent.setEnabled(false);
+			btnAddLocker.setEnabled(false);
+		}
 		
 		
 		//======= shell open, close ======

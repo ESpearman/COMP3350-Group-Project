@@ -184,7 +184,6 @@ public class MainWindow
 	private void buttonControl(boolean bool)
 	{
 		btnRegister.setEnabled(bool);
-		btnSetup.setEnabled(bool);
 		btnExport.setEnabled(bool);
 	}
 	
