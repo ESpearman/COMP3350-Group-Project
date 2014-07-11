@@ -29,7 +29,8 @@ public class AddTermWindow {
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("AddTermWindow");
 		shell.setSize(284, 139);
 		
 		Monitor primary = display.getPrimaryMonitor();

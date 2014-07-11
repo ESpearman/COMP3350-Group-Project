@@ -31,7 +31,8 @@ public class SetupWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("SetupWindow");
 		shell.setSize(264, 222);
 		
 		Monitor primary = display.getPrimaryMonitor();
@@ -54,10 +55,12 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AddTermWindow();
+				if(!alrOpened("AddTermWindow"))
+				{
+					new AddTermWindow();
+				}
 			}
 		});
-
 		
 		
 		// ========= button add locker ==========
@@ -69,7 +72,10 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AddLockerWindow();
+				if(!alrOpened("AddLockerWindow"))
+				{
+					new AddLockerWindow();
+				}
 			}
 		});
 		
@@ -83,7 +89,10 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AddBuildingWindow();
+				if(!alrOpened("AddBuildingWindow"))
+				{
+					new AddBuildingWindow();
+				}
 			}
 		});
 		
@@ -99,7 +108,10 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new StudentWindow("Edit");
+				if(!alrOpened("StudentWindow"))
+				{
+					new StudentWindow("Edit");
+				}
 			}
 		});
 		
@@ -128,7 +140,10 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new ImportWindow();
+				if(!alrOpened("ImportWindow"))
+				{
+					new ImportWindow();
+				}
 			}
 		});
 		btnImport.setText("Import");
@@ -158,7 +173,22 @@ public class SetupWindow
 			}
 		}
 	}
-	
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
+	}
 	public SetupWindow()
 	{
 		Register.newWindow(this);

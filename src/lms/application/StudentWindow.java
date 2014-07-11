@@ -46,7 +46,8 @@ public class StudentWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("StudentWindow");
 		shell.setSize(384, 256);
 		
 		Monitor primary = display.getPrimaryMonitor();
@@ -162,7 +163,10 @@ public class StudentWindow
 						shell.close();
 						if(context.equals("Register"))
 						{
-							new LockerWindow(shell, newStudent);
+							if(!alrOpened("LockerWindow"))
+							{
+								new LockerWindow(shell, newStudent);
+							}
 						}
 						else if(context.equals("Edit"))
 						{
@@ -235,6 +239,22 @@ public class StudentWindow
 				}
 			}
 		}
+	}
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
 	}
 
 	public StudentWindow(String context)

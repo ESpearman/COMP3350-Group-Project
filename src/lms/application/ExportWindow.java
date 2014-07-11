@@ -37,7 +37,8 @@ public class ExportWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("ExportWindow");
 		shell.setSize(298, 180);
 		
 		Monitor primary = display.getPrimaryMonitor();
