@@ -33,6 +33,7 @@ public class AddBuildingWindow
 	{
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell();
+		shell.setData("AddBuildingWindow");
 		shell.setSize(284, 135);
 		
 		Monitor primary = display.getPrimaryMonitor();

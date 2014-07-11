@@ -34,6 +34,7 @@ public class AboutWindow
 	{
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell();
+		shell.setData("AboutWindow");
 		shell.setSize(284, 353);
 		
 		Monitor primary = display.getPrimaryMonitor();

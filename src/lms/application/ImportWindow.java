@@ -37,6 +37,7 @@ public class ImportWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
+		shell.setData("ImportWindow");
 		shell.setSize(384, 181);
 		
 		Monitor primary = display.getPrimaryMonitor();

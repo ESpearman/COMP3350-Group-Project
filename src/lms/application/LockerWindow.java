@@ -54,6 +54,7 @@ public class LockerWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
+		shell.setData("LockerWindow");
 		shell.setSize(384, 267);
 		
 		Monitor primary = display.getPrimaryMonitor();

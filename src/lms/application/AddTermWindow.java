@@ -30,6 +30,7 @@ public class AddTermWindow {
 	{
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell();
+		shell.setData("AddTermWindow");
 		shell.setSize(284, 139);
 		
 		Monitor primary = display.getPrimaryMonitor();

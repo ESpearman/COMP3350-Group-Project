@@ -111,9 +111,10 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// when register button is clicked
-				
-				new StudentWindow("Register");
-				display.sleep();
+				if(!alrOpened("StudentWindow"))
+				{
+					new StudentWindow("Register");
+				}
 			}
 		});
 
@@ -128,7 +129,11 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// import button is selected
-				new SetupWindow();
+				
+				if(!alrOpened("SetupWindow"))
+				{
+					new SetupWindow();
+				}
 			}
 		});
 		
@@ -142,7 +147,10 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// Export button is selected
-				new ExportWindow();
+				if(!alrOpened("ExportWindow"))
+				{
+					new ExportWindow();
+				}
 			}
 		});
 		btnExport.setText("Export");
@@ -155,7 +163,10 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AboutWindow();
+				if(!alrOpened("AboutWindow"))
+				{
+					new AboutWindow();
+				}
 			}
 		});
 		btnAbout.setText("About");
@@ -185,6 +196,22 @@ public class MainWindow
 	{
 		btnRegister.setEnabled(bool);
 		btnExport.setEnabled(bool);
+	}
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
 	}
 	
 	public MainWindow()
