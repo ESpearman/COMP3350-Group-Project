@@ -47,8 +47,10 @@ public class MainWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setSize(266, 234);
+		
+		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();

@@ -33,7 +33,7 @@ public class AboutWindow
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("AboutWindow");
 		shell.setSize(284, 353);
 		

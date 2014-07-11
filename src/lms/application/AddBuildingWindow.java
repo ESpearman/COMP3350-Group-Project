@@ -32,7 +32,7 @@ public class AddBuildingWindow
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("AddBuildingWindow");
 		shell.setSize(284, 135);
 		

@@ -46,7 +46,7 @@ public class StudentWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("StudentWindow");
 		shell.setSize(384, 256);
 		
