@@ -3,6 +3,12 @@ package lms.application;
 import java.io.*;
 
 import lms.businesslogic.EmailExport;
+import lms.domainobjects.Building;
+import lms.domainobjects.Locker;
+import lms.domainobjects.Rental;
+import lms.businesslogic.CurrentTermInfo;
+
+import java.util.ArrayList;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -133,8 +139,64 @@ public class ExportWindow
 				}
 				else if(btnStats.getSelection())
 				{
-					// export stats here !
-					new PopupWindow("Failed","Please implement this");
+					// export statistics here !
+					double totalSales = 0; 
+					//Get Sales
+					ArrayList <Rental> stats = new ArrayList<Rental>();
+					stats = Rental.getListByTerm(CurrentTermInfo.currentTerm.getId());
+					// Get Buildings/Locker Statistics
+					ArrayList<Building> bldgs = new ArrayList<Building>();
+					bldgs = Building.getAll();
+					// Get Locker Statistics
+					ArrayList<Locker> lckr = new ArrayList<Locker>();
+					
+					
+					for(int i = 0; i < stats.size(); i++)
+					{
+						totalSales += stats.get(i).getPricePaid();
+					}
+										
+					if(!stats.isEmpty())
+					{
+						FileDialog dlgSave = new FileDialog(shell, SWT.SAVE);
+					    dlgSave.setFilterNames(new String[] {"Text File (*.txt)"});
+					    dlgSave.setFilterExtensions(new String[] { "*.txt" });
+					    dlgSave.setFilterPath("c:\\");
+					    dlgSave.setFileName("Total Sales.txt");	// default file name
+					    dlgSave.open();
+		
+						if(dlgSave.getFileName().compareTo("") != 0)
+						{
+							try 
+							{
+								String filePath = dlgSave.getFilterPath() + "\\" + dlgSave.getFileName();
+								File textFile = new File(filePath);
+								BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
+								writer.write("Total Revenue and Locker Sales For Current Term(s):\nTotal: " + totalSales + " Dollars");
+								writer.write("\n\nBuilding Statistics: \n");
+								for(int j = 0; j < bldgs.size(); j++ )
+								{
+									writer.write(bldgs.get(j).getName() + ": ");
+									lckr = Locker.getFreeByBuildingAndTerm(bldgs.get(j).getId(), CurrentTermInfo.currentTerm.getId());
+									writer.write(lckr.size() + " Free Locker(s)\n");
+								}
+								writer.close();
+
+								new PopupWindow("Completed","Exporting completed to: " + filePath);
+							} 
+							catch(IOException e) //couldn't write to file
+							{
+								new PopupWindow("Failed","Exporting failed : Could not write to file: " + dlgSave.getFileName());
+							}
+						}
+						
+
+					}
+					else
+					{
+						new PopupWindow("Failed","Please implement this");	
+					}
+					
 				}
 				else // if no option is selected
 				{
