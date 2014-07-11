@@ -45,12 +45,16 @@ public class LockerWindow
 	
 	private Button chkAgreement;
 	private Label lblPrice;
+	private Label lblTerm1;
+	private Combo drpTerm1;
+	private Combo drpTerm2;
+	private Label lblTerm2;
 
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(384, 192);
+		shell.setSize(384, 267);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -62,29 +66,8 @@ public class LockerWindow
 		shell.setText("Select Locker");
 		
 		
-		// ===== locker combo ( dropdown list ) =======
-		drpLocker = new Combo(shell, SWT.NONE);
-		drpLocker.setBounds(186, 31, 172, 23);
-		drpLocker.addSelectionListener(new SelectionAdapter()
-		{
-			public void widgetSelected(SelectionEvent e)
-			{
-				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
-				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
-				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
-									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + price);
-			}
-		});
-		
-		
 		// ======= building combo ( dropdown list ) =======
 		drpBuilding = new Combo(shell, SWT.NONE);
-		
-		//Build up buildings to select from
-		for(int i = 0; i < buildingsAL.size(); i++)
-		{
-			buildings[i] = buildingsAL.get(i).getName();
-		}
 		drpBuilding.setItems(buildings);
 		
 		drpBuilding.setBounds(10, 31, 172, 23);
@@ -106,17 +89,51 @@ public class LockerWindow
 			}
 		});
 		
+		
+		// ===== locker combo ( dropdown list ) =======
+		drpLocker = new Combo(shell, SWT.NONE);
+		drpLocker.setBounds(186, 31, 172, 23);
+		drpLocker.addSelectionListener(new SelectionAdapter()
+		{
+			public void widgetSelected(SelectionEvent e)
+			{
+				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
+				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
+				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
+									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + price);
+			}
+		});
+		
+		//Build up buildings to select from
+		for(int i = 0; i < buildingsAL.size(); i++)
+		{
+			buildings[i] = buildingsAL.get(i).getName();
+		}
+		
+		
+		// ====== drop down term 1 =======
+		drpTerm1 = new Combo(shell, SWT.NONE);
+		drpTerm1.setItems(new String[] {});
+		drpTerm1.setBounds(10, 81, 172, 23);
+		
+		
+		
+		// ====== drop down term 2 ========
+		drpTerm2 = new Combo(shell, SWT.NONE);
+		drpTerm2.setItems(new String[] {});
+		drpTerm2.setBounds(186, 81, 172, 23);
+		
 
 		// ========= agree check button =========
 		chkAgreement = new Button(shell, SWT.CHECK);
 		chkAgreement.setAlignment(SWT.CENTER);
-		chkAgreement.setBounds(306, 88, 52, 23);
+		chkAgreement.setBounds(306, 163, 52, 23);
 		chkAgreement.setText("Agree");
 		
 		
 		// ========= back button ===========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 117, 111, 27);
+		btnBack.setBounds(10, 192, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -157,13 +174,13 @@ public class LockerWindow
 				}
 			}
 		});
-		btnRent.setBounds(247, 117, 111, 27);
+		btnRent.setBounds(247, 192, 111, 27);
 		btnRent.setText("Rent");
 		
 		
 		
 		lblPrice = new Label(shell, SWT.NONE);
-		lblPrice.setBounds(10, 68, 345, 43);
+		lblPrice.setBounds(10, 114, 345, 43);
 		//lblPrice.setText("Price: ");
 		
 		Label lblBuilding = new Label(shell, SWT.NONE);
@@ -173,6 +190,14 @@ public class LockerWindow
 		Label lblLocker = new Label(shell, SWT.NONE);
 		lblLocker.setBounds(186, 10, 55, 15);
 		lblLocker.setText("Locker");
+		
+		lblTerm1 = new Label(shell, SWT.NONE);
+		lblTerm1.setText("Term 1");
+		lblTerm1.setBounds(10, 60, 55, 15);
+		
+		lblTerm2 = new Label(shell, SWT.NONE);
+		lblTerm2.setText("Term 2");
+		lblTerm2.setBounds(186, 60, 55, 15);
 		
 
 		// ======shell open, close ========
