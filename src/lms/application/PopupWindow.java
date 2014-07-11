@@ -28,7 +28,7 @@ public class PopupWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setSize(305, 129);
+		shell.setSize(298, 116);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
