@@ -30,13 +30,13 @@ public class ExportWindow
 	private Button btnEmail;
 	private Button btnLocker;
 	private Button btnTerm;
-
+	private Button btnStats;
 	
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
-		shell.setSize(298, 121);
+		shell.setSize(298, 180);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -49,24 +49,30 @@ public class ExportWindow
 		shell.setText("Export");
 		
 		
-		
-		
-		// ======= radio button 'email' ========
-		btnEmail = new Button(shell, SWT.RADIO);
-		btnEmail.setBounds(19, 18, 62, 16);
-		btnEmail.setText("Email");
+		// ======= raido button 'Term' =========
+		btnTerm = new Button(shell, SWT.RADIO);
+		btnTerm.setText("Term");
+		btnTerm.setBounds(23, 23, 62, 16);
 		
 		
 		// ======= radio button 'Locker' =======
 		btnLocker = new Button(shell, SWT.RADIO);
 		btnLocker.setText("Locker");
-		btnLocker.setBounds(87, 18, 62, 16);
+		btnLocker.setBounds(104, 23, 62, 16);
 		
 		
-		// ======= raido button 'Term' =========
-		btnTerm = new Button(shell, SWT.RADIO);
-		btnTerm.setText("Term");
-		btnTerm.setBounds(155, 18, 62, 16);
+		
+		
+		// ======= radio button 'email' ========
+		btnEmail = new Button(shell, SWT.RADIO);
+		btnEmail.setBounds(23, 61, 62, 16);
+		btnEmail.setText("Email");
+		
+		
+		// ====== radio button 'stats' =======
+		btnStats = new Button(shell, SWT.RADIO);
+		btnStats.setBounds(104, 61, 90, 16);
+		btnStats.setText("Stats");
 		
 		
 		
@@ -116,15 +122,20 @@ public class ExportWindow
 					{
 						new PopupWindow("Failed","Exporting failed : Could not find any student emails");
 					}
-				}/*
+				}
 				else if(btnLocker.getSelection())
 				{
-					
+					new PopupWindow("Failed","Please implement this");
 				}
 				else if(btnTerm.getSelection())
 				{
-					
-				}*/
+					new PopupWindow("Failed","Please implement this");
+				}
+				else if(btnStats.getSelection())
+				{
+					// export stats here !
+					new PopupWindow("Failed","Please implement this");
+				}
 				else // if no option is selected
 				{
 					new PopupWindow("Failed","Exporting failed : Option not selected (Email)");
@@ -132,7 +143,7 @@ public class ExportWindow
 							
 			}
 		});
-		btnExport.setBounds(161, 46, 111, 27);
+		btnExport.setBounds(161, 105, 111, 27);
 		btnExport.setText("Export");
 		
 		
@@ -148,7 +159,7 @@ public class ExportWindow
 				shell.close();
 			}
 		});
-		btnBack.setBounds(10, 46, 111, 27);
+		btnBack.setBounds(10, 105, 111, 27);
 		btnBack.setText("Back");
 		
 
