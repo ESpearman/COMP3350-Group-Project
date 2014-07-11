@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import lms.domainobjects.Building;
 import lms.domainobjects.Locker;
@@ -16,21 +15,21 @@ import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetExporter 
 {
-	public static void writeRentalList(String filepath)
+	public static void writeRentalList(String filepath) throws IOException
 	{
 		XSSFWorkbook workbook = createRentalList();
 		saveSpreadsheet(workbook, filepath);
 	}
 	
-	public static void saveStudentList(String filepath)
+	public static void writeStudentList(String filepath) throws IOException
 	{
 		Workbook workbook = createStudentList();
 		saveSpreadsheet(workbook, filepath);
 	}
 	
-	public static void writeLockerList(UUID buildingID, String filepath)
+	public static void writeLockerList(String filepath) throws IOException
 	{
-		XSSFWorkbook workbook = createLockerList(buildingID);
+		XSSFWorkbook workbook = createLockerList();
 		saveSpreadsheet(workbook, filepath);
 	}
 	
@@ -72,9 +71,11 @@ public class SpreadsheetExporter
 		return workbook;
 	}
 
-	public static XSSFWorkbook createLockerList(UUID buildingID)
+	public static XSSFWorkbook createLockerList()
 	{
-		if(Building.getById(buildingID) == null)
+		ArrayList<Building> buildings = Building.getAll();
+		
+		if(buildings == null)
 		{
 			return null;
 		}
@@ -82,39 +83,47 @@ public class SpreadsheetExporter
 		int numberCol = 0;
 		int sizeCol = 1;
 		int assignedCol = 2;
-		
-		String buildingName = Building.getById(buildingID).getName();
-		
-		int[] colOrder = {numberCol, sizeCol, assignedCol};
-		String[] colTitles = {"Locker Number", "Locker Size", "Status"};
-		String sheetTitle = buildingName + " Lockers";
-		
+
 		XSSFWorkbook workbook = new XSSFWorkbook();
-		XSSFSheet sheet = workbook.createSheet();
-		
-		initSheet(sheet, sheetTitle, colOrder, colTitles);
-		
-		ArrayList<Locker> lockerList = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
-		int currentRowIndex = 2;
-		
-		for(Locker locker : lockerList)
+		for(Building building : buildings)
 		{
-			Row currentRow = sheet.createRow(currentRowIndex++);
+			XSSFSheet sheet = workbook.createSheet(building.getName());
+			String buildingName = building.getName();	
 			
-			currentRow.createCell(numberCol).setCellValue(locker.getNumber());
-			currentRow.createCell(sizeCol).setCellValue(locker.getSizeString());
+			int[] colOrder = {numberCol, sizeCol, assignedCol};
+			String[] colTitles = {"Locker Number", "Locker Size", "Status"};
+			String sheetTitle = buildingName + " Lockers";
 			
-			if(locker.isRented())
+			initSheet(sheet, sheetTitle, colOrder, colTitles);
+			
+			ArrayList<Locker> lockerList = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
+			int currentRowIndex = 2;
+			
+			
+			for(Locker locker : lockerList)
 			{
-				currentRow.createCell(assignedCol).setCellValue("Rented");
+				if(locker.getBuilding().equals(building.getId()))
+				{
+					Row currentRow = sheet.createRow(currentRowIndex++);
+					
+					currentRow.createCell(numberCol).setCellValue(locker.getNumber());
+					currentRow.createCell(sizeCol).setCellValue(locker.getSizeString());
+					
+					if(locker.isRented())
+					{
+						currentRow.createCell(assignedCol).setCellValue("Rented");
+					}
+					
+					else
+					{
+						currentRow.createCell(assignedCol).setCellValue("Free");
+					}
+				}
 			}
-			else
-			{
-			currentRow.createCell(assignedCol).setCellValue("Free");
-			}
+			
+			autoSizeSheet(sheet);
 		}
 		
-		autoSizeSheet(sheet);
 		return workbook;
 	}
 	
@@ -185,17 +194,10 @@ public class SpreadsheetExporter
 		}
 	}
 
-	public static void saveSpreadsheet(Workbook spreadsheet, String filename)
+	public static void saveSpreadsheet(Workbook spreadsheet, String filename) throws IOException
 	{
-		try
-        {
-            FileOutputStream file = new FileOutputStream(new File(filename));
-            spreadsheet.write(file);
-            file.close();
-        } 
-        catch (IOException ioe) 
-        {
-            ioe.printStackTrace();
-        }
+		FileOutputStream file = new FileOutputStream(new File(filename));
+        spreadsheet.write(file);
+        file.close();
 	}
 }
