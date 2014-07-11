@@ -45,7 +45,7 @@ public class RentLocker
 						errorMessage += "The locker is already rented for the term: " + t.getName() + "\n";
 					}
 					
-					if(rentalTerm.get(i).getStudent().equals(potentialRenter))
+					if(rentalTerm.get(i).getStudent().equals(student.getId()))
 					{
 						isRenting = true;
 						errorMessage += "The student is already renting a locker for the term: " + t.getName() + "\n";
@@ -59,8 +59,9 @@ public class RentLocker
 		{
 			for(Term t : terms)
 			{
+				student = Student.getByStudentNumber(potentialRenter.getStudentNumber(), t.getId());
 				Locker tempLocker = Locker.getByNumberBuildingAndTerm(selectedLocker.getNumber(), selectedLocker.getBuilding(), t.getId());
-				Rental newRental = new Rental(t.getId(), potentialRenter.getId(), tempLocker.getId(), price, true);
+				Rental newRental = new Rental(t.getId(), student.getId(), tempLocker.getId(), price, true);
 				newRental.save();
 			}
 		}
