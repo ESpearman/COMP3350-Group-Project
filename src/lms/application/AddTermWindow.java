@@ -29,8 +29,9 @@ public class AddTermWindow {
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
-		shell = new Shell();
-		shell.setSize(284, 139);
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("AddTermWindow");
+		shell.setSize(274, 122);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -42,7 +43,7 @@ public class AddTermWindow {
 		shell.setLocation (x, y);
 		
 		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(98, 18, 160, 27);
+		txtInput.setBounds(98, 17, 160, 27);
 		
 		
 		
@@ -67,7 +68,7 @@ public class AddTermWindow {
 			}
 		});
 		btnAdd.setText("Add");
-		btnAdd.setBounds(147, 64, 111, 27);
+		btnAdd.setBounds(147, 57, 111, 27);
 		
 		
 		
@@ -84,7 +85,7 @@ public class AddTermWindow {
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 64, 111, 27);
+		btnBack.setBounds(10, 57, 111, 27);
 		
 		
 		
@@ -93,7 +94,7 @@ public class AddTermWindow {
 		lblTerm = new Label(shell, SWT.NONE);
 		lblTerm.setText("Term");
 		lblTerm.setAlignment(SWT.RIGHT);
-		lblTerm.setBounds(10, 23, 82, 15);
+		lblTerm.setBounds(25, 22, 67, 15);
 		
 		
 		

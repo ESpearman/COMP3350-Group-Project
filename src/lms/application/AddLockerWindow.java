@@ -51,8 +51,9 @@ public class AddLockerWindow
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
-		shell = new Shell();
-		shell.setSize(284, 197);
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("AddLockerWindow");
+		shell.setSize(272, 197);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -66,13 +67,13 @@ public class AddLockerWindow
 
 		// ========= combo(dropdown list) building =======
 		drpBuilding = new Combo(shell, SWT.NONE);
-		drpBuilding.setBounds(101, 15, 157, 23);
+		drpBuilding.setBounds(95, 15, 157, 23);
 		drpBuilding.setText("Select a building");
 
 		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(101, 44, 157, 27);
+		txtInput.setBounds(95, 44, 157, 27);
 		txtInput.addListener(SWT.Verify, new Listener()
 		{
 			// allow only digits
@@ -104,11 +105,11 @@ public class AddLockerWindow
 		
 		// ======== radio button ( size ) ========
 		btnFull = new Button(shell, SWT.RADIO);
-		btnFull.setBounds(82, 90, 55, 16);
+		btnFull.setBounds(76, 90, 55, 16);
 		btnFull.setText("Full");
 		
 		btnHalf = new Button(shell, SWT.RADIO);
-		btnHalf.setBounds(168, 90, 55, 16);
+		btnHalf.setBounds(162, 90, 55, 16);
 		btnHalf.setText("Half");
 		
 		
@@ -169,7 +170,7 @@ public class AddLockerWindow
 			}
 		});
 		btnAdd.setText("Add");
-		btnAdd.setBounds(147, 122, 111, 27);
+		btnAdd.setBounds(147, 132, 111, 27);
 		
 		// ======= button back ======
 		btnBack = new Button(shell, SWT.NONE);
@@ -182,20 +183,20 @@ public class AddLockerWindow
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 122, 111, 27);
+		btnBack.setBounds(10, 132, 111, 27);
 		
 		
 		// ======= label 'locker' ======
 		lblLocker = new Label(shell, SWT.NONE);
 		lblLocker.setAlignment(SWT.RIGHT);
-		lblLocker.setBounds(45, 50, 50, 16);
+		lblLocker.setBounds(39, 50, 50, 16);
 		lblLocker.setText("Locker");
 		
 		
 		// =======  label 'building' ========
 		lblBuilding = new Label(shell, SWT.NONE);
 		lblBuilding.setAlignment(SWT.RIGHT);
-		lblBuilding.setBounds(40, 19, 55, 15);
+		lblBuilding.setBounds(34, 19, 55, 15);
 		lblBuilding.setText("Building");
 		
 		

@@ -46,8 +46,9 @@ public class StudentWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
-		shell.setSize(384, 256);
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("StudentWindow");
+		shell.setSize(374, 253);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -145,7 +146,7 @@ public class StudentWindow
 		
 		// ====== register/update button =========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(247, 181, 111, 27);
+		btnRegister.setBounds(247, 188, 111, 27);
 		btnRegister.setText(context);
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -162,7 +163,10 @@ public class StudentWindow
 						shell.close();
 						if(context.equals("Register"))
 						{
-							new LockerWindow(shell, newStudent);
+							if(!alrOpened("LockerWindow"))
+							{
+								new LockerWindow(shell, newStudent);
+							}
 						}
 						else if(context.equals("Edit"))
 						{
@@ -184,12 +188,12 @@ public class StudentWindow
 		
 		// ====== separate bar ======
 		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 40, 354, 16);
+		searchSeparate.setBounds(10, 40, 348, 16);
 		
 		
 		// ======== back button =========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 181, 111, 27);
+		btnBack.setBounds(10, 188, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -235,6 +239,22 @@ public class StudentWindow
 				}
 			}
 		}
+	}
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
 	}
 
 	public StudentWindow(String context)

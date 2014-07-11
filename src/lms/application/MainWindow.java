@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Combo;
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
+
 public class MainWindow
 {
 	private Display display;
@@ -47,8 +48,10 @@ public class MainWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
-		shell.setSize(266, 234);
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setSize(254, 228);
+		
+		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -88,7 +91,7 @@ public class MainWindow
 		
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(70, 159, 111, 27);
+		btnQuit.setBounds(68, 163, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -111,9 +114,10 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// when register button is clicked
-				
-				new StudentWindow("Register");
-				display.sleep();
+				if(!alrOpened("StudentWindow"))
+				{
+					new StudentWindow("Register");
+				}
 			}
 		});
 
@@ -128,7 +132,11 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// import button is selected
-				new SetupWindow();
+				
+				if(!alrOpened("SetupWindow"))
+				{
+					new SetupWindow();
+				}
 			}
 		});
 		
@@ -142,7 +150,10 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// Export button is selected
-				new ExportWindow();
+				if(!alrOpened("ExportWindow"))
+				{
+					new ExportWindow();
+				}
 			}
 		});
 		btnExport.setText("Export");
@@ -155,11 +166,14 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				new AboutWindow();
+				if(!alrOpened("AboutWindow"))
+				{
+					new AboutWindow();
+				}
 			}
 		});
 		btnAbout.setText("About");
-		btnAbout.setBounds(70, 126, 111, 27);
+		btnAbout.setBounds(68, 130, 111, 27);
 		
 
 		buttonControl(false);
@@ -185,6 +199,22 @@ public class MainWindow
 	{
 		btnRegister.setEnabled(bool);
 		btnExport.setEnabled(bool);
+	}
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
 	}
 	
 	public MainWindow()

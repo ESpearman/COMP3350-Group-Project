@@ -36,8 +36,9 @@ public class ImportWindow
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
-		shell = new Shell();
-		shell.setSize(384, 181);
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		shell.setData("ImportWindow");
+		shell.setSize(372, 169);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();

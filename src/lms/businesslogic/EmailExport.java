@@ -1,5 +1,9 @@
 package lms.businesslogic;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import lms.domainobjects.Rental;
@@ -31,5 +35,12 @@ public class EmailExport
 		
 		return result.toString();
 	}
-
+	
+	public static void writeToFile(String emails, String filepath) throws IOException
+	{
+		File textFile = new File(filepath);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
+		writer.write(emails);
+		writer.close();
+	}
 }

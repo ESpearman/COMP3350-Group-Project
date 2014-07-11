@@ -109,5 +109,15 @@ public class Locker implements TermBased
 			return "HALF";
 		}
 	}
-
+	
+	public boolean isRented()
+	{
+		boolean result = true;
+		if(Rental.getByLocker(id) == null)
+		{
+			result = false;
+		}
+		
+		return result;
+	}
 }
