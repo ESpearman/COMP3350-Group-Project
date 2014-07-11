@@ -1,5 +1,6 @@
 Package			lms.application
 InvokeMethod	lms.application.MainWindow		startUp
+SelectComboByValue		MainWindow						drpTerm					"Demo Term"
 Click			MainWindow						btnRegister
 Set				StudentWindow					txtStudentNumber		0987654
 Click 			StudentWindow					btnSearch
