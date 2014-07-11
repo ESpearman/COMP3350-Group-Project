@@ -33,7 +33,7 @@ public class SetupWindow
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("SetupWindow");
-		shell.setSize(264, 222);
+		shell.setSize(252, 212);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();

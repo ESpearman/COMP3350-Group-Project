@@ -48,7 +48,7 @@ public class StudentWindow
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("StudentWindow");
-		shell.setSize(384, 256);
+		shell.setSize(374, 253);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -146,7 +146,7 @@ public class StudentWindow
 		
 		// ====== register/update button =========
 		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(247, 181, 111, 27);
+		btnRegister.setBounds(247, 188, 111, 27);
 		btnRegister.setText(context);
 		btnRegister.addSelectionListener(new SelectionAdapter()
 		{
@@ -188,12 +188,12 @@ public class StudentWindow
 		
 		// ====== separate bar ======
 		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 40, 354, 16);
+		searchSeparate.setBounds(10, 40, 348, 16);
 		
 		
 		// ======== back button =========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 181, 111, 27);
+		btnBack.setBounds(10, 188, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{

@@ -48,7 +48,7 @@ public class AddBuildingWindow
 		
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
-		txtInput.setBounds(98, 17, 160, 27);
+		txtInput.setBounds(98, 18, 160, 27);
 		
 		
 		
@@ -73,7 +73,7 @@ public class AddBuildingWindow
 			}
 		});
 		btnAdd.setText("Add");
-		btnAdd.setBounds(147, 60, 111, 27);
+		btnAdd.setBounds(157, 70, 111, 27);
 		
 		
 		// ======= button back ======
@@ -87,13 +87,13 @@ public class AddBuildingWindow
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 60, 111, 27);
+		btnBack.setBounds(10, 70, 111, 27);
 		
 		
 		// ======= label 'building' ======
 		lblBuilding = new Label(shell, SWT.NONE);
 		lblBuilding.setAlignment(SWT.RIGHT);
-		lblBuilding.setBounds(10, 21, 82, 15);
+		lblBuilding.setBounds(10, 22, 82, 15);
 		lblBuilding.setText("Building");
 		
 		
