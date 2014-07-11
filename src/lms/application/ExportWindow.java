@@ -29,7 +29,7 @@ public class ExportWindow
 	// export options (radio btn)
 	private Button btnEmail;
 	private Button btnLocker;
-	private Button btnTerm;
+	private Button btnRental;
 	private Button btnStats;
 	
 	public void runWindow()
@@ -49,10 +49,10 @@ public class ExportWindow
 		shell.setText("Export");
 		
 		
-		// ======= raido button 'Term' =========
-		btnTerm = new Button(shell, SWT.RADIO);
-		btnTerm.setText("Term");
-		btnTerm.setBounds(23, 23, 62, 16);
+		// ======= radio button 'Rental' =========
+		btnRental = new Button(shell, SWT.RADIO);
+		btnRental.setText("Term");
+		btnRental.setBounds(23, 23, 62, 16);
 		
 		
 		// ======= radio button 'Locker' =======
@@ -87,6 +87,7 @@ public class ExportWindow
 				if(btnEmail.getSelection())
 				{
 					String emails = EmailExport.exportStudentEmails();
+					
 					if(!emails.equals("No students currently registered"))
 					{
 						FileDialog dlgSave = new FileDialog(shell, SWT.SAVE);
@@ -101,10 +102,7 @@ public class ExportWindow
 							try 
 							{
 								String filePath = dlgSave.getFilterPath() + "\\" + dlgSave.getFileName();
-								File textFile = new File(filePath);
-								BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
-								writer.write(emails);
-								writer.close();
+								EmailExport.writeToFile(emails, filePath);
 
 								new PopupWindow("Completed","Exporting completed to: " + filePath);
 							} 
@@ -125,9 +123,11 @@ public class ExportWindow
 				}
 				else if(btnLocker.getSelection())
 				{
+					
+					
 					new PopupWindow("Failed","Please implement this");
 				}
-				else if(btnTerm.getSelection())
+				else if(btnRental.getSelection())
 				{
 					new PopupWindow("Failed","Please implement this");
 				}
@@ -138,7 +138,7 @@ public class ExportWindow
 				}
 				else // if no option is selected
 				{
-					new PopupWindow("Failed","Exporting failed : Option not selected (Email)");
+					new PopupWindow("Failed","Exporting failed : Option not selected");
 				}
 							
 			}
