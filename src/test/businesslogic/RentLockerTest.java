@@ -21,8 +21,8 @@ public class RentLockerTest extends TestCase
 	Locker locker;
 	Locker rentedLocker;
 	Locker secondLocker;
-	Rental validRental;
-	Rental failedToRent;
+	boolean validRental;
+	boolean failedToRent;
 	
 	protected void setUp() throws Exception
 	{
@@ -52,14 +52,13 @@ public class RentLockerTest extends TestCase
 	public void testValid()
 	{
 		validRental = RentLocker.rent(validStudent.getId(), locker.getId(), term.getId(), price);
-		assertNotNull("newRental is null", validRental);
-		assertEquals(validStudent.getId(), validRental.getStudent());
+		assertTrue("Rental achieved", validRental);
 	}
 	
 	public void testStudentAlreadyRenting()
 	{
 		validRental = RentLocker.rent(rentingStudent.getId(), rentedLocker.getId(), term.getId(), price);
 		failedToRent = RentLocker.rent(rentingStudent.getId(), secondLocker.getId(), term.getId(), price);
-		assertNull("failedToRent did not return null after trying to rent a second locker in the same term", failedToRent);
+		assertFalse("failedToRent did not return null after trying to rent a second locker in the same term", failedToRent);
 	}
 }

@@ -240,6 +240,7 @@ public class MainWindow
 	
 	public static void startUp()
 	{
+		
 		new MainWindow();
 	}
 	
