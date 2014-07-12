@@ -5,15 +5,12 @@ import java.io.*;
 import lms.businesslogic.EmailExport;
 import lms.domainobjects.Building;
 import lms.domainobjects.Locker;
-import lms.domainobjects.Rental;
 import lms.businesslogic.CurrentTermInfo;
 
 import java.util.ArrayList;
 
 import lms.businesslogic.GetStats;
 import lms.businesslogic.SpreadsheetExporter;
-
-
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;

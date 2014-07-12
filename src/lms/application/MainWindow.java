@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Combo;
 
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 
 
 public class MainWindow
@@ -49,6 +51,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
+		//shell.setData("MainWindow");
 		shell.setSize(254, 228);
 		
 		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
@@ -64,18 +67,23 @@ public class MainWindow
 		
 		
 		
-		
+
+
 		// Build up terms to select from
-		for(int i = 0; i < termsAL.size(); i++)
-		{
-			terms[i] = termsAL.get(i).getName();
-		}
+
 		
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
+		drpTerm.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent arg0)
+			{
+				updateTerms();
+				drpTerm.setText("Select a Term");
+			}
+		});
 		drpTerm.setBounds(10, 20, 111, 23);
-		drpTerm.setItems(terms);
-		drpTerm.setText("Select a Term");
 		drpTerm.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
@@ -98,7 +106,15 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// exit button = terminate
+			    Shell[] shells = Display.getCurrent().getShells();
+		        for(Shell shell : shells)
+		        {
+		            String data = (String) shell.getData();
+		            if(data != null && data.equals(data))
+		            {
+		                shell.dispose();
+		            }
+		        }
 				shell.dispose();
 			}
 		});
@@ -149,7 +165,6 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// Export button is selected
 				if(!alrOpened("ExportWindow"))
 				{
 					new ExportWindow();
@@ -185,14 +200,24 @@ public class MainWindow
 		if(EventLoop.isEnabled())
 		{
 			while (!shell.isDisposed())
-			{
+			{   
 				if (!display.readAndDispatch())
 				{
 					display.sleep();
 				}
 			}
 		}
-		
+	}
+	
+	private void updateTerms()
+	{
+		termsAL = Term.getAll();
+		terms = new String[termsAL.size()];
+		for(int i = 0; i < termsAL.size(); i++)
+		{
+			terms[i] = termsAL.get(i).getName();
+		}
+		drpTerm.setItems(terms);
 	}
 	
 	private void buttonControl(boolean bool)
@@ -200,6 +225,7 @@ public class MainWindow
 		btnRegister.setEnabled(bool);
 		btnExport.setEnabled(bool);
 	}
+	
 	private static boolean alrOpened(String name)
 	{
 		boolean res = false;
@@ -225,10 +251,7 @@ public class MainWindow
 		//ConfigData must be initialized BEFORE ConnectionPool
 		ConfigData.init();
 		ConnectionPool.init(4);
-		
-		termsAL = Term.getAll();
-		terms = new String[termsAL.size()];
-		
+
 		LockerPrice.scienceFull = ConfigData.fullScience;
 		LockerPrice.scienceHalf = ConfigData.halfScience;
 		LockerPrice.nonScienceFull = ConfigData.fullNonScience;
@@ -241,7 +264,6 @@ public class MainWindow
 	
 	public static void startUp()
 	{
-		
 		new MainWindow();
 	}
 	

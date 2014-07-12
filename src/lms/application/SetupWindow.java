@@ -173,6 +173,7 @@ public class SetupWindow
 			}
 		}
 	}
+	
 	private static boolean alrOpened(String name)
 	{
 		boolean res = false;
@@ -189,6 +190,7 @@ public class SetupWindow
         }
 		return res;
 	}
+
 	public SetupWindow()
 	{
 		Register.newWindow(this);

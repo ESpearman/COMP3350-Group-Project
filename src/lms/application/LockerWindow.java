@@ -18,7 +18,6 @@ import lms.businesslogic.LockerPrice;
 import lms.businesslogic.RentLocker;
 import lms.domainobjects.Building;
 import lms.domainobjects.Locker;
-import lms.domainobjects.Rental;
 import lms.domainobjects.Student;
 import lms.domainobjects.Term;
 
