@@ -185,17 +185,6 @@ public class LockerWindow
 				}
 				drpLocker.setItems(lockers);
 				drpLocker.setEnabled(true);
-				
-				System.out.println("ArrayList");
-				for(int i = 0; i < lockersAL.size(); i++)
-				{
-					System.out.println(lockersAL.get(i).getNumber());
-				}
-				System.out.println("array");
-				for(int i = 0; i < lockers.length; i++)
-				{
-					System.out.println(lockers[i]);
-				}
 			}
 		});
 		
@@ -207,7 +196,6 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent e)
 			{
 				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
-				System.out.println(selectedLocker.getNumber());
 				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
 				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
 									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + price);

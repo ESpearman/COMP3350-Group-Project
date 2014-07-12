@@ -61,8 +61,6 @@ public class RentLocker
 			{
 				student = Student.getByStudentNumber(potentialRenter.getStudentNumber(), t.getId());
 				Locker tempLocker = Locker.getByNumberBuildingAndTerm(selectedLocker.getNumber(), selectedLocker.getBuilding(), t.getId());
-				System.out.println("selected: " + selectedLocker.getNumber() + " | tempLocker: " + tempLocker.getNumber() + "\n");
-				System.out.println("RENTING:\n" + t.getName() + " " + student.getStudentNumber() + " " + tempLocker.getNumber() + "\n");
 				Rental newRental = new Rental(t.getId(), student.getId(), tempLocker.getId(), price, true);
 				newRental.save();
 			}
