@@ -27,7 +27,7 @@ public class RentLocker
 			student = Student.getByStudentNumber(potentialRenter.getStudentNumber(), t.getId());
 			
 			// Register student if they do not exist for that term
-			RegisterStudent.upsertStudent(student, potentialRenter.getFirstName(), potentialRenter.getLastName(), potentialRenter.getEmail(), 
+			student = RegisterStudent.upsertStudent(student, potentialRenter.getFirstName(), potentialRenter.getLastName(), potentialRenter.getEmail(), 
 					potentialRenter.getStudentNumber(), potentialRenter.isScienceStudent(), t.getId());
 			if(locker == null)
 			{
@@ -61,6 +61,8 @@ public class RentLocker
 			{
 				student = Student.getByStudentNumber(potentialRenter.getStudentNumber(), t.getId());
 				Locker tempLocker = Locker.getByNumberBuildingAndTerm(selectedLocker.getNumber(), selectedLocker.getBuilding(), t.getId());
+				System.out.println("selected: " + selectedLocker.getNumber() + " | tempLocker: " + tempLocker.getNumber() + "\n");
+				System.out.println("RENTING:\n" + t.getName() + " " + student.getStudentNumber() + " " + tempLocker.getNumber() + "\n");
 				Rental newRental = new Rental(t.getId(), student.getId(), tempLocker.getId(), price, true);
 				newRental.save();
 			}
