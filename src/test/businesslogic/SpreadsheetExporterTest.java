@@ -113,7 +113,7 @@ public class SpreadsheetExporterTest extends TestCase
 		building = new Building(buildingID, "Armes");
 		building.save();
 		
-		XSSFWorkbook wb = SpreadsheetExporter.createLockerList(building.getId());
+		XSSFWorkbook wb = SpreadsheetExporter.createLockerList();
 		assertNotNull(wb);
 		assertEquals(1, wb.getSheetAt(0).getLastRowNum());
 	}
@@ -130,15 +130,9 @@ public class SpreadsheetExporterTest extends TestCase
 		locker1.save();
 		locker2.save();
 		
-		XSSFWorkbook wb = SpreadsheetExporter.createLockerList(buildingID);
+		XSSFWorkbook wb = SpreadsheetExporter.createLockerList();
 		
 		assertEquals(3, wb.getSheetAt(0).getLastRowNum());
 		assertEquals(1, (int)wb.getSheetAt(0).getRow(2).getCell(0).getNumericCellValue());
-	}
-	
-	public void testBuildingDontExist()
-	{
-		XSSFWorkbook wb = SpreadsheetExporter.createLockerList(UUID.randomUUID());
-		assertNull(wb);
 	}
 }

@@ -63,7 +63,7 @@ public class LockerWindow
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell();
 		shell.setData("LockerWindow");
-		shell.setSize(384, 267);
+		shell.setSize(372, 257);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -84,7 +84,7 @@ public class LockerWindow
 		// ========= agree check button =========
 		chkAgreement = new Button(shell, SWT.CHECK);
 		chkAgreement.setAlignment(SWT.CENTER);
-		chkAgreement.setBounds(306, 163, 52, 23);
+		chkAgreement.setBounds(304, 163, 52, 23);
 		chkAgreement.setText("Agree");
 		
 		
@@ -281,7 +281,6 @@ public class LockerWindow
 				}
 			}
 		}
-		
 	}
 	
 	public LockerWindow(Shell previousShell, Student newStudent)

@@ -35,7 +35,7 @@ public class AboutWindow
 		// ====== create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("AboutWindow");
-		shell.setSize(284, 353);
+		shell.setSize(271, 340);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -59,7 +59,7 @@ public class AboutWindow
 			}
 		});
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 278, 111, 27);
+		btnBack.setBounds(10, 275, 111, 27);
 		
 		
 		

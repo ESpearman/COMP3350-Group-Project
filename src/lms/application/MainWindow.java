@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Combo;
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
+
 public class MainWindow
 {
 	private Display display;
@@ -48,7 +49,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setSize(266, 234);
+		shell.setSize(254, 228);
 		
 		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
 		
@@ -90,7 +91,7 @@ public class MainWindow
 		
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(70, 159, 111, 27);
+		btnQuit.setBounds(68, 163, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
@@ -172,7 +173,7 @@ public class MainWindow
 			}
 		});
 		btnAbout.setText("About");
-		btnAbout.setBounds(70, 126, 111, 27);
+		btnAbout.setBounds(68, 130, 111, 27);
 		
 
 		buttonControl(false);

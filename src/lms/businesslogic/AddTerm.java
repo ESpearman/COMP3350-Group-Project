@@ -1,6 +1,5 @@
 package lms.businesslogic;
 
-import java.util.UUID;
 import lms.domainobjects.Term;
 
 public class AddTerm 
