@@ -67,11 +67,6 @@ public class MainWindow
 		
 		
 		
-
-
-		// Build up terms to select from
-
-		
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
 		drpTerm.addFocusListener(new FocusAdapter()
@@ -89,10 +84,13 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
-				CurrentTermInfo.currentTerm = selectedTerm;
-				// Let user click every other button once term is decided
-				buttonControl(true);
+				if(drpTerm.getSelectionIndex()!=-1)
+				{
+					selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
+					CurrentTermInfo.currentTerm = selectedTerm;
+					// Let user click every other button once term is decided
+					buttonControl(true);
+				}
 			}
 		});
 		
@@ -151,6 +149,7 @@ public class MainWindow
 				
 				if(!alrOpened("SetupWindow"))
 				{
+					drpTerm.deselectAll();
 					new SetupWindow();
 				}
 			}
