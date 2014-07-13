@@ -45,6 +45,43 @@ public class SetupWindow
 		shell.setText("Setup");
 		
 		
+		
+		// ========== button import =========
+		btnImport = new Button(shell, SWT.NONE);
+		btnImport.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				if(!alrOpened("ImportWindow"))
+				{
+					new ImportWindow();
+				}
+			}
+		});
+		btnImport.setText("Import");
+		btnImport.setBounds(10, 10, 111, 27);
+		
+		
+		
+		
+		// ========= button edit student ===========
+		btnEditStudent = new Button(shell, SWT.NONE);
+		btnEditStudent.setText("Edit Student");
+		btnEditStudent.setBounds(127, 10, 111, 27);
+		btnEditStudent.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				if(!alrOpened("StudentWindow"))
+				{
+					new StudentWindow("Edit");
+				}
+			}
+		});
+		
+		
 
 		// ==== button add term =======
 		btnAddTerm = new Button(shell, SWT.NONE);
@@ -58,23 +95,6 @@ public class SetupWindow
 				if(!alrOpened("AddTermWindow"))
 				{
 					new AddTermWindow();
-				}
-			}
-		});
-		
-		
-		// ========= button add locker ==========
-		btnAddLocker = new Button(shell, SWT.NONE);
-		btnAddLocker.setText("Add Locker");
-		btnAddLocker.setBounds(10, 89, 111, 27);
-		btnAddLocker.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				if(!alrOpened("AddLockerWindow"))
-				{
-					new AddLockerWindow();
 				}
 			}
 		});
@@ -97,20 +117,18 @@ public class SetupWindow
 		});
 		
 		
-		
-		
-		// ========= button edit student ===========
-		btnEditStudent = new Button(shell, SWT.NONE);
-		btnEditStudent.setText("Edit Student");
-		btnEditStudent.setBounds(127, 10, 111, 27);
-		btnEditStudent.addSelectionListener(new SelectionAdapter()
+		// ========= button add locker ==========
+		btnAddLocker = new Button(shell, SWT.NONE);
+		btnAddLocker.setText("Add Locker");
+		btnAddLocker.setBounds(10, 89, 111, 27);
+		btnAddLocker.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				if(!alrOpened("StudentWindow"))
+				if(!alrOpened("AddLockerWindow"))
 				{
-					new StudentWindow("Edit");
+					new AddLockerWindow();
 				}
 			}
 		});
@@ -130,24 +148,6 @@ public class SetupWindow
 				shell.close();
 			}
 		});
-		
-		
-		
-		// ========== button import =========
-		btnImport = new Button(shell, SWT.NONE);
-		btnImport.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				if(!alrOpened("ImportWindow"))
-				{
-					new ImportWindow();
-				}
-			}
-		});
-		btnImport.setText("Import");
-		btnImport.setBounds(10, 10, 111, 27);
 		
 		
 		// Only allow to add new term if there is no current term

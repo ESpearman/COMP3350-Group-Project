@@ -7,6 +7,8 @@ import lms.businesslogic.CurrentTermInfo;
 import lms.domainobjects.Building;
 import lms.domainobjects.LockerSize;
 
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
@@ -44,8 +46,8 @@ public class AddLockerWindow
 	
 	LockerSize size;
 	
-	private ArrayList<Building> allBuildings = Building.getAll();
-	private String[] buildings = new String[allBuildings.size()];
+	private ArrayList<Building> allBuildings;
+	private String[] buildings;
 	private Label lblBuilding;
 	
 	private static final int TEXT_LIMIT = 50;
@@ -96,14 +98,15 @@ public class AddLockerWindow
 			}
 		});
 		
-		// build building list here
-		for ( int i = 0 ; i < allBuildings.size() ; i ++)
+		drpBuilding.addFocusListener(new FocusAdapter()
 		{
-			buildings[i] = allBuildings.get(i).getName();
-		}
-		drpBuilding.setItems(buildings);
-		
-		
+			@Override
+			public void focusGained(FocusEvent arg0)
+			{
+				updateBuildings();
+				drpBuilding.setText("Select a Building");
+			}
+		});
 		
 		
 		// ======== radio button ( size ) ========
@@ -226,6 +229,17 @@ public class AddLockerWindow
 			}
 		}
 		
+	}
+	
+	private void updateBuildings()
+	{
+		allBuildings = Building.getAll();
+		buildings = new String[allBuildings.size()];
+		for ( int i = 0 ; i < allBuildings.size() ; i ++)
+		{
+			buildings[i] = allBuildings.get(i).getName();
+		}
+		drpBuilding.setItems(buildings);
 	}
 	
 	public AddLockerWindow()

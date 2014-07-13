@@ -85,6 +85,7 @@ public class MainWindow
 			{
 				updateTerms();
 				drpTerm.setText("Select a Term");
+				buttonControl(false);
 			}
 		});
 		drpTerm.setBounds(10, 20, 111, 23);
@@ -103,57 +104,42 @@ public class MainWindow
 			}
 		});
 		
-		
-		// ============== quit button ================
-		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(68, 144, 111, 27);
-		btnQuit.setText("Quit");
-		btnQuit.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				closeAll();
-				shell.dispose();
-			}
-		});
-
-		
-		// ==============register button ===========
-		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(127, 17, 111, 27);
-		btnRegister.setText("Register");
-		btnRegister.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// when register button is clicked
-				if(!alrOpened("StudentWindow"))
-				{
-					new StudentWindow("Register");
-				}
-			}
-		});
-
-		
-		// =============== import button ============
-		btnSetup = new Button(shell, SWT.NONE);
-		btnSetup.setBounds(10, 64, 111, 27);
-		btnSetup.setText("Setup");
-		btnSetup.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// import button is selected
 				
-				if(!alrOpened("SetupWindow"))
+				// ==============register button ===========
+				btnRegister = new Button(shell, SWT.NONE);
+				btnRegister.setBounds(127, 17, 111, 27);
+				btnRegister.setText("Register");
+				btnRegister.addSelectionListener(new SelectionAdapter()
 				{
-					new SetupWindow();
-				}
-			}
-		});
+					@Override
+					public void widgetSelected(SelectionEvent arg0)
+					{
+						// when register button is clicked
+						if(!alrOpened("StudentWindow"))
+						{
+							new StudentWindow("Register");
+						}
+					}
+				});
+		
+				
+				// =============== import button ============
+				btnSetup = new Button(shell, SWT.NONE);
+				btnSetup.setBounds(10, 64, 111, 27);
+				btnSetup.setText("Setup");
+				btnSetup.addSelectionListener(new SelectionAdapter()
+				{
+					@Override
+					public void widgetSelected(SelectionEvent arg0)
+					{
+						// import button is selected
+						
+						if(!alrOpened("SetupWindow"))
+						{
+							new SetupWindow();
+						}
+					}
+				});
 		
 		
 		// =============== export button ==============
@@ -188,6 +174,21 @@ public class MainWindow
 		});
 		btnAbout.setText("About");
 		btnAbout.setBounds(68, 111, 111, 27);
+		
+		
+		// ============== quit button ================
+		btnQuit = new Button(shell, SWT.NONE);
+		btnQuit.setBounds(68, 144, 111, 27);
+		btnQuit.setText("Quit");
+		btnQuit.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				closeAll();
+				shell.dispose();
+			}
+		});
 		
 		
 		

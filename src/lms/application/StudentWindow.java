@@ -186,11 +186,6 @@ public class StudentWindow
 		});
 		
 		
-		// ====== separate bar ======
-		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 40, 348, 16);
-		
-		
 		// ======== back button =========
 		btnBack = new Button(shell, SWT.NONE);
 		btnBack.setBounds(10, 188, 111, 27);
@@ -204,6 +199,11 @@ public class StudentWindow
 				shell.close();
 			}
 		});
+		
+		
+		// ====== separate bar ======
+		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
+		searchSeparate.setBounds(10, 40, 348, 16);
 		
 		
 		// ======== label for student info ========

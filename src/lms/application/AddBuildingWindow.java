@@ -29,6 +29,7 @@ public class AddBuildingWindow
 	private Label lblBuilding;
 	
 	private static final int TEXT_LIMIT = 50;
+	
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
@@ -121,7 +122,6 @@ public class AddBuildingWindow
 		}
 		
 	}
-	
 	
 	public AddBuildingWindow()
 	{

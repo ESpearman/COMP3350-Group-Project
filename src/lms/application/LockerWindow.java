@@ -41,9 +41,9 @@ public class LockerWindow
 	private String buildings[] = new String[buildingsAL.size()];
 	private ArrayList<Locker> lockersAL;
 	private String lockers[];
-	private ArrayList<Term> termsAL = Term.getAll();
-	private String terms1[] = new String[termsAL.size()-1];
-	private String terms2[] = new String[termsAL.size()-2];
+	private ArrayList<Term> termsAL;
+	private String terms1[];
+	private String terms2[];
 	private ArrayList<Term> termsAL1 = new ArrayList<Term>();
 	private ArrayList<Term> termsAL2 = new ArrayList<Term>();
 	
@@ -81,107 +81,6 @@ public class LockerWindow
 			buildings[i] = buildingsAL.get(i).getName();
 		}
 		
-
-		// ========= agree check button =========
-		chkAgreement = new Button(shell, SWT.CHECK);
-		chkAgreement.setAlignment(SWT.CENTER);
-		chkAgreement.setBounds(304, 163, 52, 23);
-		chkAgreement.setText("Agree");
-		
-		
-		// ========= back button ===========
-		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 192, 111, 27);
-		btnBack.setText("Back");
-		btnBack.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-			    Shell[] shells = Display.getCurrent().getShells();
-		        for(Shell shell : shells)
-		        {
-		            String data = (String) shell.getData();
-		            if(data != null && data.equals("StudentWindow"))
-		            {
-		                shell.setVisible(true);
-		                shell.setFocus();
-		            }
-		        }
-				shell.close();
-			}
-		});
-
-		
-		// ======== rent button ===========
-		btnRent = new Button(shell, SWT.NONE);
-		btnRent.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				if(drpLocker.getSelectionIndex() != -1 && drpBuilding.getSelectionIndex() != -1 && chkAgreement.getSelection())
-				{
-					ArrayList<Term> multipleTerms = new ArrayList<Term>();
-					multipleTerms.add(CurrentTermInfo.currentTerm);
-					if(additionalTerm1 != null)
-					{
-						multipleTerms.add(additionalTerm1);
-					}
-					if(additionalTerm2 != null)
-					{
-						multipleTerms.add(additionalTerm2);
-					}
-					
-					String newRental = RentLocker.rent(potentialRenter, selectedLocker, multipleTerms, price);
-					if(newRental.equals(""))
-					{
-						new PopupWindow("Completed","Rented");
-						
-						shell.close();
-					}
-					else
-					{
-						new PopupWindow("Error", newRental);
-					}					
-				}
-				else
-				{
-					new PopupWindow("Error","Locker has not been selected or student has not agreed");
-				}
-			}
-		});
-		btnRent.setBounds(247, 192, 111, 27);
-		btnRent.setText("Rent");
-		
-		
-		
-		// ======== label for rental info =======
-		lblPrice = new Label(shell, SWT.NONE);
-		lblPrice.setBounds(10, 114, 345, 43);
-		
-		
-		// ======== label 'Building' ======
-		lblBuilding = new Label(shell, SWT.NONE);
-		lblBuilding.setBounds(10, 10, 55, 15);
-		lblBuilding.setText("Building");
-		
-		
-		// ======== label 'Locker' ========
-		lblLocker = new Label(shell, SWT.NONE);
-		lblLocker.setBounds(186, 10, 55, 15);
-		lblLocker.setText("Locker");
-		
-		
-		// ======= label 'Term1' 'Term2' ======
-		lblTerm1 = new Label(shell, SWT.NONE);
-		lblTerm1.setText("Additional Term #1");
-		lblTerm1.setBounds(10, 60, 155, 15);
-		
-		lblTerm2 = new Label(shell, SWT.NONE);
-		lblTerm2.setText("Additional Term #2");
-		lblTerm2.setBounds(186, 60, 155, 15);
-		
 		
 		// ======= building combo ( dropdown list ) =======
 		drpBuilding = new Combo(shell, SWT.NONE);
@@ -212,12 +111,42 @@ public class LockerWindow
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
+				int multiplier = 1;
+				
 				selectedLocker = lockersAL.get(drpLocker.getSelectionIndex());
+				if(drpLocker.getSelectionIndex()>-1)
+				{
+					drpTerm1.setEnabled(true);
+				}
 				price = LockerPrice.calculatePrice(potentialRenter, selectedLocker);
-				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
-									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + price);
+				
+				if(drpTerm1.getSelectionIndex()>-1)
+				{
+					multiplier++;
+					if(drpTerm2.getSelectionIndex()>-1)
+					{
+						multiplier++;
+					}
+				}
+				updatePrice(potentialRenter,drpLocker.getText(),drpBuilding.getText(),multiplier);
 			}
 		});
+		
+		
+		
+		// ======= build additional term =======
+		
+		// ===== don't get negative array size =====
+		termsAL = Term.getAll();
+		if(termsAL.size()>=1)
+		{
+			terms1 = new String[termsAL.size()-1];
+			terms2 = new String[termsAL.size()-1];
+		}
+		if(termsAL.size()>=2)
+		{
+			terms2 = new String[termsAL.size()-2];
+		}
 		
 		int i = 0;
 		for(Term t : termsAL)
@@ -229,9 +158,9 @@ public class LockerWindow
 				i++;
 			}
 		}
-		
 		// ====== drop down term 1 =======
 		drpTerm1 = new Combo(shell, SWT.NONE);
+		drpTerm1.setEnabled(false);
 		drpTerm1.setItems(terms1);
 		drpTerm1.setBounds(10, 81, 172, 23);
 		drpTerm1.addSelectionListener(new SelectionAdapter()
@@ -240,9 +169,7 @@ public class LockerWindow
 			{
 				additionalTerm1 = termsAL1.get(drpTerm1.getSelectionIndex());
 				drpTerm2.setEnabled(true);
-				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
-									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + 2 * price);
-				
+				updatePrice(potentialRenter,drpLocker.getText(),drpBuilding.getText(),2);
 				int j = 0;
 				for(Term t : termsAL1)
 				{
@@ -256,8 +183,8 @@ public class LockerWindow
 				drpTerm2.setItems(terms2);
 			}
 		});		
-				
-				
+		
+		
 		// ====== drop down term 2 ========
 		drpTerm2 = new Combo(shell, SWT.NONE);
 		drpTerm2.setBounds(186, 81, 172, 23);
@@ -267,10 +194,109 @@ public class LockerWindow
 			public void widgetSelected(SelectionEvent e)
 			{
 				additionalTerm2 = termsAL2.get(drpTerm2.getSelectionIndex());
-				lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
-									drpLocker.getText() +" in "+drpBuilding.getText()+"\nPrice: " + 3 * price);
+				updatePrice(potentialRenter,drpLocker.getText(),drpBuilding.getText(),3);
 			}
 		});
+		
+
+		// ========= agree check button =========
+		chkAgreement = new Button(shell, SWT.CHECK);
+		chkAgreement.setAlignment(SWT.CENTER);
+		chkAgreement.setBounds(304, 163, 52, 23);
+		chkAgreement.setText("Agree");
+		
+				
+		// ======== rent button ===========
+		btnRent = new Button(shell, SWT.NONE);
+		btnRent.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				if(drpLocker.getSelectionIndex() != -1 && drpBuilding.getSelectionIndex() != -1 && chkAgreement.getSelection())
+				{
+					ArrayList<Term> multipleTerms = new ArrayList<Term>();
+					multipleTerms.add(CurrentTermInfo.currentTerm);
+					if(additionalTerm1 != null)
+					{
+						multipleTerms.add(additionalTerm1);
+					}
+					if(additionalTerm2 != null)
+					{
+						multipleTerms.add(additionalTerm2);
+					}
+					
+					String newRental = RentLocker.rent(potentialRenter, selectedLocker, multipleTerms, price);
+					if(newRental.equals(""))
+					{
+						new PopupWindow("Completed","Rented");
+						shell.close();
+					}
+					else
+					{
+						new PopupWindow("Error", newRental);
+					}					
+				}
+				else
+				{
+					new PopupWindow("Error","Locker has not been selected or student has not agreed");
+				}
+			}
+		});
+		btnRent.setBounds(247, 192, 111, 27);
+		btnRent.setText("Rent");
+		
+		
+		// ========= back button ===========
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.setBounds(10, 192, 111, 27);
+		btnBack.setText("Back");
+		btnBack.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+			    Shell[] shells = Display.getCurrent().getShells();
+		        for(Shell shell : shells)
+		        {
+		            String data = (String) shell.getData();
+		            if(data != null && data.equals("StudentWindow"))
+		            {
+		                shell.setVisible(true);
+		                shell.setFocus();
+		            }
+		        }
+				shell.close();
+			}
+		});
+		
+		
+		
+		// ======== label for rental info =======
+		lblPrice = new Label(shell, SWT.NONE);
+		lblPrice.setBounds(10, 114, 345, 43);
+		
+		
+		// ======== label 'Building' ======
+		lblBuilding = new Label(shell, SWT.NONE);
+		lblBuilding.setBounds(10, 10, 55, 15);
+		lblBuilding.setText("Building");
+		
+		
+		// ======== label 'Locker' ========
+		lblLocker = new Label(shell, SWT.NONE);
+		lblLocker.setBounds(186, 10, 55, 15);
+		lblLocker.setText("Locker");
+		
+		
+		// ======= label 'Term1' 'Term2' ======
+		lblTerm1 = new Label(shell, SWT.NONE);
+		lblTerm1.setText("Additional Term #1");
+		lblTerm1.setBounds(10, 60, 155, 15);
+		
+		lblTerm2 = new Label(shell, SWT.NONE);
+		lblTerm2.setText("Additional Term #2");
+		lblTerm2.setBounds(186, 60, 155, 15);
 
 		
 		// ======shell open, close ========
@@ -286,6 +312,12 @@ public class LockerWindow
 				}
 			}
 		}
+	}
+	
+	private void updatePrice(Student potientialRenter, String locker, String building, int multiplier)
+	{
+		lblPrice.setText(potentialRenter.getFirstName()+" "+potentialRenter.getLastName()+" will rent locker #"+
+				locker +" in "+building + "\nPrice: " + multiplier * price);
 	}
 	
 	public LockerWindow(Shell previousShell, Student newStudent)

@@ -121,7 +121,7 @@ public class AddTermWindow {
 		}
 		
 	}
-
+	
 	public AddTermWindow()
 	{
 		Register.newWindow(this);
