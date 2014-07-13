@@ -58,11 +58,10 @@ public class AddTermWindow {
 				{
 					// add term here
 					AddTerm.addTerm(txtInput.getText());
-					new PopupWindow("Added", txtInput.getText() + "Term added");
+					new PopupWindow("Added", txtInput.getText() + " Term added");
 				}
 				else
 				{
-
 					new PopupWindow("Failed", "Error : Need Term name !");
 				}
 			}

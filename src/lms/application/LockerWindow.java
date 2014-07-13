@@ -180,7 +180,7 @@ public class LockerWindow
 				//build up lockers to select from
 				for(int i = 0; i < lockersAL.size(); i++)
 				{
-					lockers[i] = Integer.toString(lockersAL.get(i).getNumber());
+					lockers[i] = Integer.toString(lockersAL.get(i).getNumber()) + " - " + lockersAL.get(i).getSizeString();
 				}
 				drpLocker.setItems(lockers);
 				drpLocker.setEnabled(true);
