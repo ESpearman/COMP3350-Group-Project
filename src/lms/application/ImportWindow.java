@@ -33,6 +33,7 @@ public class ImportWindow
 	
 	private Label lblFilePath;
 	private Button btnImport;
+	
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
@@ -57,7 +58,6 @@ public class ImportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// file browser dialog open
 				FileDialog dlgOpen = new FileDialog(shell, SWT.OPEN);
 			    dlgOpen.setFilterNames(new String[] {"Excel Workbook (.xlsx)", "Excel 97-2004 (.xls)"});
 			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx","*.xls", "*.*"});
@@ -95,7 +95,6 @@ public class ImportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// when back button is selected
 				shell.close();
 			}
 		});
@@ -171,12 +170,6 @@ public class ImportWindow
 		});
 		btnImport.setBounds(247, 105, 111, 27);
 		btnImport.setText("Import");
-		
-		
-		
-
-		
-
 
 
 		// ======shell open, close ========

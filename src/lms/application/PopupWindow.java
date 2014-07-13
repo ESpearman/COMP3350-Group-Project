@@ -28,7 +28,7 @@ public class PopupWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setSize(298, 203);
+		shell.setSize(298, 173);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -51,13 +51,13 @@ public class PopupWindow
 			}
 		});
 		btnOk.setText("OK");
-		btnOk.setBounds(90, 138, 111, 27);
+		btnOk.setBounds(90, 108, 111, 27);
 		
 		
 		// ========== label message =========
 		lblMessage = new Label(shell, SWT.NONE);
 		lblMessage.setAlignment(SWT.CENTER);
-		lblMessage.setBounds(17, 18, 254, 114);
+		lblMessage.setBounds(17, 18, 254, 84);
 		lblMessage.setText(message);
 		
 		

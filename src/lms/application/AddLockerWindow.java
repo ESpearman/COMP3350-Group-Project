@@ -48,6 +48,8 @@ public class AddLockerWindow
 	private String[] buildings = new String[allBuildings.size()];
 	private Label lblBuilding;
 	
+	private static final int TEXT_LIMIT = 50;
+	
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
@@ -74,6 +76,7 @@ public class AddLockerWindow
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(95, 44, 157, 27);
+		txtInput.setTextLimit(TEXT_LIMIT);
 		txtInput.addListener(SWT.Verify, new Listener()
 		{
 			// allow only digits

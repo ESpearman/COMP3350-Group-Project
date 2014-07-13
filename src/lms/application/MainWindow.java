@@ -11,20 +11,24 @@ import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Combo;
 
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
-
+import org.eclipse.swt.widgets.Label;
 
 public class MainWindow
 {
@@ -41,6 +45,8 @@ public class MainWindow
 	private Term selectedTerm;
 	private ArrayList<Term> termsAL;
 	private String terms[];
+	private Label lblUofm;
+	private Label lblSSA;
 	
 	/**
 	 * Launch the application.
@@ -51,10 +57,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		//shell.setData("MainWindow");
-		shell.setSize(254, 228);
-		
-		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
+		shell.setSize(256, 291);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -64,7 +67,13 @@ public class MainWindow
 		
 		shell.setLocation (x, y);
 		shell.setText("LMS");
-		
+		shell.addListener(SWT.Close, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				closeAll();
+			}
+		});
 		
 		
 		// ======= dropdown term =======
@@ -97,22 +106,14 @@ public class MainWindow
 		
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(68, 163, 111, 27);
+		btnQuit.setBounds(68, 144, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-			    Shell[] shells = Display.getCurrent().getShells();
-		        for(Shell shell : shells)
-		        {
-		            String data = (String) shell.getData();
-		            if(data != null && data.equals(data))
-		            {
-		                shell.dispose();
-		            }
-		        }
+				closeAll();
 				shell.dispose();
 			}
 		});
@@ -149,7 +150,6 @@ public class MainWindow
 				
 				if(!alrOpened("SetupWindow"))
 				{
-					drpTerm.deselectAll();
 					new SetupWindow();
 				}
 			}
@@ -187,11 +187,26 @@ public class MainWindow
 			}
 		});
 		btnAbout.setText("About");
-		btnAbout.setBounds(68, 130, 111, 27);
+		btnAbout.setBounds(68, 111, 111, 27);
 		
+		
+		
+		// ======== logo ( uofm, ssa ) =========
+		Image uofm = new Image(display, "img/resize_um.png");
+		lblUofm = new Label(shell, SWT.NONE);
+		lblUofm.setText("uofm");
+		lblUofm.setBounds(127, 193, 69, 60);
+		lblUofm.setImage(uofm);
 
-		buttonControl(false);
+		Image ssa = new Image(display, "img/resize_ssa.png");
+		lblSSA = new Label(shell, SWT.NONE);
+		lblSSA.setText("ssa");
+		lblSSA.setBounds(50, 193, 71, 60);
+		lblSSA.setImage(ssa);
 		
+		
+		
+		buttonControl(false);
 		
 		//======= shell open, close ======
 		shell.open();
@@ -205,6 +220,9 @@ public class MainWindow
 					display.sleep();
 				}
 			}
+
+			System.out.println("5");
+			
 		}
 	}
 	
@@ -217,6 +235,19 @@ public class MainWindow
 			terms[i] = termsAL.get(i).getName();
 		}
 		drpTerm.setItems(terms);
+	}
+	
+	private void closeAll()
+	{
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null)
+            {
+                shell.dispose();
+            }
+        }
 	}
 	
 	private void buttonControl(boolean bool)

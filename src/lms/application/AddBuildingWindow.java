@@ -28,7 +28,7 @@ public class AddBuildingWindow
 	
 	private Label lblBuilding;
 	
-	
+	private static final int TEXT_LIMIT = 50;
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
@@ -49,7 +49,7 @@ public class AddBuildingWindow
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(98, 18, 160, 27);
-		
+		txtInput.setTextLimit(TEXT_LIMIT);
 		
 		
 		// ======== button add =========

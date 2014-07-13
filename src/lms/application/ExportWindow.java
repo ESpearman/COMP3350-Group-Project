@@ -85,11 +85,6 @@ public class ExportWindow
 		
 		// ====== radio button 'stats' =======
 		btnStats = new Button(shell, SWT.RADIO);
-		btnStats.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-			}
-		});
 		btnStats.setBounds(182, 23, 90, 16);
 		btnStats.setText("Stats");
 		
@@ -293,17 +288,11 @@ public class ExportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// back button is selected
 				shell.close();
 			}
 		});
 		btnBack.setBounds(10, 105, 111, 27);
 		btnBack.setText("Back");
-		
-
-		
-		
-		
 		
 		
 		// ======shell open, close ========

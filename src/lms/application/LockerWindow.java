@@ -34,6 +34,8 @@ public class LockerWindow
 	private Combo drpTerm2;
 	private Label lblTerm1;
 	private Label lblTerm2;
+	private Label lblBuilding;
+	private Label lblLocker;
 	
 	private ArrayList<Building> buildingsAL = Building.getAll();
 	private String buildings[] = new String[buildingsAL.size()];
@@ -96,7 +98,16 @@ public class LockerWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// back button is selected
+			    Shell[] shells = Display.getCurrent().getShells();
+		        for(Shell shell : shells)
+		        {
+		            String data = (String) shell.getData();
+		            if(data != null && data.equals("StudentWindow"))
+		            {
+		                shell.setVisible(true);
+		                shell.setFocus();
+		            }
+		        }
 				shell.close();
 			}
 		});
@@ -145,17 +156,24 @@ public class LockerWindow
 		
 		
 		
+		// ======== label for rental info =======
 		lblPrice = new Label(shell, SWT.NONE);
 		lblPrice.setBounds(10, 114, 345, 43);
 		
-		Label lblBuilding = new Label(shell, SWT.NONE);
+		
+		// ======== label 'Building' ======
+		lblBuilding = new Label(shell, SWT.NONE);
 		lblBuilding.setBounds(10, 10, 55, 15);
 		lblBuilding.setText("Building");
 		
-		Label lblLocker = new Label(shell, SWT.NONE);
+		
+		// ======== label 'Locker' ========
+		lblLocker = new Label(shell, SWT.NONE);
 		lblLocker.setBounds(186, 10, 55, 15);
 		lblLocker.setText("Locker");
 		
+		
+		// ======= label 'Term1' 'Term2' ======
 		lblTerm1 = new Label(shell, SWT.NONE);
 		lblTerm1.setText("Additional Term #1");
 		lblTerm1.setBounds(10, 60, 155, 15);

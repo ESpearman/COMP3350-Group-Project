@@ -26,6 +26,8 @@ public class AddTermWindow {
 	private Text txtInput;
 	private Label lblTerm;
 	
+	private static final int TEXT_LIMIT = 50;
+	
 	public void runWindow()
 	{
 		// ====== create new window ( centre on monitor ) =====
@@ -42,10 +44,10 @@ public class AddTermWindow {
 		shell.setText("Add term");
 		shell.setLocation (x, y);
 		
+		
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(98, 17, 160, 27);
-		
-		
+		txtInput.setTextLimit(TEXT_LIMIT);
 		
 		// ========== button add ============
 		btnAdd = new Button(shell, SWT.NONE);
@@ -56,7 +58,6 @@ public class AddTermWindow {
 			{				
 				if(!txtInput.getText().equals(""))
 				{
-					// add term here
 					AddTerm.addTerm(txtInput.getText());
 					new PopupWindow("Added", txtInput.getText() + " Term added");
 				}
