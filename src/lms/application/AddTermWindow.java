@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 
 import lms.businesslogic.AddTerm;
-
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
@@ -58,8 +57,15 @@ public class AddTermWindow {
 			{				
 				if(!txtInput.getText().equals(""))
 				{
-					AddTerm.addTerm(txtInput.getText());
-					new PopupWindow("Added", txtInput.getText() + " Term added");
+					Object res = AddTerm.addTerm(txtInput.getText());
+					if(res!=null)
+					{
+						new PopupWindow("Added", txtInput.getText() + " Term added");
+					}
+					else
+					{
+						new PopupWindow("Failed", "There is already "+txtInput.getText() + " Term");
+					}
 				}
 				else
 				{

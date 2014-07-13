@@ -144,8 +144,15 @@ public class AddLockerWindow
 							
 							if(txtInput.getText() != "")
 							{
-								AddLocker.insert(CurrentTermInfo.currentTerm.getId(), txtInput.getText(), selectedBuilding.getId(), size);
-								new PopupWindow("Added",txtInput.getText()+" Locker added");
+								Object res = AddLocker.insert(CurrentTermInfo.currentTerm.getId(), txtInput.getText(), selectedBuilding.getId(), size);
+								if(res!=null)
+								{
+									new PopupWindow("Added",txtInput.getText()+" Locker added");
+								}
+								else
+								{
+									new PopupWindow("Failed","There is already "+ txtInput.getText()+" Locker in "+CurrentTermInfo.currentTerm.getName()+ " Term");
+								}
 							}
 							else
 							{

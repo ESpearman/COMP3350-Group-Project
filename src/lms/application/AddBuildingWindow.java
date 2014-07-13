@@ -62,8 +62,15 @@ public class AddBuildingWindow
 
 				if(txtInput.getText() != "")
 				{
-					AddBuilding.insert(txtInput.getText());
-					new PopupWindow("Added",txtInput.getText()+ "Building added");
+					Object res = AddBuilding.insert(txtInput.getText());
+					if(res!=null)
+					{
+						new PopupWindow("Added",txtInput.getText()+ " Building added");
+					}
+					else
+					{
+						new PopupWindow("Failed","There is already "+txtInput.getText()+ " Building");
+					}
 				}
 				else
 				{

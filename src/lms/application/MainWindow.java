@@ -220,9 +220,7 @@ public class MainWindow
 					display.sleep();
 				}
 			}
-
-			System.out.println("5");
-			
+			shell.dispose();
 		}
 	}
 	
