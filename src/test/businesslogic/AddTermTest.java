@@ -21,4 +21,11 @@ public class AddTermTest extends TestCase
 		newTerm = AddTerm.addTerm("new term");
 		assertEquals(newTerm.getName() + " should equal \"new term\"", newTerm.getName(), "new term");
 	}
+	
+	public void testDuplicateName()
+	{
+		newTerm = AddTerm.addTerm("term");
+		newTerm = AddTerm.addTerm("term");
+		assertNull("newTerm should be null, as it's the same term name", newTerm);
+	}
 }
