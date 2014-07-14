@@ -3,7 +3,7 @@ package lms.reset;
 import java.util.UUID;
 
 import lms.businesslogic.CurrentTermInfo;
-import lms.businesslogic.SpreadsheetImporter;
+import lms.businesslogic.DemoDataGenerator;
 import lms.config.ConfigData;
 import lms.domainobjects.Term;
 import lms.persistence.ConnectionPool;
@@ -27,8 +27,7 @@ public class DBReset
 		term.save();
 		CurrentTermInfo.currentTerm = term;
 		
-		SpreadsheetImporter.importStudents("spreadsheets/Students1.xlsx");
-		SpreadsheetImporter.importLockers("spreadsheets/Lockers1.xlsx");
+		DemoDataGenerator.generate();
 		
 		System.out.println("DB reset complete");
 	}

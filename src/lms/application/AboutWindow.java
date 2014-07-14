@@ -75,10 +75,19 @@ public class AboutWindow
 		cmpstHowto = new Composite(tabFolder, SWT.NONE);
 		tbtmNewItem.setControl(cmpstHowto);
 		
+		
+		String howTo = "SetUp:\nAdd any terms you will allow people to register for (ie. Fall-2014, Winter-2015, etc)\n\n"
+				+ "For each term you've added, import a locker excel file or add buildings/lockers manually\n\n"
+				+ "You should also import the science student excel file for each term\n\n"
+				+ "Now you're ready to rent out lockers to students.\n\n"
+				+ "Register -> Search for StudentNumber -> Fill in student information -> Register.\n"
+				+ "Choose a Building -> Locker -> any additional terms -> Rent!\n\n"
+				+ "Note: Exporting emails is only for students with rentals";
+		
 		// ========= text how to =========
-		StyledText txtHowto = new StyledText(cmpstHowto, SWT.BORDER);
+		StyledText txtHowto = new StyledText(cmpstHowto, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI | SWT.WRAP);
 		txtHowto.setEditable(false);
-		txtHowto.setText("Do Setup first");
+		txtHowto.setText(howTo);
 		txtHowto.setBounds(0, 0, 240, 234);
 		
 		
@@ -92,7 +101,7 @@ public class AboutWindow
 		// ======== text about us ===========
 		txtAboutus = new StyledText(cmpstAboutus, SWT.BORDER);
 		txtAboutus.setAlignment(SWT.CENTER);
-		txtAboutus.setText("Morgan Epp\nTayler Frederick\nJunhyeok Kim\nBillal Kohistani\nEvan Spearman\n");
+		txtAboutus.setText("Morgan Epp\nTayler Frederick\nJunhyeok Kim\nBillal Kohistani\nEvan Spearman\n\n\nSpecial Thanks to the 2014 SSA");
 		txtAboutus.setEditable(false);
 		txtAboutus.setBounds(10, 32, 220, 192);
 		
