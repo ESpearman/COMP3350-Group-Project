@@ -26,6 +26,7 @@ public class UnitTests
         suite.addTestSuite(AddBuildingTest.class);
         suite.addTestSuite(AddLockerTest.class);
         suite.addTestSuite(LockerTest.class);
+        suite.addTestSuite(SpreadsheetExporterTest.class);
     }
 
     private static void testStubDB()

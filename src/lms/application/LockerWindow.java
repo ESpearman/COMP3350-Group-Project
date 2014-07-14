@@ -58,13 +58,14 @@ public class LockerWindow
 	
 	private Button chkAgreement;
 	private Label lblPrice;
+	private Button btnClear;
 	
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
 		shell.setData("LockerWindow");
-		shell.setSize(372, 257);
+		shell.setSize(372, 274);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -202,7 +203,7 @@ public class LockerWindow
 		// ========= agree check button =========
 		chkAgreement = new Button(shell, SWT.CHECK);
 		chkAgreement.setAlignment(SWT.CENTER);
-		chkAgreement.setBounds(304, 163, 52, 23);
+		chkAgreement.setBounds(304, 180, 52, 23);
 		chkAgreement.setText("Agree");
 		
 				
@@ -243,13 +244,13 @@ public class LockerWindow
 				}
 			}
 		});
-		btnRent.setBounds(247, 192, 111, 27);
+		btnRent.setBounds(247, 209, 111, 27);
 		btnRent.setText("Rent");
 		
 		
 		// ========= back button ===========
 		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 192, 111, 27);
+		btnBack.setBounds(10, 209, 111, 27);
 		btnBack.setText("Back");
 		btnBack.addSelectionListener(new SelectionAdapter()
 		{
@@ -274,6 +275,7 @@ public class LockerWindow
 		
 		// ======== label for rental info =======
 		lblPrice = new Label(shell, SWT.NONE);
+		lblPrice.setAlignment(SWT.RIGHT);
 		lblPrice.setBounds(10, 114, 345, 43);
 		
 		
@@ -297,6 +299,40 @@ public class LockerWindow
 		lblTerm2 = new Label(shell, SWT.NONE);
 		lblTerm2.setText("Additional Term #2");
 		lblTerm2.setBounds(186, 60, 155, 15);
+		
+		
+		
+		// ======== button clear ========
+		btnClear = new Button(shell, SWT.NONE);
+		btnClear.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				if(drpTerm2.getSelectionIndex()>-1)
+				{
+					drpTerm2.deselectAll();
+				}
+				if(drpTerm1.getSelectionIndex()>-1)
+				{
+					drpTerm1.deselectAll();
+					drpTerm1.setEnabled(false);
+					drpTerm2.setEnabled(false);
+				}
+				if(drpLocker.getSelectionIndex()>-1)
+				{
+					drpLocker.deselectAll();
+				}
+				if(drpBuilding.getSelectionIndex()>-1)
+				{
+					drpBuilding.deselectAll();
+				}
+				lblPrice.setText("");
+				chkAgreement.setSelection(false);
+			}
+		});
+		btnClear.setText("Clear");
+		btnClear.setBounds(10, 178, 111, 27);
 
 		
 		// ======shell open, close ========
