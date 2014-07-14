@@ -27,8 +27,8 @@ public class DBReset
 		CurrentTermInfo.currentTerm = term;
 		term.save();
 		
-		SpreadsheetImporter.importStudents("spreadsheets/Students1.xlsx");
-		SpreadsheetImporter.importLockers("spreadsheets/Lockers1.xlsx");
+		SpreadsheetImporter.importStudents("./spreadsheets/Students1.xlsx");
+		SpreadsheetImporter.importLockers("./spreadsheets/Lockers1.xlsx");
 		
 		System.out.println("DB reset complete");
 	}
