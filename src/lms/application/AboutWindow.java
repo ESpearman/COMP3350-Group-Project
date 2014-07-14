@@ -76,13 +76,13 @@ public class AboutWindow
 		tbtmNewItem.setControl(cmpstHowto);
 		
 		
-		String howTo = "SetUp:\nAdd any terms you will allow people to\nregister for (ie. Fall-2014, Winter-2015, etc)\n\n"
-				+ "For each term you've added, import a locker\nexcel file or add buildings/lockers manually\n\n"
-				+ "You should also import the science student\nexcel file for each term\n\n"
-				+ "Now you're ready to rent out lockers to\nstudents.\n\n"
-				+ "Register -> Search for StudentNumber ->\nFill in student information -> Register.\n"
-				+ "Choose a Building, Locker, and any\nadditional terms -> Rent!\n\n"
-				+ "Note: Exporting emails is only for students\nwith rentals";
+		String howTo = "SetUp:\nAdd any terms you will allow people to register for (ie. Fall-2014, Winter-2015, etc)\n\n"
+				+ "For each term you've added, import a locker excel file or add buildings/lockers manually\n\n"
+				+ "You should also import the science student excel file for each term\n\n"
+				+ "Now you're ready to rent out lockers to students.\n\n"
+				+ "Register -> Search for StudentNumber -> Fill in student information -> Register.\n"
+				+ "Choose a Building -> Locker -> any additional terms -> Rent!\n\n"
+				+ "Note: Exporting emails is only for students with rentals";
 		
 		// ========= text how to =========
 		StyledText txtHowto = new StyledText(cmpstHowto, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI | SWT.WRAP);
