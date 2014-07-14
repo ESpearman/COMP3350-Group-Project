@@ -54,7 +54,17 @@ public class ConnectionPool
 			if(! locks.get(i).booleanValue())
 			{
 				locks.set(i, new Boolean(true));
-				return connections.get(i);
+				Connection c = connections.get(i);
+				try
+				{
+					c.setAutoCommit(true);
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+				
+				return c;
 			}
 		}
 		

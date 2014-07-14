@@ -50,12 +50,17 @@ public class SpreadsheetImporter
 	{
 		try 
 		{
-			Sheet lockerSheet = getSheet(path);
+			Workbook lockerBook = getWorkbook(path);
 			status = "Locker import completed successfully";
 
-			for (Row row : lockerSheet) 
+			for (int i = 0; i < lockerBook.getNumberOfSheets(); i++) 
 			{
-				addLocker(row);
+				Sheet sheet = lockerBook.getSheetAt(i);
+				
+				for(Row row : sheet)
+				{
+					addLocker(row);
+				}
 			}
 		}
 		
@@ -78,6 +83,14 @@ public class SpreadsheetImporter
 		Sheet sheet = workbook.getSheetAt(0);
 		return sheet;
 	}
+	
+	private static Workbook getWorkbook(String path) throws 
+		IOException,
+		InvalidFormatException 
+	{
+		Workbook workbook = WorkbookFactory.create(new File(path));
+		return workbook;
+	}
 
 	private static void addScienceStudent(Row row)
 	{
@@ -90,12 +103,38 @@ public class SpreadsheetImporter
 		
 		if(isValidStudent(row))
 		{
-
-			firstName = row.getCell(0).getStringCellValue();
-			lastName = row.getCell(1).getStringCellValue();
-			email = row.getCell(2).getStringCellValue();
-			studentNumber = (int)row.getCell(3).getNumericCellValue();
-
+			studentNumber = (int)row.getCell(0).getNumericCellValue();
+			
+			if(row.getCell(1) == null)
+			{
+				firstName = "";
+			}
+			
+			else
+			{
+				firstName = row.getCell(1).getStringCellValue();
+			}
+			
+			if(row.getCell(2) == null)
+			{
+				lastName = "";
+			}
+			
+			else
+			{
+				lastName = row.getCell(2).getStringCellValue();
+			}
+			
+			if(row.getCell(3) == null)
+			{
+				email = "";
+			}
+			
+			else
+			{
+				email = row.getCell(3).getStringCellValue();
+			}
+			
 			currStudent = new Student(firstName, lastName, email, studentNumber, isScienceStudent, CurrentTermInfo.currentTerm.getId());
 			currStudent.save();
 		}
@@ -110,11 +149,11 @@ public class SpreadsheetImporter
 
 		if(isValidLocker(row))
 		{
-			String buildingName = row.getCell(0).getStringCellValue();
+			String buildingName = row.getSheet().getSheetName();
 			building = determineBuilding(buildingName);
 
-			lockerNumber = (int)row.getCell(1).getNumericCellValue();
-			size = determineLockerSize(row.getCell(2).getStringCellValue());
+			lockerNumber = (int)row.getCell(0).getNumericCellValue();
+			size = determineLockerSize(row.getCell(1).getStringCellValue());
 			
 			currLocker = new Locker(CurrentTermInfo.currentTerm.getId(), lockerNumber, building.getId(), size);
 			currLocker.save();
@@ -158,29 +197,15 @@ public class SpreadsheetImporter
 	private static boolean isValidStudent(Row row)
 	{
 		boolean result = true;
-		int numStudentFields = 4;
-		int[] studentFieldTypes = {Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_STRING,
-				Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_NUMERIC};
-		
+
 		if(isEmptyRow(row))
 		{
 			result = false;
 		}
 		
-		else if(row.getLastCellNum() != numStudentFields)
+		else if (row.getCell(0).getCellType() != Cell.CELL_TYPE_NUMERIC)
 		{
 			result = false;
-		}
-		
-		else
-		{
-			for(int i = 0; i < numStudentFields; i++)
-			{
-				if (row.getCell(i).getCellType() != studentFieldTypes[i])
-				{
-					result = false;
-				}
-			}
 		}
 		
 		if(result == true)
@@ -205,16 +230,10 @@ public class SpreadsheetImporter
 	private static boolean isValidLocker(Row row)
 	{
 		boolean result = true;
-		int numLockerFields = 3;
-		int[] lockerFieldTypes = {Cell.CELL_TYPE_STRING, Cell.CELL_TYPE_NUMERIC,
-				Cell.CELL_TYPE_STRING};
+		int numLockerFields = 2;
+		int[] lockerFieldTypes = {Cell.CELL_TYPE_NUMERIC, Cell.CELL_TYPE_STRING};
 		
 		if(isEmptyRow(row))
-		{
-			result = false;
-		}
-		
-		else if(row.getLastCellNum() != numLockerFields)
 		{
 			result = false;
 		}
@@ -223,7 +242,12 @@ public class SpreadsheetImporter
 		{
 			for(int i = 0; i < numLockerFields; i++)
 			{
-				if (row.getCell(i).getCellType() != lockerFieldTypes[i])
+				if(row.getCell(i) == null)
+				{
+					result = false;
+				}
+				
+				else if (row.getCell(i).getCellType() != lockerFieldTypes[i])
 				{
 					result = false;
 				}
