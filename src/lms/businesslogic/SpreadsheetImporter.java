@@ -242,7 +242,12 @@ public class SpreadsheetImporter
 		{
 			for(int i = 0; i < numLockerFields; i++)
 			{
-				if (row.getCell(i).getCellType() != lockerFieldTypes[i])
+				if(row.getCell(i) == null)
+				{
+					result = false;
+				}
+				
+				else if (row.getCell(i).getCellType() != lockerFieldTypes[i])
 				{
 					result = false;
 				}
