@@ -154,7 +154,7 @@ public class AddLockerWindow
 								}
 								else
 								{
-									new PopupWindow("Failed","There is already "+ txtInput.getText()+" Locker in "+CurrentTermInfo.currentTerm.getName()+ " Term");
+									new PopupWindow("Failed","There is already Locker #"+ txtInput.getText()+" in the term: "+CurrentTermInfo.currentTerm.getName());
 								}
 							}
 							else
