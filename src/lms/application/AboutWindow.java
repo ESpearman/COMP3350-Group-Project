@@ -85,7 +85,7 @@ public class AboutWindow
 				+ "Note: Exporting emails is only for students\nwith rentals";
 		
 		// ========= text how to =========
-		StyledText txtHowto = new StyledText(cmpstHowto, SWT.BORDER);
+		StyledText txtHowto = new StyledText(cmpstHowto, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI | SWT.WRAP);
 		txtHowto.setEditable(false);
 		txtHowto.setText(howTo);
 		txtHowto.setBounds(0, 0, 240, 234);
