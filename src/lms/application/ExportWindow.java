@@ -5,15 +5,12 @@ import java.io.*;
 import lms.businesslogic.EmailExport;
 import lms.domainobjects.Building;
 import lms.domainobjects.Locker;
-import lms.domainobjects.Rental;
 import lms.businesslogic.CurrentTermInfo;
 
 import java.util.ArrayList;
 
 import lms.businesslogic.GetStats;
 import lms.businesslogic.SpreadsheetExporter;
-
-
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -72,6 +69,12 @@ public class ExportWindow
 		btnLocker = new Button(shell, SWT.RADIO);
 		btnLocker.setText("Locker");
 		btnLocker.setBounds(104, 23, 62, 16);
+		
+		
+		// ====== radio button 'stats' =======
+		btnStats = new Button(shell, SWT.RADIO);
+		btnStats.setBounds(182, 23, 90, 16);
+		btnStats.setText("Stats");
 
 		
 		// ======= radio button 'email' ========
@@ -84,17 +87,6 @@ public class ExportWindow
 		btnStudents = new Button(shell, SWT.RADIO);
 		btnStudents.setBounds(104, 61, 90, 16);
 		btnStudents.setText("Students");
-		
-		
-		// ====== radio button 'stats' =======
-		btnStats = new Button(shell, SWT.RADIO);
-		btnStats.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-			}
-		});
-		btnStats.setBounds(182, 23, 90, 16);
-		btnStats.setText("Stats");
 		
 		
 		
@@ -118,7 +110,7 @@ public class ExportWindow
 					    dlgSave.setFilterPath("c:\\");
 					    dlgSave.setFileName("Student Email.txt");	// default file name
 					    dlgSave.open();
-		
+
 						if(dlgSave.getFileName().compareTo("") != 0)
 						{
 							try 
@@ -216,7 +208,7 @@ public class ExportWindow
 					    dlgSave.setFilterPath("c:\\");
 					    dlgSave.setFileName("Total Sales.txt");	// default file name
 					    dlgSave.open();
-		
+					    
 						if(dlgSave.getFileName().compareTo("") != 0)
 						{
 							try 
@@ -296,17 +288,11 @@ public class ExportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// back button is selected
 				shell.close();
 			}
 		});
 		btnBack.setBounds(10, 105, 111, 27);
 		btnBack.setText("Back");
-		
-
-		
-		
-		
 		
 		
 		// ======shell open, close ========
@@ -324,7 +310,6 @@ public class ExportWindow
 		}
 		
 	}
-	
 	
 	public ExportWindow()
 	{

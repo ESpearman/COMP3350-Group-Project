@@ -16,7 +16,6 @@ public class AddLockerTest extends TestCase
 	UUID building = UUID.randomUUID();
 	
 	LockerSize size = LockerSize.FULL; 
-	Locker newLocker;
 	Locker testInsert;
 
 	
@@ -24,13 +23,19 @@ public class AddLockerTest extends TestCase
 	{
 		DBProxy.instance = new DBProxy();
 		DBInjector.injectInto(DBProxy.instance, true);
-		newLocker = new Locker(id, term, 007, building, size);
-		newLocker.save();
 	}
+	
 	public void testInsert()
 	{
 		testInsert = AddLocker.insert(term, "001", building, size);
 		assertNotNull("insertLocker() did not add new locker, locker is null", testInsert);
+	}
+	
+	public void testDuplicateNumber()
+	{
+		testInsert = AddLocker.insert(term, "002", building, size);
+		testInsert = AddLocker.insert(term, "002", building, size);
+		assertNull("testInsert should be null as it's a duplicate locker number", testInsert);
 	}
 
 }

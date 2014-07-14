@@ -11,18 +11,24 @@ import lms.persistence.DBInjector;
 import lms.persistence.DBProxy;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Combo;
 
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.widgets.Label;
 
 public class MainWindow
 {
@@ -39,6 +45,8 @@ public class MainWindow
 	private Term selectedTerm;
 	private ArrayList<Term> termsAL;
 	private String terms[];
+	private Label lblUofm;
+	private Label lblSSA;
 	
 	/**
 	 * Launch the application.
@@ -49,9 +57,7 @@ public class MainWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setSize(254, 228);
-		
-		//final Shell shell = new Shell(display, SWT.CLOSE | SWT.TITLE
+		shell.setSize(256, 291);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -61,84 +67,79 @@ public class MainWindow
 		
 		shell.setLocation (x, y);
 		shell.setText("LMS");
-		
-		
-		
-		
-		// Build up terms to select from
-		for(int i = 0; i < termsAL.size(); i++)
+		shell.addListener(SWT.Close, new Listener()
 		{
-			terms[i] = termsAL.get(i).getName();
-		}
+			public void handleEvent(Event event)
+			{
+				closeAll();
+			}
+		});
+		
 		
 		// ======= dropdown term =======
 		drpTerm = new Combo(shell, SWT.NONE);
+		drpTerm.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent arg0)
+			{
+				updateTerms();
+				drpTerm.setText("Select a Term");
+				buttonControl(false);
+			}
+		});
 		drpTerm.setBounds(10, 20, 111, 23);
-		drpTerm.setItems(terms);
-		drpTerm.setText("Select a Term");
 		drpTerm.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
-				CurrentTermInfo.currentTerm = selectedTerm;
-				// Let user click every other button once term is decided
-				buttonControl(true);
-			}
-		});
-		
-		
-		// ============== quit button ================
-		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(68, 163, 111, 27);
-		btnQuit.setText("Quit");
-		btnQuit.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// exit button = terminate
-				shell.dispose();
-			}
-		});
-
-		
-		// ==============register button ===========
-		btnRegister = new Button(shell, SWT.NONE);
-		btnRegister.setBounds(127, 17, 111, 27);
-		btnRegister.setText("Register");
-		btnRegister.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// when register button is clicked
-				if(!alrOpened("StudentWindow"))
+				if(drpTerm.getSelectionIndex()!=-1)
 				{
-					new StudentWindow("Register");
+					selectedTerm = termsAL.get(drpTerm.getSelectionIndex());
+					CurrentTermInfo.currentTerm = selectedTerm;
+					// Let user click every other button once term is decided
+					buttonControl(true);
 				}
 			}
 		});
-
 		
-		// =============== import button ============
-		btnSetup = new Button(shell, SWT.NONE);
-		btnSetup.setBounds(10, 64, 111, 27);
-		btnSetup.setText("Setup");
-		btnSetup.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// import button is selected
 				
-				if(!alrOpened("SetupWindow"))
+				// ==============register button ===========
+				btnRegister = new Button(shell, SWT.NONE);
+				btnRegister.setBounds(127, 17, 111, 27);
+				btnRegister.setText("Register");
+				btnRegister.addSelectionListener(new SelectionAdapter()
 				{
-					new SetupWindow();
-				}
-			}
-		});
+					@Override
+					public void widgetSelected(SelectionEvent arg0)
+					{
+						// when register button is clicked
+						if(!alrOpened("StudentWindow"))
+						{
+							new StudentWindow("Register");
+						}
+					}
+				});
+		
+				
+				// =============== import button ============
+				btnSetup = new Button(shell, SWT.NONE);
+				btnSetup.setBounds(10, 64, 111, 27);
+				btnSetup.setText("Setup");
+				btnSetup.addSelectionListener(new SelectionAdapter()
+				{
+					@Override
+					public void widgetSelected(SelectionEvent arg0)
+					{
+						// import button is selected
+						
+						if(!alrOpened("SetupWindow"))
+						{
+							new SetupWindow();
+						}
+					}
+				});
 		
 		
 		// =============== export button ==============
@@ -149,7 +150,6 @@ public class MainWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// Export button is selected
 				if(!alrOpened("ExportWindow"))
 				{
 					new ExportWindow();
@@ -173,11 +173,41 @@ public class MainWindow
 			}
 		});
 		btnAbout.setText("About");
-		btnAbout.setBounds(68, 130, 111, 27);
+		btnAbout.setBounds(68, 123, 111, 27);
 		
+		
+		// ============== quit button ================
+		btnQuit = new Button(shell, SWT.NONE);
+		btnQuit.setBounds(68, 156, 111, 27);
+		btnQuit.setText("Quit");
+		btnQuit.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				closeAll();
+				shell.dispose();
+			}
+		});
+		
+		
+		
+		// ======== logo ( uofm, ssa ) =========
+		Image uofm = new Image(display, "img/resize_um.png");
+		lblUofm = new Label(shell, SWT.NONE);
+		lblUofm.setText("uofm");
+		lblUofm.setBounds(127, 193, 69, 60);
+		lblUofm.setImage(uofm);
 
-		buttonControl(false);
+		Image ssa = new Image(display, "img/resize_ssa.png");
+		lblSSA = new Label(shell, SWT.NONE);
+		lblSSA.setText("ssa");
+		lblSSA.setBounds(50, 193, 71, 60);
+		lblSSA.setImage(ssa);
 		
+		
+		
+		buttonControl(false);
 		
 		//======= shell open, close ======
 		shell.open();
@@ -185,14 +215,38 @@ public class MainWindow
 		if(EventLoop.isEnabled())
 		{
 			while (!shell.isDisposed())
-			{
+			{   
 				if (!display.readAndDispatch())
 				{
 					display.sleep();
 				}
 			}
+			shell.dispose();
 		}
-		
+	}
+	
+	private void updateTerms()
+	{
+		termsAL = Term.getAll();
+		terms = new String[termsAL.size()];
+		for(int i = 0; i < termsAL.size(); i++)
+		{
+			terms[i] = termsAL.get(i).getName();
+		}
+		drpTerm.setItems(terms);
+	}
+	
+	private void closeAll()
+	{
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null)
+            {
+                shell.dispose();
+            }
+        }
 	}
 	
 	private void buttonControl(boolean bool)
@@ -200,6 +254,7 @@ public class MainWindow
 		btnRegister.setEnabled(bool);
 		btnExport.setEnabled(bool);
 	}
+	
 	private static boolean alrOpened(String name)
 	{
 		boolean res = false;
@@ -225,10 +280,7 @@ public class MainWindow
 		//ConfigData must be initialized BEFORE ConnectionPool
 		ConfigData.init();
 		ConnectionPool.init(4);
-		
-		termsAL = Term.getAll();
-		terms = new String[termsAL.size()];
-		
+
 		LockerPrice.scienceFull = ConfigData.fullScience;
 		LockerPrice.scienceHalf = ConfigData.halfScience;
 		LockerPrice.nonScienceFull = ConfigData.fullNonScience;

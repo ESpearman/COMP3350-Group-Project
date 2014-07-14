@@ -524,7 +524,7 @@ public class HSQLDBImpl implements IDB
 		try
 		{
 			Statement statement = currentConnection.c.createStatement();
-			ResultSet results = statement.executeQuery("SELECT * FROM Locker WHERE term='" + term + "' AND building='" + building + "';");
+			ResultSet results = statement.executeQuery("SELECT * FROM Locker WHERE term='" + term + "' AND building='" + building + "' AND num='" + number + "';");
 			while(results.next())
 				{
 					result = Locker.parse(results);
@@ -607,7 +607,7 @@ public class HSQLDBImpl implements IDB
 		{
 			Statement statement = currentConnection.c.createStatement();
 			ResultSet results = statement.executeQuery("SELECT * FROM Locker WHERE term='" + term + "'AND building='" + building
-					+ "' AND Locker.id NOT IN (SELECT locker FROM Rental);");
+					+ "' AND Locker.id NOT IN (SELECT locker FROM Rental) ORDER BY num;");
 			while(results.next())
 				{
 					result.add(Locker.parse(results));

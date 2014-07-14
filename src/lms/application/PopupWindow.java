@@ -28,7 +28,8 @@ public class PopupWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setSize(298, 116);
+		shell.setData(title+message);
+		shell.setSize(298, 173);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -51,20 +52,22 @@ public class PopupWindow
 			}
 		});
 		btnOk.setText("OK");
-		btnOk.setBounds(88, 54, 111, 27);
+		btnOk.setBounds(90, 108, 111, 27);
 		
 		
 		// ========== label message =========
 		lblMessage = new Label(shell, SWT.NONE);
 		lblMessage.setAlignment(SWT.CENTER);
-		lblMessage.setBounds(10, 10, 271, 38);
+		lblMessage.setBounds(17, 18, 254, 84);
 		lblMessage.setText(message);
 		
 		
 		
 		
 		//======= shell open, close ======
+
 		shell.open();
+
 		
 		if(EventLoop.isEnabled())
 		{
@@ -78,12 +81,33 @@ public class PopupWindow
 		}
 	}
 	
+	private static boolean alrOpened(String name)
+	{
+		boolean res = false;
+		
+	    Shell[] shells = Display.getCurrent().getShells();
+        for(Shell shell : shells)
+        {
+            String data = (String) shell.getData();
+            if(data != null && data.equals(name))
+            {
+                shell.setFocus();
+                res = true;
+            }
+        }
+		return res;
+	}
+	
+
 	public PopupWindow(String title, String message)
 	{
 		Register.newWindow(this);
 		this.title = title;
 		this.message = message;
 		display = Display.getDefault();
-		runWindow();
+		if(!alrOpened(title+message))
+		{
+			runWindow();
+		}
 	}
 }

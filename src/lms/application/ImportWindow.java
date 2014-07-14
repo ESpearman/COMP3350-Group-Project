@@ -33,6 +33,7 @@ public class ImportWindow
 	
 	private Label lblFilePath;
 	private Button btnImport;
+	
 	public void runWindow()
 	{
 		// ============ create new window ( centre on monitor ) =====
@@ -57,7 +58,6 @@ public class ImportWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// file browser dialog open
 				FileDialog dlgOpen = new FileDialog(shell, SWT.OPEN);
 			    dlgOpen.setFilterNames(new String[] {"Excel Workbook (.xlsx)", "Excel 97-2004 (.xls)"});
 			    dlgOpen.setFilterExtensions(new String[] {"*.xlsx","*.xls", "*.*"});
@@ -80,33 +80,6 @@ public class ImportWindow
 		btnBrowse.setText("Browse");
 		
 		
-		// ====== file (path) text field =======
-		txtPath = new Text(shell, SWT.BORDER);
-		txtPath.setEditable(false);
-		txtPath.setBounds(61, 43, 297, 21);
-
-		
-		//======== back button ==========
-		btnBack = new Button(shell, SWT.NONE);
-		btnBack.setBounds(10, 105, 111, 27);
-		btnBack.setText("Back");
-		btnBack.addSelectionListener(new SelectionAdapter()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				// when back button is selected
-				shell.close();
-			}
-		});
-		
-		
-		// ====== label 'filePath' ==========
-		lblFilePath = new Label(shell, SWT.NONE);
-		lblFilePath.setBounds(10, 46, 45, 16);
-		lblFilePath.setText("File Path");
-		
-		
 		// ==== radio button 'student' ========
 		btnStudent = new Button(shell, SWT.RADIO);
 		btnStudent.setBounds(10, 16, 90, 16);
@@ -118,6 +91,12 @@ public class ImportWindow
 		btnLocker = new Button(shell, SWT.RADIO);
 		btnLocker.setBounds(121, 16, 90, 16);
 		btnLocker.setText("Locker");
+		
+		
+		// ====== file (path) text field =======
+		txtPath = new Text(shell, SWT.BORDER);
+		txtPath.setEditable(false);
+		txtPath.setBounds(61, 43, 297, 21);
 		
 		
 		// =========== import button =================
@@ -171,12 +150,26 @@ public class ImportWindow
 		});
 		btnImport.setBounds(247, 105, 111, 27);
 		btnImport.setText("Import");
-		
-		
-		
 
 		
-
+		//======== back button ==========
+		btnBack = new Button(shell, SWT.NONE);
+		btnBack.setBounds(10, 105, 111, 27);
+		btnBack.setText("Back");
+		btnBack.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				shell.close();
+			}
+		});
+		
+		
+		// ====== label 'filePath' ==========
+		lblFilePath = new Label(shell, SWT.NONE);
+		lblFilePath.setBounds(10, 46, 45, 16);
+		lblFilePath.setText("File Path");
 
 
 		// ======shell open, close ========
@@ -192,7 +185,6 @@ public class ImportWindow
 				}
 			}
 		}
-		
 	}
 	
 	public ImportWindow()

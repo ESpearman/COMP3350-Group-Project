@@ -28,6 +28,7 @@ public class AddBuildingWindow
 	
 	private Label lblBuilding;
 	
+	private static final int TEXT_LIMIT = 50;
 	
 	public void runWindow()
 	{
@@ -49,7 +50,7 @@ public class AddBuildingWindow
 		// ======== text 'input' ==========
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(98, 18, 160, 27);
-		
+		txtInput.setTextLimit(TEXT_LIMIT);
 		
 		
 		// ======== button add =========
@@ -62,8 +63,15 @@ public class AddBuildingWindow
 
 				if(txtInput.getText() != "")
 				{
-					AddBuilding.insert(txtInput.getText());
-					new PopupWindow("Added",txtInput.getText()+ "Building added");
+					Object res = AddBuilding.insert(txtInput.getText());
+					if(res!=null)
+					{
+						new PopupWindow("Added",txtInput.getText()+ " Building added");
+					}
+					else
+					{
+						new PopupWindow("Failed","There is already "+txtInput.getText()+ " Building");
+					}
 				}
 				else
 				{
@@ -114,7 +122,6 @@ public class AddBuildingWindow
 		}
 		
 	}
-	
 	
 	public AddBuildingWindow()
 	{

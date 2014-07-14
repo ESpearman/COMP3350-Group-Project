@@ -160,7 +160,7 @@ public class StudentWindow
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());
-						shell.close();
+						shell.setVisible(false);
 						if(context.equals("Register"))
 						{
 							if(!alrOpened("LockerWindow"))
@@ -186,11 +186,6 @@ public class StudentWindow
 		});
 		
 		
-		// ====== separate bar ======
-		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
-		searchSeparate.setBounds(10, 40, 348, 16);
-		
-		
 		// ======== back button =========
 		btnBack = new Button(shell, SWT.NONE);
 		btnBack.setBounds(10, 188, 111, 27);
@@ -205,6 +200,13 @@ public class StudentWindow
 			}
 		});
 		
+		
+		// ====== separate bar ======
+		searchSeparate = new Label(shell, SWT.SEPARATOR | SWT.HORIZONTAL);
+		searchSeparate.setBounds(10, 40, 348, 16);
+		
+		
+		// ======== label for student info ========
 		Label lblFirstName = new Label(shell, SWT.NONE);
 		lblFirstName.setAlignment(SWT.RIGHT);
 		lblFirstName.setBounds(10, 62, 99, 21);
@@ -240,6 +242,7 @@ public class StudentWindow
 			}
 		}
 	}
+	
 	private static boolean alrOpened(String name)
 	{
 		boolean res = false;

@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 
 import lms.businesslogic.AddTerm;
-
 import acceptanceTests.EventLoop;
 import acceptanceTests.Register;
 
@@ -25,6 +24,8 @@ public class AddTermWindow {
 	private Button btnAdd;
 	private Text txtInput;
 	private Label lblTerm;
+	
+	private static final int TEXT_LIMIT = 50;
 	
 	public void runWindow()
 	{
@@ -42,10 +43,10 @@ public class AddTermWindow {
 		shell.setText("Add term");
 		shell.setLocation (x, y);
 		
+		
 		txtInput = new Text(shell, SWT.BORDER);
 		txtInput.setBounds(98, 17, 160, 27);
-		
-		
+		txtInput.setTextLimit(TEXT_LIMIT);
 		
 		// ========== button add ============
 		btnAdd = new Button(shell, SWT.NONE);
@@ -56,13 +57,18 @@ public class AddTermWindow {
 			{				
 				if(!txtInput.getText().equals(""))
 				{
-					// add term here
-					AddTerm.addTerm(txtInput.getText());
-					new PopupWindow("Added", txtInput.getText() + "Term added");
+					Object res = AddTerm.addTerm(txtInput.getText());
+					if(res!=null)
+					{
+						new PopupWindow("Added", txtInput.getText() + " Term added");
+					}
+					else
+					{
+						new PopupWindow("Failed", "There is already "+txtInput.getText() + " Term");
+					}
 				}
 				else
 				{
-
 					new PopupWindow("Failed", "Error : Need Term name !");
 				}
 			}
@@ -115,7 +121,7 @@ public class AddTermWindow {
 		}
 		
 	}
-
+	
 	public AddTermWindow()
 	{
 		Register.newWindow(this);

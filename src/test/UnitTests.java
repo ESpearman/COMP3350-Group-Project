@@ -22,6 +22,11 @@ public class UnitTests
     {
         suite.addTestSuite(RegisterStudentsTest.class);
         suite.addTestSuite(RentLockerTest.class);
+        suite.addTestSuite(AddTermTest.class);
+        suite.addTestSuite(AddBuildingTest.class);
+        suite.addTestSuite(AddLockerTest.class);
+        suite.addTestSuite(LockerTest.class);
+        suite.addTestSuite(SpreadsheetExporterTest.class);
     }
 
     private static void testStubDB()
