@@ -26,5 +26,7 @@ public class DemoDataGenerator
 		
 		Rental rental1 = new Rental(CurrentTermInfo.currentTerm.getId(), student1.getId(), locker1.getId(), 0.0, true);
 		rental1.save();
+		
+		System.out.println("Completed Generating Demo Data");
 	}
 }
