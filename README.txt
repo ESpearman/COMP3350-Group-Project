@@ -75,24 +75,30 @@ Packages
 =======================
 src
     lms.application
+    	AboutWindow.java
         AddBuildingWindow.java
         AddLockerWindow.java
+        AddTerm.java
         ExportWindow.java
         ImportWindow.java
         LockerWindow.java
         MainWindow.java
+        PopupWindow.java
         SetupWindow.java
         StudentWindow.java
     lms.businesslocgic
         AddBuilding.java
         AddLocker.java
+        AddTerm.java
         CurrentTermInfo.java
         DemoDataGenerator.java
         EmailExport.java
+        GetStats.java
         LockerPrice.java
         RegisterStudent.java
         RentLocker.java
         SpreadsheetImporter.java
+        SpreadsheetExporter.java
     lms.config
     	ConfigData.java
     lms.domainobjects
@@ -109,22 +115,24 @@ src
         DBInjectable.java
         DBInjector.java
         DBProxy.java
-        HSQLDB.java
+        HSQLDBImpl.java
         IDB.java
         StubDBImpl.java
     lms.reset
         DBReset.java
-	test
-		IntegrationTests.java
-		UnitTests.java
+    test
+	IntegrationTests.java
+	UnitTests.java
     test.business.logic
         AddBuildingTest.java
         AddLockerTest.java
+        AddTermTest.java
         EmailExportTest.java
+        LockerTest.java
         RegisterStudentsTest.java
-        RentLocker.java
+        RentLockerTest.java
+        SpreadsheetExporterTest.java
         SpreadsheetImporterTest.java
-	test.persistence
-		HSQLDBImplTest.java
-		StubDBImplTest.java
-		StubDBTest.java
+     test.persistence
+	HSQLDBImplTest.java
+	StubDBImplTest.java
