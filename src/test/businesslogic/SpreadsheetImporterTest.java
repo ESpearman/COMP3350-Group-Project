@@ -106,7 +106,7 @@ public class SpreadsheetImporterTest extends TestCase
 		
 		Building expectedBuilding = Building.getById(lockers.get(5).getBuilding());
 		
-		assertEquals("Machray Hall", expectedBuilding.getName());
+		assertEquals("Machray", expectedBuilding.getName());
 		assertEquals(6, lockers.get(5).getNumber());
 		assertEquals(LockerSize.HALF, lockers.get(5).getSize());
 		assertEquals(15, lockers.size());
@@ -121,18 +121,9 @@ public class SpreadsheetImporterTest extends TestCase
 		
 		assertEquals("Allen", expectedBuilding.getName());
 		assertEquals(15, lockers.get(14).getNumber());
-		assertEquals(LockerSize.FULL, lockers.get(14).getSize());
+		assertEquals(LockerSize.FULL, lockers.get(0).getSize());
 		assertEquals(15, lockers.size());
 	}
-	
-	public void testLongInputLocker()
-	{
-		SpreadsheetImporter.importLockers(getPath("\\src\\test\\testFiles\\Lockers4.xlsx"));
-		lockers = Locker.getListByTerm(CurrentTermInfo.currentTerm.getId());
-		
-		assertTrue(SpreadsheetImporter.getStatus().startsWith("Warning"));
-	}
-	
 	
 	public String getPath(String localPath)
 	{

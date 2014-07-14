@@ -137,7 +137,7 @@ public class ImportWindow
 					}
 					else
 					{
-						new PopupWindow("Failed",SpreadsheetImporter.getStatus());
+						new PopupWindow("Failed", "No file found");
 					}
 				}
 				else
