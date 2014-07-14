@@ -1,6 +1,5 @@
 package lms.reset;
 
-import java.util.UUID;
 
 import lms.businesslogic.CurrentTermInfo;
 import lms.config.ConfigData;

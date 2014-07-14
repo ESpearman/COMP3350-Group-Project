@@ -1,0 +1,10 @@
+Package			lms.application
+InvokeMethod	lms.application.MainWindow		startUp
+SelectComboByValue		MainWindow						drpTerm					"Demo Term"
+Click			MainWindow						btnSetup
+Click			SetupWindow						btnImport
+Click			ImportWindow					btnStudent
+Set				ImportWindow					txtPath			spreadsheets/lockers1.xlsx
+Click			ImportWindow					btnImport
+Test			PopupWindow						lblMessage		"Student import completed succesfully."
+Click			MainWindow						btnQuit

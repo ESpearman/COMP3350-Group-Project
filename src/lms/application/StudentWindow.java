@@ -160,7 +160,7 @@ public class StudentWindow
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());
-						shell.setVisible(false);
+						shell.close();
 						if(context.equals("Register"))
 						{
 							if(!alrOpened("LockerWindow"))

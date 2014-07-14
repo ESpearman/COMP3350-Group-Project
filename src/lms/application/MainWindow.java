@@ -48,6 +48,8 @@ public class MainWindow
 	private Label lblUofm;
 	private Label lblSSA;
 	
+	public static MainWindow instance = null;
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -293,7 +295,12 @@ public class MainWindow
 	
 	public static void startUp()
 	{
-		new MainWindow();
+		instance = new MainWindow();
+	}
+	
+	public static void forceButtonsEnabled()
+	{
+		instance.buttonControl(true);
 	}
 	
 	public static void main(String[] args)

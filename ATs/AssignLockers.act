@@ -9,11 +9,9 @@ Set				StudentWindow					txtLastName				Dude
 Set				StudentWindow					txtEmail				duds@myumanitoba.ca
 Click			StudentWindow					btnScienceStudent
 Click			StudentWindow					btnRegister
-Click			LockerWindow					btnBack
-Click			MainWindow						btnRegister
-Set				StudentWindow					txtStudentNumber		0987654
-Click 			StudentWindow					btnSearch
-Test			StudentWindow					txtFirstName			Some
-Test			StudentWindow					txtLastName				Dude
-Test			StudentWindow					txtEmail				duds@myumanitoba.ca
+SelectComboByValue			LockerWindow		drpBuilding		Armes
+SelectComboByIndex			LockerWindow		drpLocker		0
+Click						LockerWindow		chkAgreement
+Click						LockerWindow		btnRent
+Test			PopupWindow						lblMessage		Rented
 Click			MainWindow						btnQuit

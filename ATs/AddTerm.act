@@ -1,0 +1,12 @@
+Package			lms.application
+InvokeMethod	lms.application.MainWindow		startUp
+Click			MainWindow						btnSetup
+Click			SetupWindow						btnAddTerm
+Set				AddTermWindow					txtInput	TestTerm
+Click			AddTermWindow					btnAdd
+Click			PopupWindow						btnOk
+Click			AddTermWindow					btnBack
+Click			SetupWindow						btnBack
+SelectComboByValue		MainWindow						drpTerm		TestTerm
+TestComboValue	MainWindow						drpTerm		TestTerm
+Click			MainWindow						btnQuit

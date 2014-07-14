@@ -1,0 +1,18 @@
+Package			lms.application
+InvokeMethod	lms.application.MainWindow		startUp
+SelectComboByValue		MainWindow						drpTerm					"Demo Term"
+Click			MainWindow						btnSetup
+Click			SetupWindow						btnEditStudent
+Set				StudentWindow					txtStudentNumber		1000
+Click			StudentWindow					btnSearch
+Set				StudentWindow					txtFirstName			Mario
+Set				StudentWindow					txtLastName				Mario
+Click			StudentWindow					btnRegister
+Click			PopupWindow						btnOk
+Click			SetupWindow						btnBack
+Click			MainWindow						btnRegister
+Set				StudentWindow					txtStudentNumber		1000
+Click			StudentWindow					btnSearch
+Test			StudentWindow					txtFirstName			Mario
+Test			StudentWindow					txtLastName				Mario
+Click			MainWindow						btnQuit
