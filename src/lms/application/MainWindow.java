@@ -173,12 +173,12 @@ public class MainWindow
 			}
 		});
 		btnAbout.setText("About");
-		btnAbout.setBounds(68, 111, 111, 27);
+		btnAbout.setBounds(68, 123, 111, 27);
 		
 		
 		// ============== quit button ================
 		btnQuit = new Button(shell, SWT.NONE);
-		btnQuit.setBounds(68, 144, 111, 27);
+		btnQuit.setBounds(68, 156, 111, 27);
 		btnQuit.setText("Quit");
 		btnQuit.addSelectionListener(new SelectionAdapter()
 		{
