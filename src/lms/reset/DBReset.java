@@ -3,6 +3,7 @@ package lms.reset;
 import java.util.UUID;
 
 import lms.businesslogic.CurrentTermInfo;
+import lms.businesslogic.DemoDataGenerator;
 import lms.businesslogic.SpreadsheetImporter;
 import lms.config.ConfigData;
 import lms.domainobjects.Term;
@@ -26,7 +27,7 @@ public class DBReset
 		Term term = new Term(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),"Demo Term");
 		CurrentTermInfo.currentTerm = term;
 		term.save();
-		
+		DemoDataGenerator.generate();
 		SpreadsheetImporter.importStudents("spreadsheets/Students1.xlsx");
 		SpreadsheetImporter.importLockers("spreadsheets/Lockers1.xlsx");
 		
