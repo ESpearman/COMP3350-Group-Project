@@ -1,0 +1,11 @@
+Open the application
+Select Demo Term
+Click Register
+Enter some random student number and fill in the other fields (name, email, etc.)
+What data you enter doesn't matter, you just need to remember it
+Click register
+Click back
+Click register
+Enter the student number you entered
+Click search
+The names and email address you originally entered should be in their appropriate fields

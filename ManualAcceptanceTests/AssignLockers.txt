@@ -1,0 +1,25 @@
+Open the application
+Select the Demo Term
+Click Setup
+	Click Import
+	Select students
+	Browse to "./spreadsheets/Students1.xlsx"
+	Import it
+	Do the same for "./spreadsheets/Lockers1.xlsx"
+	Click the back buttons until you only have the main window open
+Click Register
+Enter a student number and fill in the rest of the field with names, email, etc.
+The actual data does not matter at this point, as long as you remember it
+Click Register
+Select a building from the drop down (remember your choice)
+Select a locker (remember your choice)
+Make sure "agree" is checked
+Click Rent
+Click Ok
+Click Export (Main Window)
+Select rental
+Click Export
+Choose a file location
+Click ok on the success dialog
+Scan the document to ensure the rental displayed in the table is consistent with the data you entered
+There will be some other data in the file used for other tests, this can be ignored

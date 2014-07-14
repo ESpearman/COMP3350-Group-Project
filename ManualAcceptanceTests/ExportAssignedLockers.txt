@@ -1,0 +1,12 @@
+Open the application
+Select Demo Term from the drop down
+Click Export
+Click Rental
+Click Export
+Choose a location for the file
+Click ok on the dialog
+The new file that was saved should have the contents:
+
+Demo Term Rentals				
+StudentNumber	First Name	Last Name	Building	Locker Number
+1000	Some	Dude	Machray Hall	1

@@ -1,0 +1,9 @@
+Open the application
+Click Setup
+Click Add Term
+Type Fall 2014 as the name
+Click Add
+Click Ok on the dialog
+Click back (add term window)
+Click back (setup window)
+Fall 2014 should now be an option in the term drop down on the main window

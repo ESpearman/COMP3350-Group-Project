@@ -1,0 +1,14 @@
+Run the application
+Select Demo Term in the drop down
+Click setup
+Click import
+Click Student
+Browse to find "./spreadsheets/Students1.xlsx"
+Click Import
+Click ok on the dialog (it should be successful)
+Click Back (import window)
+Click back (setup window)
+Click Register (main window)
+Enter the student number 7640001
+Click Search
+You should now see the first name "Alice", the last name "Zuwatski", the email "zooman11@myumanitoba.ca", and the science student check box should be checked

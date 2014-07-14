@@ -1,0 +1,16 @@
+Open the application
+Select Demo Term from the drop down
+Click Setup
+Click Add Locker
+Select Machray Hall from the building drop down
+Type in 999 for the locker number
+Select Full
+Click Add
+Click Ok (dialog)
+Click back (add locker window)
+Click back (setup)
+Click Register (main window)
+Enter 1000 as the student number and click search
+Click Register
+Select Machray Hall from the building drop down
+Locker 999 - Full should now be an option in the locker drop down

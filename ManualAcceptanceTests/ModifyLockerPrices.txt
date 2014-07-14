@@ -1,0 +1,24 @@
+Locker prices can be modified in the config file which is located at conf/application.conf
+The fields for changing locker prices with their defaults are:
+
+fullScience = 15.0
+halfScience = 10.0
+fullNonScience = 25.0
+halfNonScience = 12.0
+
+For each value:
+	Set to a ridiculously high number
+	Launch the application
+	Select the demo term
+	Click Setup
+	Click Import
+	Select students
+	Browse to "./spreadsheets/Students1.xlsx"
+	Import it
+	Do the same for "./spreadsheets/Lockers1.xlsx"
+	Click the back buttons until you only have the main window open
+	Click register and fill in the fields to create a new student
+	If you're testing "fullScience" or "halfScience", check off the ScienceStudent button
+	Click register
+	Choose a building from the dropdown and then select either a half or full size locker depending on which value you're testing
+	Confirm that the price is ridiculously high

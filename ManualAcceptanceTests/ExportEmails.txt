@@ -1,0 +1,10 @@
+Open the application
+Select Demo Term from the drop down
+Click Export
+Click Email
+Click Export
+Choose a location for the file
+Click ok on the dialog
+The new file that was saved should have the contents:
+
+1@1.com;
