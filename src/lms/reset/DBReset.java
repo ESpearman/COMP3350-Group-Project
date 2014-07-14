@@ -27,9 +27,9 @@ public class DBReset
 		
 		DBProxy.instance.resetDB();
 		
-		Term term = new Term(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),"Demo Term");
-		CurrentTermInfo.currentTerm = term;
+		Term term = new Term("Demo Term");
 		term.save();
+		CurrentTermInfo.currentTerm = term;
 		
 		Building building1 = new Building("Machray Hall");
 		building1.save();
