@@ -5,7 +5,17 @@ https://docs.google.com/presentation/d/155N_fykk91gH2sMwz0tzDvL2ZqYcR3Yei6G4jFNk
 
 Version control system location :
 https://github.com/ESpearman/COMP3350-Group-Project
-Iteration 2 files can be found in the iteration 2 branch
+Iteration 3 files can be found in the iteration 3 branch
+
+When running ATs the resetDB script must be run before each run of the RunAts script. We meant to combine these, however, a timing issue with the database lock prevented us from doing so
+
+We were unable to create automated acceptance tests for 4 of our big user stories. 3 of these were due to the fact that they were regarding the exporting of data to a file, and running them forces the opening of the browse file dialog, which is not compatible with ATR. The 4th one is due to the fact that it requires editing a config file, which ATR cannot do. We have provided only a manual test for these big user stories. The other big user stories all have both an automated test and a manual test.
+
+The ResetDB script should be run before each time a manual acceptance test is run
+
+Regarding integration tests for each seam: We were told in class that our business logic should be tested against the persistance layer in unit tests using the stub DB. Because these tests have good covereage of this seam, we did not create any explicit integration tests for this seam. There are however integration tests for importing excel spreadsheets, as well as between the persistance layer and the actual database. We do not have integration tests between our domain objects and other layers due to the fact that this integration is covered by the unit tests of the other layers due to high coupling between domain objects and the other layers.
+
+The only methods in our domain objects that can be tested using unit tests are the parsers. However, we were unable to create unit tests for them due to the fact that the objects we are parsing from must be created by the HSQLDB driver. Thus, there are no unit tests for domain objects.
 
 - When our JUnit tests were run in eclipse during development, all of them ran and passed, and continue to do so,
   however, when we tried running them via our RunUnitTest.bat script, several of our tests began failing
