@@ -47,7 +47,7 @@ public class StudentWindow
 	{
 		// ============ create new window ( centre on monitor ) =====
 		shell = new Shell(display, SWT.CLOSE | SWT.TITLE);
-		shell.setData("StudentWindow");
+		shell.setData("StudentWindow"+context);
 		shell.setSize(374, 253);
 		
 		Monitor primary = display.getPrimaryMonitor();
@@ -160,17 +160,19 @@ public class StudentWindow
 					{
 						Student newStudent = RegisterStudent.upsertStudent(searchedStudent, txtFirstName.getText(), txtLastName.getText(),
 								txtEmail.getText(), studentNumber, btnScienceStudent.getSelection(), CurrentTermInfo.currentTerm.getId());
-						shell.close();
+						
 						if(context.equals("Register"))
 						{
 							if(!alrOpened("LockerWindow"))
 							{
+								shell.setVisible(false);
 								new LockerWindow(shell, newStudent);
 							}
 						}
 						else if(context.equals("Edit"))
 						{
 							new PopupWindow("Updated","Student information has been updated");
+							shell.close();
 						}
 					}
 					else

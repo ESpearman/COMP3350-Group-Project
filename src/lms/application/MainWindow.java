@@ -117,7 +117,7 @@ public class MainWindow
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				// when register button is clicked
-				if(!alrOpened("StudentWindow"))
+				if(!alrOpened("StudentWindow"+"Register"))
 				{
 					new StudentWindow("Register");
 				}

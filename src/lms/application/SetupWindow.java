@@ -74,7 +74,7 @@ public class SetupWindow
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				if(!alrOpened("StudentWindow"))
+				if(!alrOpened("StudentWindow"+"Edit"))
 				{
 					new StudentWindow("Edit");
 				}

@@ -261,7 +261,7 @@ public class LockerWindow
 		        for(Shell shell : shells)
 		        {
 		            String data = (String) shell.getData();
-		            if(data != null && data.equals("StudentWindow"))
+		            if(data != null && data.equals("StudentWindow"+"Register"))
 		            {
 		                shell.setVisible(true);
 		                shell.setFocus();
